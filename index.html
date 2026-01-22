@@ -129,32 +129,13 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: var(--noir-olive);
+            background: var(--vert-persil);
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-        }
-
-        /* Lignes horizontales de révélation */
-        .intro-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            z-index: 2;
-        }
-
-        .intro-line {
-            flex: 1;
-            background: var(--vert-persil);
-            transform: scaleX(0);
-            transform-origin: left;
         }
 
         /* Contenu central */
@@ -187,40 +168,6 @@
             transform: translateY(20px);
         }
 
-        /* Compteur de chargement */
-        .intro-counter {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-        }
-
-        .intro-counter-number {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 8rem;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 241, 220, 0.3);
-            line-height: 1;
-        }
-
-        /* Barre de progression */
-        .intro-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--rouge-tomate), var(--jaune-oeuf));
-            z-index: 3;
-        }
-
-        /* Éléments décoratifs */
-        .intro-deco {
-            position: absolute;
-            z-index: 1;
-        }
 
         .intro-deco-1 {
             top: 20%;
@@ -256,7 +203,33 @@
         .intro-overlay {
          display: none;
         }
-        
+
+        /* Éléments décoratifs de l'intro - Simplifiés */
+        .intro-element {
+            position: absolute;
+            z-index: 4;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .intro-hand-left {
+            width: 70px;
+            top: 30%;
+            left: 20%;
+        }
+
+        .intro-hand-right {
+            width: 50px;
+            top: 35%;
+            right: 20%;
+        }
+
+        @media (max-width: 768px) {
+            .intro-element {
+                display: none;
+            }
+        }
+
         /* Navigation - Header Transparent Adaptatif */
         nav {
             position: fixed;
@@ -519,7 +492,7 @@
             }
         }
         
-        /* Hero avec Vidéo Background - Style Minimaliste Bold */
+        /* Hero avec Dégradé Background - Style Lumineux */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -528,39 +501,34 @@
             padding: 0;
             position: relative;
             overflow: hidden;
-            background: var(--noir-olive);
+            background: linear-gradient(
+                160deg,
+                var(--creme-fouettee) 0%,
+                #FFF5E6 40%,
+                var(--jaune-oeuf) 100%
+            );
         }
 
-        /* Vidéo en fond */
+        /* Vidéo cachée */
         .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
+            display: none;
         }
 
         .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
+            display: none;
         }
 
-        /* Overlay dégradé */
+        /* Overlay léger pour lisibilité */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(11, 11, 9, 0.7) 0%,
-                rgba(34, 93, 46, 0.4) 50%,
-                rgba(11, 11, 9, 0.8) 100%
+            background: radial-gradient(
+                ellipse at center,
+                rgba(255, 241, 220, 0.3) 0%,
+                rgba(255, 241, 220, 0) 70%
             );
             z-index: 2;
         }
@@ -589,7 +557,7 @@
         .hero h1 {
             margin-bottom: 2rem;
             opacity: 0;
-            color: var(--creme-fouettee);
+            color: var(--noir-olive);
             font-size: 5rem;
             line-height: 1.1;
             font-weight: 800;
@@ -598,7 +566,7 @@
 
         .hero h1 span {
             display: block;
-            background: linear-gradient(90deg, var(--creme-fouettee) 0%, var(--jaune-oeuf) 100%);
+            background: linear-gradient(90deg, var(--vert-persil) 0%, var(--rouge-tomate) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -610,50 +578,100 @@
             margin: 0 auto 3rem;
             line-height: 1.8;
             opacity: 0;
-            color: rgba(255, 241, 220, 0.85);
+            color: var(--noir-olive);
+        }
+
+        /* Stickers flottants dans le hero */
+        .hero-sticker {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            transform-origin: top center;
+        }
+
+        .hero-sticker-1 {
+            width: 80px;
+            top: 15%;
+            left: 8%;
+            animation: pendulum 3s ease-in-out infinite;
+        }
+
+        .hero-sticker-2 {
+            width: 50px;
+            top: 20%;
+            right: 10%;
+            animation: pendulum 2.5s ease-in-out infinite reverse;
+        }
+
+        .hero-sticker-3 {
+            width: 60px;
+            bottom: 25%;
+            left: 12%;
+            animation: pendulum 3.5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pendulum {
+            0% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
+            100% { transform: rotate(-8deg); }
+        }
+
+        /* Hero responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .hero-sticker {
+                display: none;
+            }
         }
 
         .cta-button {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            background: transparent;
+            background: var(--vert-persil);
             color: var(--creme-fouettee);
-            padding: 1.2rem 3rem;
-            border: 2px solid var(--creme-fouettee);
-            border-radius: 0;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
             font-size: 0.9rem;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 2px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: inline-block;
             text-decoration: none;
             opacity: 0;
             position: relative;
             overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--creme-fouettee);
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
+            box-shadow: 0 4px 15px rgba(34, 93, 46, 0.3);
         }
 
         .cta-button:hover {
-            color: var(--noir-olive);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(34, 93, 46, 0.4);
+            background: var(--rouge-tomate);
         }
 
-        .cta-button:hover::before {
-            left: 0;
+        .cta-button:active {
+            transform: translateY(0) scale(0.98);
         }
+
         .cta-button.addition-cta {
+            background: var(--jaune-oeuf);
             color: var(--noir-olive);
+            box-shadow: 0 4px 15px rgba(255, 200, 87, 0.3);
+        }
+
+        .cta-button.addition-cta:hover {
+            background: var(--rouge-tomate);
+            color: var(--creme-fouettee);
+            box-shadow: 0 8px 25px rgba(218, 77, 27, 0.4);
         }
         /* Scroll indicator */
         .scroll-indicator {
@@ -672,7 +690,7 @@
         .scroll-mouse {
             width: 26px;
             height: 42px;
-            border: 2px solid rgba(255, 241, 220, 0.5);
+            border: 2px solid rgba(11, 11, 9, 0.5);
             border-radius: 15px;
             position: relative;
         }
@@ -685,7 +703,7 @@
             transform: translateX(-50%);
             width: 4px;
             height: 8px;
-            background: var(--creme-fouettee);
+            background: var(--noir-olive);
             border-radius: 2px;
             animation: scroll-wheel 1.5s ease-in-out infinite;
         }
@@ -761,25 +779,38 @@
             overflow: hidden;
         }
 
-        /* Vidéo en fond pour chaque slide */
-        .story-slide .slide-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
+        /* Fonds colorés pour chaque slide */
+        .story-slide.slide-1 {
+            background: linear-gradient(135deg, var(--vert-persil) 0%, #1a4a24 100%);
         }
 
-        /* Overlay sombre pour lisibilité du texte */
+        .story-slide.slide-2 {
+            background: linear-gradient(135deg, var(--rouge-tomate) 0%, #b33a10 100%);
+        }
+
+        .story-slide.slide-3 {
+            background: linear-gradient(135deg, var(--jaune-oeuf) 0%, #e6a800 100%);
+        }
+
+        .story-slide.slide-3 h2,
+        .story-slide.slide-3 p,
+        .story-slide.slide-3 .story-number {
+            color: var(--noir-olive);
+            text-shadow: none;
+        }
+
+        .story-slide.slide-4 {
+            background: linear-gradient(135deg, var(--noir-olive) 0%, #1a1a18 100%);
+        }
+
+        /* Overlay subtil pour la profondeur */
         .story-slide .slide-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(34,93,46,0.85) 0%, rgba(11,11,9,0.75) 100%);
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
             z-index: 1;
         }
 
@@ -828,8 +859,13 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
+        .pattern-section.pattern-red {
+            background-image: url('assets/motifs/Carreaux rouges.png');
+        }
 
         /* Éléments décoratifs - Mains */
         .deco-hand {
@@ -1068,7 +1104,7 @@
         /* Services Section */
         .services-section {
             padding: 8rem 5%;
-            background: linear-gradient(180deg, white 0%, var(--creme-fouettee) 100%);
+            background: var(--creme-fouettee);
             position: relative;
             overflow: hidden;
         }
@@ -1317,11 +1353,11 @@
         }
 
         .addition-logo {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .addition-logo img {
-            height: 40px;
+            height: 70px;
             width: auto;
         }
 
@@ -1402,8 +1438,9 @@
 
         .addition-total-price {
             font-weight: 700;
-            font-size: 1.5rem;
-            color: #333;
+            font-size: 1.8rem;
+            color: var(--rouge-tomate);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .addition-footer {
@@ -1419,15 +1456,46 @@
             margin: 0.3rem 0;
         }
 
-        .addition-cta {
-            margin-top: 1.5rem;
+        .addition .addition-cta {
+            display: block;
+            margin-top: 1rem;
             width: 100%;
+            text-align: center;
+            opacity: 1;
+            font-size: 0.75rem;
+            padding: 1rem 1.5rem;
         }
 
-        .addition-cta .cta-button {
-            width: 100%;
-            opacity: 1;
+        .addition-footer-section {
+            margin-top: 1rem;
+            animation: slideIn 0.4s ease;
+        }
+
+        .addition-email-field {
+            margin: 1rem 0;
+        }
+
+        .addition-email-field label {
+            display: block;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
             font-family: 'Libre Baskerville', serif;
+        }
+
+        .addition-email-field input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-family: 'Libre Baskerville', serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .addition-email-field input:focus {
+            outline: none;
+            border-color: var(--vert-persil);
         }
 
         /* Animation pour les items de l'addition */
@@ -1651,44 +1719,24 @@
     <!-- Loader -->
     <div class="intro-loader">
         <!-- Lignes de révélation -->
-        <div class="intro-lines">
-            <div class="intro-line"></div>
-            <div class="intro-line"></div>
-            <div class="intro-line"></div>
-            <div class="intro-line"></div>
-            <div class="intro-line"></div>
-        </div>
-
-        <!-- Éléments décoratifs -->
-        <div class="intro-deco intro-deco-1"></div>
-        <div class="intro-deco intro-deco-2"></div>
-        <div class="intro-deco intro-deco-3"></div>
+        <!-- Éléments décoratifs simples -->
+        <img src="assets/stickers/Sticker main jaune.png" alt="" class="intro-element intro-hand-left">
+        <img src="assets/stickers/Sticker_etoiles.png" alt="" class="intro-element intro-hand-right">
 
         <!-- Contenu central -->
         <div class="intro-content">
             <div class="intro-logo">
-                <img src="assets/logos/Logo blanc.svg" alt="La Buon'Com">
+                <img src="assets/logos/Logo sticker.svg" alt="La Buon'Com">
             </div>
             <div class="intro-tagline">Fatto con amore</div>
         </div>
-
-        <!-- Compteur -->
-        <div class="intro-counter">
-            <div class="intro-counter-number">0</div>
-        </div>
-
-        <!-- Barre de progression -->
-        <div class="intro-progress"></div>
-
-        <!-- Overlay de fermeture -->
-        <div class="intro-overlay"></div>
     </div>
 
     <!-- Navigation -->
     <nav>
         <a href="#accueil" class="logo">
-            <img src="assets/logos/Logo principal.svg" alt="La Buon'Com" class="logo-dark">
-            <img src="assets/logos/Logo blanc.svg" alt="La Buon'Com" class="logo-light">
+            <img src="assets/logos/Logo sticker.svg" alt="La Buon'Com" class="logo-dark">
+            <img src="assets/logos/Logo sticker.svg" alt="La Buon'Com" class="logo-light">
         </a>
         <button class="menu-toggle" aria-label="Menu">
             <span></span>
@@ -1726,18 +1774,17 @@
 
     <!-- Hero -->
     <section class="hero" id="accueil">
-        <!-- Vidéo Background -->
-        <div class="hero-video-container">
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="https://videos.pexels.com/video-files/4253725/4253725-uhd_2560_1440_25fps.mp4" type="video/mp4">
-            </video>
-        </div>
-
         <!-- Overlay -->
         <div class="hero-overlay"></div>
         <div class="hero-grain"></div>
+
+        <!-- Stickers flottants -->
+        <img src="assets/stickers/Sticker main jaune.png" alt="" class="hero-sticker hero-sticker-1">
+        <img src="assets/stickers/Sticker_etoiles.png" alt="" class="hero-sticker hero-sticker-2">
+        <img src="assets/stickers/Sticker O.png" alt="" class="hero-sticker hero-sticker-3">
+
         <div class="hero-content">
-            <h1>La communication<br><span>mijotée avec soin</span></h1>
+            <h1>Votre communication<br><span>mijotée avec soin</span></h1>
             <p class="hero-description">
                 Comme un chef qui ajuste ses assaisonnements, nous travaillons chaque détail
                 de votre stratégie avec précision et intuition.
@@ -1756,15 +1803,11 @@
         </div>
     </section>
 
-    <!-- Storytelling Parallaxe Horizontal avec vidéos -->
+    <!-- Storytelling Parallaxe Horizontal -->
     <section class="story-section" id="story">
         <div class="story-wrapper">
             <div class="story-container">
-                <div class="story-slide">
-                    <!-- Vidéo: brainstorming, idées, créativité -->
-                    <video class="slide-video" autoplay muted loop playsinline>
-                        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4">
-                    </video>
+                <div class="story-slide slide-1">
                     <div class="slide-overlay"></div>
                     <div class="slide-content">
                         <div class="story-number">01</div>
@@ -1773,11 +1816,7 @@
                     </div>
                 </div>
 
-                <div class="story-slide">
-                    <!-- Vidéo: travail d'équipe, réunion, stratégie -->
-                    <video class="slide-video" autoplay muted loop playsinline>
-                        <source src="https://videos.pexels.com/video-files/3252128/3252128-uhd_2560_1440_25fps.mp4" type="video/mp4">
-                    </video>
+                <div class="story-slide slide-2">
                     <div class="slide-overlay"></div>
                     <div class="slide-content">
                         <div class="story-number">02</div>
@@ -1786,11 +1825,7 @@
                     </div>
                 </div>
 
-                <div class="story-slide">
-                    <!-- Vidéo: création, design en action -->
-                    <video class="slide-video" autoplay muted loop playsinline>
-                        <source src="https://videos.pexels.com/video-files/6774232/6774232-uhd_2560_1440_25fps.mp4" type="video/mp4">
-                    </video>
+                <div class="story-slide slide-3">
                     <div class="slide-overlay"></div>
                     <div class="slide-content">
                         <div class="story-number">03</div>
@@ -1799,11 +1834,7 @@
                     </div>
                 </div>
 
-                <div class="story-slide">
-                    <!-- Vidéo: succès, célébration, résultat -->
-                    <video class="slide-video" autoplay muted loop playsinline>
-                        <source src="https://videos.pexels.com/video-files/3141208/3141208-uhd_2560_1440_25fps.mp4" type="video/mp4">
-                    </video>
+                <div class="story-slide slide-4">
                     <div class="slide-overlay"></div>
                     <div class="slide-content">
                         <div class="story-number">04</div>
@@ -1822,7 +1853,7 @@
     <section class="showcase-section" id="showcase">
         <!-- Éléments décoratifs -->
         <div class="deco-sticker deco-sticker-etoiles">
-            <img src="assets/autres/Étoiles.png" alt="">
+            <img src="assets/autres/etoile.png" alt="">
         </div>
 
         <div class="section-header">
@@ -1891,6 +1922,9 @@
         </div>
     </section>
 
+    <!-- Motif Carreaux Rouges -->
+    <section class="pattern-section pattern-red"></section>
+
     <!-- Services -->
     <section class="services-section" id="services">
         <!-- Élément décoratif - Main -->
@@ -1905,10 +1939,9 @@
 
         <div class="services-container">
             <div class="packs-area">
-                <div class="pack-card" data-pack="antipasti" data-price="500">
+                <div class="pack-card" data-pack="antipasti">
                     <div class="pack-header">
                         <h3 class="pack-name">Antipasti</h3>
-                        <span class="pack-price">500€</span>
                     </div>
                     <p class="pack-description">L'essentiel pour démarrer</p>
                     <ul class="pack-includes">
@@ -1919,10 +1952,9 @@
                     </ul>
                 </div>
 
-                <div class="pack-card" data-pack="primo" data-price="1200">
+                <div class="pack-card" data-pack="primo">
                     <div class="pack-header">
                         <h3 class="pack-name">Il Primo</h3>
-                        <span class="pack-price">1 200€</span>
                     </div>
                     <p class="pack-description">La solution complète</p>
                     <ul class="pack-includes">
@@ -1934,10 +1966,9 @@
                     </ul>
                 </div>
 
-                <div class="pack-card" data-pack="dolce" data-price="2500">
+                <div class="pack-card" data-pack="dolce">
                     <div class="pack-header">
                         <h3 class="pack-name">La Dolce Vita</h3>
-                        <span class="pack-price">2 500€</span>
                     </div>
                     <p class="pack-description">L'expérience premium</p>
                     <ul class="pack-includes">
@@ -1952,36 +1983,32 @@
                 <div class="extras-area" style="margin-top: 2rem;">
                     <h3>Les Extras</h3>
                     <div class="extras-list">
-                        <div class="extra-item" data-extra="seo" data-price="300">
+                        <div class="extra-item" data-extra="seo">
                             <div class="extra-info">
                                 <div class="extra-name">Optimisation SEO</div>
                                 <div class="extra-desc">Référencement naturel</div>
                             </div>
-                            <div class="extra-price">+300€</div>
                         </div>
 
-                        <div class="extra-item" data-extra="video" data-price="800">
+                        <div class="extra-item" data-extra="video">
                             <div class="extra-info">
                                 <div class="extra-name">Vidéo promotionnelle</div>
                                 <div class="extra-desc">Clip professionnel</div>
                             </div>
-                            <div class="extra-price">+800€</div>
                         </div>
 
-                        <div class="extra-item" data-extra="newsletter" data-price="200">
+                        <div class="extra-item" data-extra="newsletter">
                             <div class="extra-info">
                                 <div class="extra-name">Newsletter mensuelle</div>
                                 <div class="extra-desc">Création et envoi</div>
                             </div>
-                            <div class="extra-price">+200€/mois</div>
                         </div>
 
-                        <div class="extra-item" data-extra="branding" data-price="1500">
+                        <div class="extra-item" data-extra="branding">
                             <div class="extra-info">
                                 <div class="extra-name">Charte graphique</div>
                                 <div class="extra-desc">Guide d'identité complète</div>
                             </div>
-                            <div class="extra-price">+1 500€</div>
                         </div>
                     </div>
                 </div>
@@ -2000,6 +2027,22 @@
                         <div class="addition-empty">
                             Sélectionnez un pack pour commencer votre commande...
                         </div>
+                    </div>
+
+                    <div class="addition-footer-section" id="addition-footer-section" style="display: none;">
+                        <div class="addition-total">
+                            <span class="addition-total-label">Total:</span>
+                            <span class="addition-total-price">???</span>
+                        </div>
+
+                        <div class="addition-email-field">
+                            <label for="addition-email">Votre email</label>
+                            <input type="email" id="addition-email" placeholder="votre@email.com" required>
+                        </div>
+
+                        <button type="button" class="cta-button addition-cta" id="addition-mail-btn">
+                            Recevoir mon addition par mail
+                        </button>
                     </div>
                 </div>
             </div>
@@ -2152,32 +2195,71 @@
 
         function updateAddition() {
             const additionContent = document.getElementById('addition-content');
+            const footerSection = document.getElementById('addition-footer-section');
             if (!additionContent) return;
 
             if (!selectedPack) {
                 additionContent.innerHTML = '<div class="addition-empty">Sélectionnez un pack pour commencer votre commande...</div>';
+                if (footerSection) footerSection.style.display = 'none';
                 return;
             }
 
-            let total = selectedPack.price;
-            let itemsHtml = '<div class="addition-item" style="animation: slideIn 0.3s ease"><span class="addition-item-name">1x ' + selectedPack.name + '</span><span class="addition-item-price">' + selectedPack.price.toLocaleString('fr-FR') + '.00</span></div>';
+            // Afficher la section footer avec prix et bouton
+            if (footerSection) footerSection.style.display = 'block';
+
+            let itemsHtml = '<div class="addition-item" style="animation: slideIn 0.3s ease"><span class="addition-item-name">1x ' + selectedPack.name + '</span></div>';
 
             let extrasCount = 0;
             selectedExtras.forEach(function(extraId) {
                 const extraEl = document.querySelector('.extra-item[data-extra="' + extraId + '"]');
                 if (extraEl) {
                     const name = extraEl.querySelector('.extra-name').textContent;
-                    const price = parseInt(extraEl.dataset.price);
-                    total += price;
                     extrasCount++;
-                    itemsHtml += '<div class="addition-item" style="animation: slideIn 0.3s ease ' + (extrasCount * 0.1) + 's"><span class="addition-item-name">+ ' + name + '</span><span class="addition-item-price">' + price.toLocaleString('fr-FR') + '.00</span></div>';
+                    itemsHtml += '<div class="addition-item" style="animation: slideIn 0.3s ease ' + (extrasCount * 0.1) + 's"><span class="addition-item-name">+ ' + name + '</span></div>';
                 }
             });
 
-            additionContent.innerHTML = '<div class="addition-items">' + itemsHtml + '</div><div class="addition-separator">- - - - - - - - - - - - -</div><div class="addition-total"><span class="addition-total-label">TOTAL EUR</span><span class="addition-total-price">' + total.toLocaleString('fr-FR') + '.00</span></div><div class="addition-footer"><p>TVA incluse</p><p>Merci de votre confiance !</p></div><div class="addition-cta"><button class="cta-button addition-cta" onclick="alert(\'Demande envoyée ! Nous vous contacterons rapidement.\')">Valider la commande</button></div>';
+            additionContent.innerHTML = '<div class="addition-items">' + itemsHtml + '</div>';
+        }
 
-            if (typeof gsap !== 'undefined') {
-                gsap.fromTo('.addition-total-price', { scale: 1.2 }, { scale: 1, duration: 0.4, ease: 'back.out(1.7)' });
+        // Gestion du bouton d'envoi email
+        function initEmailButton() {
+            const mailBtn = document.getElementById('addition-mail-btn');
+            const emailInput = document.getElementById('addition-email');
+
+            if (mailBtn && emailInput) {
+                mailBtn.addEventListener('click', function() {
+                    const email = emailInput.value.trim();
+
+                    if (!email || !email.includes('@')) {
+                        emailInput.style.borderColor = 'var(--rouge-tomate)';
+                        emailInput.focus();
+                        return;
+                    }
+
+                    if (!selectedPack) {
+                        alert('Veuillez sélectionner un pack');
+                        return;
+                    }
+
+                    // Construire le contenu de l'email
+                    let emailBody = 'Pack sélectionné: ' + selectedPack.name;
+                    selectedExtras.forEach(function(extraId) {
+                        const extraEl = document.querySelector('.extra-item[data-extra="' + extraId + '"]');
+                        if (extraEl) {
+                            const name = extraEl.querySelector('.extra-name').textContent;
+                            emailBody += '%0A- ' + name;
+                        }
+                    });
+                    emailBody += '%0A%0AEmail client: ' + email;
+
+                    // Ouvrir le client email
+                    window.location.href = 'mailto:hello@labuoncom.fr?subject=Demande de devis - ' + selectedPack.name + '&body=' + emailBody;
+                });
+
+                emailInput.addEventListener('input', function() {
+                    this.style.borderColor = '#ddd';
+                });
             }
         }
 
@@ -2196,8 +2278,7 @@
                     }
 
                     selectedPack = {
-                        name: this.querySelector('.pack-name').textContent,
-                        price: parseInt(this.dataset.price)
+                        name: this.querySelector('.pack-name').textContent
                     };
                     updateAddition();
                 });
@@ -2223,12 +2304,13 @@
             });
         }
 
-        // Initialiser le système de sélection immédiatement
+        // Initialiser le système de sélection et le bouton email
         initSelectionSystem();
+        initEmailButton();
 
         // ========== HEADER ADAPTATIF ==========
         const nav = document.querySelector('nav');
-        const darkSections = document.querySelectorAll('.hero, .story-slide, .concept-section, .site-footer');
+        const darkSections = document.querySelectorAll('.story-slide, .concept-section, .site-footer');
 
         function updateNavStyle() {
             if (!nav) return;
@@ -2316,39 +2398,42 @@
                     // Barre de progression
                     .to('.intro-progress', { width: '100%', duration: 2.5, ease: 'power2.inOut' }, 0)
 
-                    // Lignes horizontales avec délai en cascade
-                    .to('.intro-line', {
-                        scaleX: 1,
-                        duration: 0.8,
-                        stagger: 0.1,
-                        ease: 'power3.inOut'
-                    }, 0.3)
-
-                    // Éléments décoratifs
-                    .to('.intro-deco-1', { scaleX: 1, duration: 0.6, ease: 'power2.out' }, 0.5)
-                    .to('.intro-deco-2', { scaleX: 1, duration: 0.6, ease: 'power2.out' }, 0.7)
-                    .to('.intro-deco-3', { scaleY: 1, duration: 0.6, ease: 'power2.out' }, 0.9)
-
                     // Animation du logo
                     .to('.intro-logo img', {
                         opacity: 1,
                         scale: 1,
-                        duration: 1,
-                        ease: 'back.out(1.7)'
-                    }, 1)
+                        duration: 0.8,
+                        ease: 'back.out(1.5)'
+                    }, 0.2)
+
+                    // Apparition des éléments décoratifs
+                    .to('.intro-hand-left', {
+                        opacity: 1,
+                        scale: 1,
+                        rotation: -10,
+                        duration: 0.4,
+                        ease: 'back.out(1.5)'
+                    }, 0.5)
+                    .to('.intro-hand-right', {
+                        opacity: 1,
+                        scale: 1,
+                        rotation: 10,
+                        duration: 0.4,
+                        ease: 'back.out(1.5)'
+                    }, 0.6)
 
                     // Tagline
                     .to('.intro-tagline', {
                         opacity: 1,
                         y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    }, 1.5)
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    }, 0.8)
 
-                    // Pause puis disparition du loader (sans overlay beige)
+                    // Disparition du loader
                     .to('.intro-loader', {
                         opacity: 0,
-                        duration: 0.6,
+                        duration: 0.4,
                         ease: 'power2.inOut'
                     }, '+=0.3')
 
@@ -2358,11 +2443,10 @@
                     })
 
                     // Animations du contenu principal
-                    .to('nav', { y: 0, duration: 0.8, ease: 'power3.out' })
-                    .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-                    .to('.hero h1', { opacity: 1, duration: 1, ease: 'power2.out' }, '-=0.5')
-                    .to('.hero-description', { opacity: 1, duration: 0.8 }, '-=0.6')
-                    .to('.cta-button', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.4');
+                    .to('nav', { y: 0, duration: 0.6, ease: 'power2.out' })
+                    .to('.hero h1', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+                    .to('.hero-description', { opacity: 1, duration: 0.5 }, '-=0.3')
+                    .to('.cta-button', { opacity: 1, duration: 0.4 }, '-=0.2');
             });
 
             // Animation du scroll indicator
@@ -2371,12 +2455,6 @@
                 duration: 1,
                 delay: 3.5,
                 ease: 'power2.out'
-            });
-
-            // Parallaxe vidéo hero au scroll
-            gsap.to('.hero-video', {
-                scale: 1.2,
-                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
             });
 
             // Fade out du contenu hero au scroll
@@ -2404,16 +2482,16 @@
             const horizontalScroll = gsap.to(storyContainer, {
                 x: getScrollAmount,
                 ease: 'none',
+                force3D: true,
                 scrollTrigger: {
                     trigger: '.story-section',
                     start: 'top top',
                     end: () => '+=' + storyContainer.scrollWidth,
-                    scrub: true, // true au lieu d'un nombre
+                    scrub: 1,
                     pin: true,
-                    pinSpacing: true, // AJOUTÉ
+                    pinSpacing: true,
                     anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                    fastScrollEnd: true // AJOUTÉ pour éviter les freezes
+                    invalidateOnRefresh: true
                 }
             });
                 slides.forEach(function(slide) {
