@@ -254,14 +254,7 @@
 
         /* Overlay de fermeture */
         .intro-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--creme-fouettee);
-            z-index: 4;
-            transform: translateY(100%);
+         display: none;
         }
         
         /* Navigation - Header Transparent Adaptatif */
@@ -2352,12 +2345,12 @@
                         ease: 'power3.out'
                     }, 1.5)
 
-                    // Pause puis fermeture
-                    .to('.intro-overlay', {
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power4.inOut'
-                    }, '+=0.5')
+                    // Pause puis disparition du loader (sans overlay beige)
+                    .to('.intro-loader', {
+                        opacity: 0,
+                        duration: 0.6,
+                        ease: 'power2.inOut'
+                    }, '+=0.3')
 
                     // Masquer le loader
                     .set('.intro-loader', {
