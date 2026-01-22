@@ -730,34 +730,6 @@
             50% { opacity: 1; transform: rotate(45deg) translateY(5px); }
         }
 
-        /* Lignes décoratives sur le hero */
-        .hero-deco-line {
-            position: absolute;
-            background: rgba(255, 241, 220, 0.1);
-            z-index: 4;
-        }
-
-        .hero-deco-line-1 {
-            width: 1px;
-            height: 200px;
-            top: 0;
-            left: 15%;
-        }
-
-        .hero-deco-line-2 {
-            width: 1px;
-            height: 150px;
-            bottom: 0;
-            right: 20%;
-        }
-
-        .hero-deco-line-3 {
-            width: 100px;
-            height: 1px;
-            top: 30%;
-            right: 0;
-        }
-        
         /* Section Storytelling Parallaxe Horizontal avec vidéos */
         .story-section {
             min-height: 100vh;
@@ -1768,12 +1740,6 @@
         <!-- Overlay -->
         <div class="hero-overlay"></div>
         <div class="hero-grain"></div>
-
-        <!-- Lignes décoratives -->
-        <div class="hero-deco-line hero-deco-line-1"></div>
-        <div class="hero-deco-line hero-deco-line-2"></div>
-        <div class="hero-deco-line hero-deco-line-3"></div>
-
         <div class="hero-content">
             <h1>La communication<br><span>mijotée avec soin</span></h1>
             <p class="hero-description">
@@ -2432,21 +2398,21 @@
             const storyContainer = document.querySelector('.story-container');
             const slides = document.querySelectorAll('.story-slide');
 
-            if (storyContainer && slides.length > 0) {
-                const horizontalScroll = gsap.to(storyContainer, {
-                    x: function() { return -(storyContainer.scrollWidth - window.innerWidth); },
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: '.story-section',
-                        start: 'top top',
-                        end: function() { return '+=' + (storyContainer.scrollWidth - window.innerWidth); },
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true
-                    }
-                });
-
+    if (storyContainer && slides.length > 0) {
+        const horizontalScroll = gsap.to(storyContainer, {
+            x: function() { return -(storyContainer.scrollWidth - window.innerWidth); },
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.story-section',
+                start: 'top top',
+                end: function() { return '+=' + storyContainer.scrollWidth; }, // CHANGÉ ICI
+                scrub: 0.5, // CHANGÉ ICI - réduit pour plus de fluidité
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                snap: false // AJOUTÉ pour éviter le snap
+            }
+        });
                 slides.forEach(function(slide) {
                     const number = slide.querySelector('.story-number');
                     const h2 = slide.querySelector('h2');
@@ -2489,7 +2455,7 @@
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: item,
-                        start: 'top 85%',
+                        start: 'top 90%',
                         toggleActions: 'play none none none'
                     }
                 });
@@ -2502,17 +2468,17 @@
                   .set(content, { opacity: 0, y: 30 })
                   .fromTo(reveal,
                     { x: '-101%' },
-                    { x: '0%', duration: 0.6, ease: 'power3.inOut', delay: i * 0.15 }
+                    { x: '0%', duration: 0.4, ease: 'power3.inOut', delay: i * 0.08 }
                   )
                   .to(reveal,
-                    { x: '101%', duration: 0.6, ease: 'power3.inOut' }
+                    { x: '101%', duration: 0.4, ease: 'power3.inOut' }
                   )
                   .to(img,
-                    { scale: 1, duration: 0.8, ease: 'power2.out' },
+                    { scale: 1, duration: 0.5, ease: 'power2.out' },
                     '-=0.4'
                   )
                   .to(content,
-                    { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+                    { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
                     '-=0.3'
                   );
 
