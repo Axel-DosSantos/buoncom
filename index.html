@@ -659,7 +659,9 @@
         .cta-button:hover::before {
             left: 0;
         }
-
+        .cta-button.addition-cta {
+            color: var(--noir-olive);
+        }
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
@@ -735,6 +737,7 @@
             min-height: 100vh;
             position: relative;
             overflow: hidden;
+            will-change: transform; /* AJOUTÉ pour optimiser les performances */
         }
 
         .story-wrapper {
@@ -1830,7 +1833,8 @@
         </div>
 
         <div class="section-header">
-            <h2>Nos Réalisations</h2>
+            <h2>Nos Services
+            </h2>
             <p>Des projets qui en mettent plein les yeux</p>
         </div>
 
@@ -1840,7 +1844,7 @@
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Site web immersif">
                 <div class="showcase-content">
                     <span class="showcase-tag">Web Design</span>
-                    <p>Site vitrine immersif avec réservation en ligne</p>
+                    <p>Site vitrine immersif </p>
                 </div>
             </div>
 
@@ -1849,7 +1853,7 @@
                 <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Identité visuelle">
                 <div class="showcase-content">
                     <span class="showcase-tag">Branding</span>
-                    <p>Identité visuelle complète pour épicerie fine</p>
+                    <p>Identité visuelle complète</p>
                 </div>
             </div>
 
@@ -1858,7 +1862,7 @@
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Campagne digitale">
                 <div class="showcase-content">
                     <span class="showcase-tag">Social Media</span>
-                    <p>Campagne Instagram avec +150% d'engagement</p>
+                    <p>Campagnes publicitaires</p>
                 </div>
             </div>
 
@@ -1867,7 +1871,7 @@
                 <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80" alt="Motion design">
                 <div class="showcase-content">
                     <span class="showcase-tag">Motion Design</span>
-                    <p>Animations promotionnelles pour cave à vins</p>
+                    <p>Affiches et vidéos promotionnelles </p>
                 </div>
             </div>
         </div>
@@ -2177,7 +2181,7 @@
                 }
             });
 
-            additionContent.innerHTML = '<div class="addition-items">' + itemsHtml + '</div><div class="addition-separator">- - - - - - - - - - - - -</div><div class="addition-total"><span class="addition-total-label">TOTAL EUR</span><span class="addition-total-price">' + total.toLocaleString('fr-FR') + '.00</span></div><div class="addition-footer"><p>TVA incluse</p><p>Merci de votre confiance !</p></div><div class="addition-cta"><button class="cta-button" onclick="alert(\'Demande envoyée ! Nous vous contacterons rapidement.\')">Valider la commande</button></div>';
+            additionContent.innerHTML = '<div class="addition-items">' + itemsHtml + '</div><div class="addition-separator">- - - - - - - - - - - - -</div><div class="addition-total"><span class="addition-total-label">TOTAL EUR</span><span class="addition-total-price">' + total.toLocaleString('fr-FR') + '.00</span></div><div class="addition-footer"><p>TVA incluse</p><p>Merci de votre confiance !</p></div><div class="addition-cta"><button class="cta-button addition-cta" onclick="alert(\'Demande envoyée ! Nous vous contacterons rapidement.\')">Valider la commande</button></div>';
 
             if (typeof gsap !== 'undefined') {
                 gsap.fromTo('.addition-total-price', { scale: 1.2 }, { scale: 1, duration: 0.4, ease: 'back.out(1.7)' });
@@ -2398,21 +2402,27 @@
             const storyContainer = document.querySelector('.story-container');
             const slides = document.querySelectorAll('.story-slide');
 
-    if (storyContainer && slides.length > 0) {
-        const horizontalScroll = gsap.to(storyContainer, {
-            x: function() { return -(storyContainer.scrollWidth - window.innerWidth); },
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.story-section',
-                start: 'top top',
-                end: function() { return '+=' + storyContainer.scrollWidth; }, // CHANGÉ ICI
-                scrub: 0.5, // CHANGÉ ICI - réduit pour plus de fluidité
-                pin: true,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-                snap: false // AJOUTÉ pour éviter le snap
-            }
-        });
+        if (storyContainer && slides.length > 0) {
+            // Calculer la distance exacte
+            const getScrollAmount = () => {
+                return -(storyContainer.scrollWidth - window.innerWidth);
+            };
+            
+            const horizontalScroll = gsap.to(storyContainer, {
+                x: getScrollAmount,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.story-section',
+                    start: 'top top',
+                    end: () => '+=' + storyContainer.scrollWidth,
+                    scrub: true, // true au lieu d'un nombre
+                    pin: true,
+                    pinSpacing: true, // AJOUTÉ
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    fastScrollEnd: true // AJOUTÉ pour éviter les freezes
+                }
+            });
                 slides.forEach(function(slide) {
                     const number = slide.querySelector('.story-number');
                     const h2 = slide.querySelector('h2');
