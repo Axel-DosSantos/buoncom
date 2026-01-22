@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services - La Buon'Com</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/logos/Favicon La Buon'Com.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --vert-persil: #225D2E;
+            --creme-fouettee: #FFF1DC;
+            --rouge-tomate: #DA4D1B;
+            --jaune-oeuf: #FFC857;
+            --noir-olive: #0B0B09;
+            --rose-bonbon: #EA94A6;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            color: var(--noir-olive);
+            background-color: var(--creme-fouettee);
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 241, 220, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links > li {
+            position: relative;
+        }
+
+        .nav-links > li > a {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            color: var(--noir-olive);
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links > li > a .dropdown-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links > li:hover > a .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-links > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rouge-tomate);
+            transition: width 0.3s;
+        }
+
+        .nav-links > li > a:hover::after,
+        .nav-links > li:hover > a::after {
+            width: 100%;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 220px;
+            padding: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 15px;
+            list-style: none;
+        }
+
+        .submenu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .nav-links > li:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 10px;
+        }
+
+        .submenu li a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: var(--noir-olive);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        .submenu li a:hover {
+            background: var(--creme-fouettee);
+            color: var(--vert-persil);
+            padding-left: 2rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--noir-olive);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Page */
+        .page-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            background: var(--rouge-tomate);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../assets/motifs/Carreaux rouges.png');
+            background-size: cover;
+            opacity: 0.15;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .page-hero h1 {
+            color: var(--creme-fouettee);
+            margin-bottom: 1.5rem;
+        }
+
+        .page-hero p {
+            color: rgba(255, 241, 220, 0.9);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Sections */
+        .content-section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section.alt-bg {
+            background: white;
+            max-width: 100%;
+        }
+
+        .content-section.alt-bg .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            color: var(--vert-persil);
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services à la carte */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--vert-persil);
+            box-shadow: 0 15px 40px rgba(34, 93, 46, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--vert-persil), var(--jaune-oeuf));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: var(--vert-persil);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--rouge-tomate);
+            font-size: 1.2rem;
+        }
+
+        /* Formules */
+        .formules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .formule-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .formule-card.popular {
+            transform: scale(1.05);
+            border: 3px solid var(--vert-persil);
+        }
+
+        .formule-card.popular::before {
+            content: 'Populaire';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--rouge-tomate);
+            color: white;
+            padding: 0.5rem 3rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .formule-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .formule-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .formule-header {
+            background: var(--vert-persil);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .formule-header h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+        }
+
+        .formule-header .price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .formule-body {
+            padding: 2rem;
+        }
+
+        .formule-body ul {
+            list-style: none;
+        }
+
+        .formule-body ul li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+
+        .formule-body ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--vert-persil);
+            font-weight: bold;
+        }
+
+        .formule-cta {
+            padding: 0 2rem 2rem;
+        }
+
+        .btn-formule {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--vert-persil);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-formule:hover {
+            background: var(--noir-olive);
+            transform: scale(1.02);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--noir-olive);
+            padding: 5rem;
+            text-align: center;
+            color: var(--creme-fouettee);
+        }
+
+        .cta-section h2 {
+            color: var(--creme-fouettee);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 241, 220, 0.8);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--jaune-oeuf);
+            color: var(--noir-olive);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--creme-fouettee);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 200, 87, 0.4);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--noir-olive);
+            color: var(--creme-fouettee);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 241, 220, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-style: italic;
+            color: var(--jaune-oeuf);
+            font-size: 1rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--creme-fouettee);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 241, 220, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--jaune-oeuf);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 241, 220, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer-contact a {
+            color: rgba(255, 241, 220, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: var(--jaune-oeuf);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 241, 220, 0.1);
+            border-radius: 50%;
+            color: var(--creme-fouettee);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--vert-persil);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 241, 220, 0.1);
+            text-align: center;
+            color: rgba(255, 241, 220, 0.5);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 241, 220, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-20px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .services-grid,
+            .formules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .formule-card.popular {
+                transform: none;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="../buontest.html" class="logo">
+            <img src="../assets/logos/Logo principal.svg" alt="La Buon'Com">
+        </a>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="../buontest.html">Accueil</a></li>
+            <li>
+                <a href="agence.html">L'agence <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="agence.html#qui-sommes-nous">Qui sommes-nous ?</a></li>
+                    <li><a href="agence.html#concept">Notre concept</a></li>
+                    <li><a href="agence.html#methode">Notre méthode</a></li>
+                    <li><a href="agence.html#pourquoi">Pourquoi La Buon'Com ?</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="services.html">Nos services <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="services.html#carte">Services à la carte</a></li>
+                    <li><a href="services.html#formules">Formules de communication</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Ressources <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Nos Services</h1>
+            <p>Une carte complète de services pour satisfaire tous vos appétits de communication</p>
+        </div>
+    </section>
+
+    <!-- Services à la carte -->
+    <section class="content-section" id="carte">
+        <div class="section-title">
+            <h2>Services à la Carte</h2>
+            <p>Choisissez les prestations qui correspondent à vos besoins</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Identité Visuelle</h3>
+                <p>Création de logo, charte graphique, et tous les éléments visuels qui feront reconnaître votre marque au premier coup d'œil.</p>
+                <span class="service-price">À partir de 500€</span>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Site Web</h3>
+                <p>Sites vitrines, e-commerce ou sur mesure. Des sites modernes, responsifs et optimisés pour convertir vos visiteurs.</p>
+                <span class="service-price">À partir de 1 200€</span>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Réseaux Sociaux</h3>
+                <p>Stratégie, création de contenu et community management pour développer votre présence sur les réseaux.</p>
+                <span class="service-price">À partir de 400€/mois</span>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📝</div>
+                <h3>Rédaction Web</h3>
+                <p>Contenus optimisés SEO pour votre blog, vos pages web et vos newsletters. Des mots qui parlent à votre audience.</p>
+                <span class="service-price">À partir de 150€</span>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Photo & Vidéo</h3>
+                <p>Shooting photo, vidéos promotionnelles et motion design pour donner vie à votre communication.</p>
+                <span class="service-price">À partir de 800€</span>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Stratégie Marketing</h3>
+                <p>Audit, conseil et accompagnement stratégique pour définir le meilleur plan d'action pour votre entreprise.</p>
+                <span class="service-price">À partir de 600€</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formules -->
+    <section class="content-section alt-bg" id="formules">
+        <div class="section-inner">
+            <div class="section-title">
+                <h2>Nos Formules</h2>
+                <p>Des packs clé en main pour démarrer sereinement</p>
+            </div>
+
+            <div class="formules-grid">
+                <div class="formule-card">
+                    <div class="formule-header">
+                        <h3>Antipasti</h3>
+                        <div class="price">500€</div>
+                    </div>
+                    <div class="formule-body">
+                        <ul>
+                            <li>Logo & identité visuelle</li>
+                            <li>Carte de visite</li>
+                            <li>Page Facebook</li>
+                            <li>Conseil stratégique (2h)</li>
+                        </ul>
+                    </div>
+                    <div class="formule-cta">
+                        <a href="contact.html" class="btn-formule">Choisir cette formule</a>
+                    </div>
+                </div>
+
+                <div class="formule-card popular">
+                    <div class="formule-header" style="background: var(--rouge-tomate);">
+                        <h3>Il Primo</h3>
+                        <div class="price">1 200€</div>
+                    </div>
+                    <div class="formule-body">
+                        <ul>
+                            <li>Tout le pack Antipasti</li>
+                            <li>Site web vitrine (5 pages)</li>
+                            <li>Community management (1 mois)</li>
+                            <li>Kit réseaux sociaux</li>
+                            <li>Stratégie de contenu</li>
+                        </ul>
+                    </div>
+                    <div class="formule-cta">
+                        <a href="contact.html" class="btn-formule" style="background: var(--rouge-tomate);">Choisir cette formule</a>
+                    </div>
+                </div>
+
+                <div class="formule-card">
+                    <div class="formule-header">
+                        <h3>La Dolce Vita</h3>
+                        <div class="price">2 500€</div>
+                    </div>
+                    <div class="formule-body">
+                        <ul>
+                            <li>Tout le pack Il Primo</li>
+                            <li>Site e-commerce</li>
+                            <li>Campagne publicitaire</li>
+                            <li>Shooting photo produit</li>
+                            <li>Support prioritaire 3 mois</li>
+                        </ul>
+                    </div>
+                    <div class="formule-cta">
+                        <a href="contact.html" class="btn-formule">Choisir cette formule</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Un projet sur mesure ?</h2>
+        <p>Contactez-nous pour discuter de vos besoins spécifiques</p>
+        <a href="contact.html" class="cta-btn">Demander un devis gratuit</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="../assets/logos/Logo blanc.svg" alt="La Buon'Com" class="footer-logo">
+                <p>Agence de communication à Évry & Valbonne</p>
+                <p class="footer-tagline">Composez votre menu, on s'occupe du reste.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#carte">Services à la carte</a></li>
+                    <li><a href="services.html#formules">Formules de communication</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Politique de cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact">
+                <h4>Contact</h4>
+                <p>📍 Évry-Courcouronnes (Île-de-France)</p>
+                <p>📍 Valbonne – Sophia Antipolis</p>
+                <p>📞 <a href="tel:+33176217759">01 76 21 77 59</a></p>
+                <p>✉️ <a href="mailto:hello@labuoncom.fr">hello@labuoncom.fr</a></p>
+                <div class="footer-social">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 La Buon'Com - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Animations GSAP
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.page-hero-content', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            });
+
+            gsap.utils.toArray('.service-card').forEach(function(card, i) {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.6,
+                    delay: i * 0.1
+                });
+            });
+
+            gsap.utils.toArray('.formule-card').forEach(function(card, i) {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.6,
+                    delay: i * 0.15
+                });
+            });
+        }
+    </script>
+</body>
+</html>
