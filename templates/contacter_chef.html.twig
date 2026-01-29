@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title|default('Contacter un chef - La Buon\'Com') }}{% endblock %}
+
+{% block stylesheets %}
+<style>
+    /* Hero Section */
+    .contact-hero {
+        background: linear-gradient(135deg, var(--rouge-tomate) 0%, #c44418 100%);
+        min-height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 2rem;
+        text-align: center;
+    }
+
+    .contact-hero h1 { color: var(--creme-fouettee); margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; }
+    .contact-hero p { color: rgba(255, 241, 220, 0.9); font-size: 1.1rem; }
+
+    /* Layout */
+    .contact-content {
+        max-width: 1100px;
+        margin: -50px auto 4rem;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .contact-card-box {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    h2 { color: var(--vert-persil); margin-bottom: 1.5rem; font-size: 1.5rem; }
+
+    /* Form Elements */
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 700; color: var(--noir-olive); font-size: 0.9rem; }
+    
+    .form-group input, .form-group textarea, .form-group select {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        font-family: inherit;
+        background: #fcfcfc;
+    }
+
+    /* Slot Selector System */
+    .date-picker-wrapper { margin-bottom: 1.5rem; }
+    
+    .slots-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 1rem;
+    }
+
+    /* Stylisation des créneaux comme des boutons cliquables */
+    .slot-item input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+    }
+
+    .slot-label {
+        display: block;
+        padding: 0.8rem;
+        background: #f8f8f8;
+        border: 2px solid #eee;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .slot-item input[type="radio"]:checked + .slot-label {
+        background: var(--vert-persil);
+        border-color: var(--vert-persil);
+        color: white;
+    }
+
+    @media (max-width: 850px) {
+        .contact-content { grid-template-columns: 1fr; margin-top: 2rem; }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<section class="contact-hero">
+    <div>
+        <h1>Contacter un chef</h1>
+        <p>Réservez votre dégustation stratégique en quelques clics.</p>
+        <p style="margin-top: 0.8rem; font-size: 0.95rem;">Découvrez <a href="{{ path('agence_methode') }}" style="color: var(--jaune-oeuf); text-decoration: underline;">notre méthode de travail</a> avant notre premier échange.</p>
+    </div>
+</section>
+
+<div class="contact-content">
+    {# Colonne GAUCHE : Informations personnelles #}
+    <div class="contact-card-box">
+        <h2>1. Vos coordonnées</h2>
+        
+        <div class="form-group">
+            <label for="name">Nom complet</label>
+            <input type="text" id="name" placeholder="Ex: Paul Bocuse">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email professionnel</label>
+            <input type="email" id="email" placeholder="paul@restaurant.fr">
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Sujet de l'appel</label>
+            <select id="subject">
+                <option value="">Sélectionnez un ingrédient...</option>
+                <option value="site">Création de site internet</option>
+                <option value="seo">Référencement / SEO</option>
+                <option value="social">Réseaux sociaux</option>
+                <option value="branding">Identité visuelle</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Note pour le chef</label>
+            <textarea id="message" placeholder="Un détail particulier sur votre projet ?"></textarea>
+        </div>
+    </div>
+
+    {# Colonne DROITE : Créneaux #}
+    <div class="contact-card-box">
+        <h2>2. Choisir le créneau</h2>
+        
+        <div class="date-picker-wrapper">
+            <label for="appointment_date">Date souhaitée</label>
+            <input type="date" id="appointment_date" value="{{ "now"|date("Y-m-d") }}">
+        </div>
+
+        <label>Heure de l'appel</label>
+        <div class="slots-grid">
+            {% set hours = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'] %}
+            {% for hour in hours %}
+                <div class="slot-item">
+                    <input type="radio" id="slot_{{ loop.index }}" name="appointment_time" value="{{ hour }}">
+                    <label class="slot-label" for="slot_{{ loop.index }}">{{ hour }}</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--jaune-oeuf); background: #fffcf5;">
+            <p style="font-size: 0.85rem; color: #666; font-style: italic;">
+                L'étape finale de confirmation sera activée lors de la mise en ligne du serveur.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

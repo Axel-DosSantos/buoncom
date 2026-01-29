@@ -1,0 +1,257 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/blog.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Hero Article -->
+    <section class="article-hero">
+        <div class="article-hero-content">
+            <nav class="article-breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>›</span>
+                <a href="{{ path('blog') }}">Blog</a>
+                <span>›</span>
+                <span style="color: var(--jaune-oeuf);">Article</span>
+            </nav>
+
+            <div class="blog-categories">
+                {% for i, category in article.categories %}
+                    <span class="blog-category {{ article.category_colors[i] }}">{{ category }}</span>
+                {% endfor %}
+            </div>
+
+            <h1>{{ article.title }}</h1>
+
+            <div class="article-meta">
+                <div class="article-meta-item">
+                    <span>📅</span>
+                    <span>{{ article.date }}</span>
+                </div>
+                <div class="article-meta-item">
+                    <span>{{ article.reading_time }} de lecture</span>
+                </div>
+                <div class="article-meta-item">
+                    <span>{{ article.author }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu de l'article -->
+    <section class="article-content-section">
+        <div class="article-container">
+            <div class="article-content">
+
+                <!-- Introduction -->
+                <p>Quand on dirige une TPE, une PME ou une activité libérale, le temps est la ressource la plus précieuse. Entre la gestion quotidienne, les clients, l'administratif et les urgences qui tombent sans prévenir, la communication passe souvent au second plan.</p>
+
+                <p>Le problème, c'est que ne pas communiquer ne met pas votre activité "en pause" : cela laisse simplement la place au bruit (vos concurrents), aux approximations (le bouche-à-oreille non maîtrisé) et à l'oubli (on ne pense pas à vous quand un besoin se présente).</p>
+
+                <p>Chez La Buon'Com, nous partons d'un constat simple : une bonne communication n'a pas besoin d'être compliquée ni chronophage pour être efficace. Et si votre priorité, c'est de <a href="{{ path('agence_pourquoi') }}">communiquer efficacement quand on manque de temps</a>, alors l'objectif n'est pas d'"en faire plus" : c'est de <strong>faire mieux, avec moins</strong>.</p>
+
+                <!-- Résumé en bref -->
+                <div class="article-summary">
+                    <h4>En bref, communiquer efficacement quand on manque de temps, c'est :</h4>
+                    <ol>
+                        <li>Choisir 1 à 2 canaux maximum (pas plus)</li>
+                        <li>Répéter des messages simples (au lieu d'inventer tout le temps)</li>
+                        <li>Avancer par petites actions (15–30 minutes)</li>
+                        <li>Mesurer 1 ou 2 indicateurs (pas 12)</li>
+                        <li>Déléguer ce qui vous ralentit (sans déléguer la vision)</li>
+                    </ol>
+                </div>
+
+                <!-- H2 - Pourquoi la communication devient un problème -->
+                <h2>Pourquoi la communication devient un problème quand on manque de temps</h2>
+
+                <p>Le manque de temps, ce n'est pas seulement "ne pas avoir une heure". C'est surtout : ne pas avoir l'énergie mentale pour décider, structurer, produire, publier, analyser… puis recommencer.</p>
+
+                <p>Et ce qui complique tout, ce sont souvent <strong>trois "trop"</strong>.</p>
+
+                <h3>Trop d'outils</h3>
+                <p>Entre site web, Google Business Profile, LinkedIn, Instagram, newsletters, CRM, outils de design, outils de planification… on passe vite plus de temps à choisir l'outil qu'à communiquer.</p>
+
+                <h3>Trop de jargon marketing</h3>
+                <p>Quand on manque de temps, le jargon est un vrai frein : si chaque décision ressemble à un cours ("persona", "lead magnet", "top of funnel"…), on finit par remettre à plus tard.</p>
+                <p>Résultat : on fait "au feeling", ou on n'ose plus toucher à rien.</p>
+
+                <h3>Trop de décisions à prendre</h3>
+                <p>Quelle plateforme ? Quel format ? Quelle fréquence ? Quel ton ? Quel objectif ?</p>
+                <p>Quand la journée est déjà pleine, ces micro-décisions deviennent des montagnes.</p>
+
+                <div class="article-warning">
+                    <p><strong>Résultat :</strong> on repousse, on abandonne, ou on poste au hasard… puis on se dit "ça ne marche pas".</p>
+                </div>
+
+                <p>C'est précisément pour cela que communiquer efficacement quand on manque de temps nécessite une approche différente : <strong>moins de dispersion, moins de perfectionnisme, plus de régularité et des choix très simples (mais assumés)</strong>.</p>
+
+                <!-- H2 - Les erreurs fréquentes -->
+                <h2>Les erreurs fréquentes des TPE / PME débordées</h2>
+
+                <h3>1) Vouloir être partout</h3>
+                <p>Être partout semble rassurant ("au moins, on existe"), mais en pratique :</p>
+                <ul>
+                    <li>Vous multipliez les contenus à produire.</li>
+                    <li>Vous diluez vos efforts.</li>
+                    <li>Vous ne tenez pas dans la durée.</li>
+                </ul>
+                <p>Quand on manque de temps, la meilleure stratégie n'est pas "multicanal", elle est <strong>priorisée</strong>.</p>
+
+                <h3>2) Copier ce que font les autres</h3>
+                <p>S'inspirer, oui. Copier, non.</p>
+                <p>Pourquoi ? Parce que vous ne voyez pas :</p>
+                <ul>
+                    <li>Le temps réel investi.</li>
+                    <li>L'équipe derrière.</li>
+                    <li>Le budget pub.</li>
+                    <li>Ni ce qui ne marche pas (que personne ne montre).</li>
+                </ul>
+                <p>Vous risquez de reproduire un format qui n'est pas adapté à votre offre, votre rythme, ou votre clientèle.</p>
+
+                <h3>3) Se lancer sans stratégie claire</h3>
+                <p>Sans stratégie, la communication devient une suite d'actions isolées : un post ici, une plaquette là, un site "un jour"… et rien ne s'additionne.</p>
+
+                <div class="article-tip">
+                    <p class="article-tip-title">À retenir</p>
+                    <p><a href="https://www.francenum.gouv.fr/guides-et-conseils/communication-et-publicite/strategie-de-communication" target="_blank" rel="noopener">France Num</a> résume bien l'idée : la stratégie de communication ne s'improvise pas et doit se construire dans le temps pour gagner en visibilité et se démarquer.</p>
+                </div>
+
+                <!-- H2 - La solution -->
+                <h2>La solution : une communication simple et ciblée</h2>
+
+                <p>Communiquer efficacement, ce n'est pas "faire du marketing".</p>
+                <p>C'est <strong>rendre votre activité claire, visible, mémorisable</strong>.</p>
+
+                <h3>1) Choisir les bons canaux</h3>
+                <p><strong>Objectif :</strong> là où vos clients sont déjà (pas là où "tout le monde dit qu'il faut être").</p>
+
+                <div class="article-highlight">
+                    <p><strong>Mini-règle simple :</strong></p>
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                        <li>Si vous vendez plutôt en <strong>B2B</strong> : souvent, LinkedIn + site (et/ou email).</li>
+                        <li>Si vous vendez en <strong>local</strong> : souvent, Google Business Profile + site.</li>
+                        <li>Si vous vendez une <strong>expertise</strong> : souvent, site + contenus (article, newsletter, LinkedIn selon audience).</li>
+                    </ul>
+                </div>
+
+                <h3>2) Définir des messages clairs</h3>
+                <p>Votre message doit répondre à 3 questions, sans détour :</p>
+                <ol>
+                    <li><strong>Pour qui ?</strong> (vos clients)</li>
+                    <li><strong>Quel problème vous résolvez ?</strong></li>
+                    <li><strong>Pourquoi vous ?</strong> (différence concrète)</li>
+                </ol>
+
+                <p>Bpifrance Création insiste aussi sur l'intérêt d'une phrase d'accroche ("baseline") qui résume clairement ce que vous faites et pourquoi c'est utile.</p>
+
+                <div class="article-tip">
+                    <p class="article-tip-title">Exemple avec notre agence</p>
+                    <p><em>"Nous aidons les TPE/PME débordées à structurer une communication simple, au juste prix, sans jargon."</em></p>
+                    <p style="margin-bottom: 0;">On est bien dans l'esprit de <a href="{{ path('agence_qui_sommes_nous') }}">l'agence de communication à Évry</a> La Buon'Com : recette simple, ingrédients de qualité, authenticité.</p>
+                </div>
+
+                <h3>3) Avancer étape par étape (au lieu de "tout refaire")</h3>
+                <p>Le piège classique : "On refait tout : site, logo, réseaux, plaquette, newsletter."</p>
+                <p>Quand on manque de temps, il faut l'inverse : <strong>un petit plan, réaliste, et répétable</strong>.</p>
+
+                <!-- H2 - Externaliser -->
+                <h2>Externaliser sa communication : bonne ou mauvaise idée ?</h2>
+
+                <p>Externaliser permet de gagner du temps… à condition de comprendre ce que l'on délègue.</p>
+
+                <h3>Bonne idée si…</h3>
+                <ul>
+                    <li>Vous savez à qui vous parlez (votre cible).</li>
+                    <li>Vous avez vos offres claires.</li>
+                    <li>Vous pouvez valider un calendrier de contenus sans y passer vos soirées.</li>
+                    <li>Vous voulez une exécution régulière.</li>
+                </ul>
+
+                <h3>Mauvaise idée si…</h3>
+                <ul>
+                    <li>Vous déléguez "pour ne plus y penser" sans cap.</li>
+                    <li>Vous n'avez aucune validation possible.</li>
+                    <li>Vous attendez des résultats sans matière (infos, expertise, retours terrain).</li>
+                </ul>
+
+                <div class="article-highlight">
+                    <p><strong>Le meilleur compromis (souvent) :</strong></p>
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                        <li>Vous gardez la <strong>vision</strong> (objectifs, ton, messages).</li>
+                        <li>Vous déléguez la <strong>production</strong> / la mise en forme / la régularité.</li>
+                    </ul>
+                </div>
+
+                <!-- H2 - L'approche La Buon'Com -->
+                <h2>L'approche La Buon'Com : la communication mijotée avec soin</h2>
+
+                <p>Chez La Buon'Com, vous choisissez <a href="{{ path('services_a_la_carte') }}">à la carte</a> ce dont vous avez réellement besoin : pas de superflu, pas de jargon, et une logique simple :</p>
+                <ul>
+                    <li>On sélectionne les <strong>bons ingrédients</strong>.</li>
+                    <li>On suit une <strong>recette claire</strong>.</li>
+                    <li>On ajuste au goût (vos retours, vos priorités).</li>
+                </ul>
+
+                <!-- Conclusion -->
+                <h2>Conclusion</h2>
+
+                <p>Mieux communiquer quand on manque de temps, ce n'est pas en faire plus. C'est <strong>faire mieux</strong> : choisir moins de canaux, clarifier ses messages, et avancer étape par étape.</p>
+
+                <p>Si votre objectif en 2026 est de communiquer efficacement quand on manque de temps, rappellez-vous de cette règle simple : <strong>la communication utile bat la communication parfaite</strong>.</p>
+
+                <p>Et si vous voulez gagner du temps sans perdre le goût du "fait maison", La Buon'Com peut prendre le relais sur la préparation : vous gardez la vision, on s'occupe de la recette : simple, efficace, et au juste prix.</p>
+
+                <!-- CTA -->
+                <div class="article-cta">
+                    <h3>Prêt à structurer votre communication ?</h3>
+                    <p>Discutons de vos besoins et trouvons ensemble la bonne recette pour votre activité.</p>
+                    <a href="{{ path('contacter_chef') }}" class="btn">Contacter un chef</a>
+                </div>
+
+                <!-- Sources -->
+                <div class="article-sources">
+                    <h4>Sources</h4>
+                    <ul>
+                        <li><a href="https://www.insee.fr/fr/statistiques/6667157" target="_blank" rel="noopener">Insee (06/12/2023, "Les entreprises en France – Microentreprises")</a></li>
+                        <li><a href="https://www.francenum.gouv.fr/guides-et-conseils/communication-et-publicite/strategie-de-communication" target="_blank" rel="noopener">France Num ("Stratégie de communication")</a></li>
+                        <li><a href="https://bpifrance-creation.fr/encyclopedie/gerer-son-activite/gerer-au-quotidien/communication-petites-entreprises" target="_blank" rel="noopener">Bpifrance Création ("Comment communiquer efficacement sans budget ?")</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    // Animations au scroll
+    window.addEventListener('load', function() {
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from('.article-hero-content', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+
+            gsap.from('.article-content', {
+                scrollTrigger: {
+                    trigger: '.article-content',
+                    start: 'top 80%',
+                    once: true
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.6
+            });
+        }
+    });
+</script>
+{% endblock %}

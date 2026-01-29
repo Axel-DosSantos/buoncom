@@ -1,0 +1,803 @@
+/* ============================================
+   CONCEPT.CSS - PAGE NOTRE CONCEPT
+   La communication mijotée avec soin
+   ============================================ */
+
+/* ============================================
+   ANIMATIONS GÉNÉRALES
+   ============================================ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Floating stickers */
+.floating-sticker {
+    position: absolute;
+    animation: float-gentle 4s ease-in-out infinite;
+}
+
+.sticker-1 {
+    width: 90px;
+    top: 12%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.sticker-2 {
+    width: 70px;
+    top: 20%;
+    right: 12%;
+    animation-delay: 1s;
+}
+
+.sticker-3 {
+    width: 120px;
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 2s;
+}
+
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* ============================================
+   BLOC 1: HERO SECTION
+   ============================================ */
+.concept-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        160deg,
+        var(--creme-fouettee) 0%,
+        #FFF5E6 60%,
+        var(--jaune-oeuf) 100%
+    );
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 5%;
+}
+
+.hero-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hero-content-concept {
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.concept-hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--noir-olive);
+}
+
+.hero-subtitle-h2 {
+    font-size: 1.6rem;
+    color: var(--vert-persil);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.hero-highlight {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--rouge-tomate);
+    margin-top: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ============================================
+   PATTERN DIVIDER
+   ============================================ */
+.pattern-divider-concept {
+    height: 80px;
+    background-image: url('/assets/motifs/carreauxverts.png');
+    background-size: 300px;
+    background-repeat: repeat;
+}
+
+.pattern-divider-concept.pattern-red {
+    background-image: url('/assets/motifs/carreauxrouges.png');
+}
+
+/* ============================================
+   BLOC 2: CONSTAT DE DÉPART
+   ============================================ */
+.constat-section {
+    padding: 6rem 5%;
+    background: var(--creme-fouettee);
+}
+
+.constat-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-surtitre {
+    display: inline-block;
+    background: var(--vert-persil);
+    color: var(--creme-fouettee);
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.constat-section h2 {
+    font-size: 2.5rem;
+    color: var(--noir-olive);
+    margin-bottom: 3rem;
+    line-height: 1.3;
+}
+
+.constat-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.constat-text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--noir-olive);
+}
+
+.constat-consequence {
+    background: var(--jaune-oeuf);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-top: 1rem !important;
+}
+
+.constat-deco {
+    width: 100%;
+    max-width: 280px;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+    animation: float-gentle 5s ease-in-out infinite;
+}
+
+/* ============================================
+   BLOC 3: FONCTIONNEMENT À LA CARTE
+   ============================================ */
+.carte-concept-section {
+    padding: 6rem 5%;
+    background: var(--vert-persil);
+    position: relative;
+}
+
+.carte-concept-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carte-concept-section h2 {
+    font-size: 2.8rem;
+    color: var(--creme-fouettee);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.carte-concept-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.carte-illustration {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.carte-item {
+    background: rgba(255, 241, 220, 0.15);
+    border: 2px solid rgba(255, 241, 220, 0.2);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.carte-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(255, 241, 220, 0.2);
+    border-color: var(--jaune-oeuf);
+}
+
+.carte-item img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+}
+
+.carte-item span {
+    display: block;
+    color: var(--creme-fouettee);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.carte-concept-text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 241, 220, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+.carte-concept-text strong {
+    color: var(--jaune-oeuf);
+}
+
+.carte-concept-text a {
+    color: var(--jaune-oeuf);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+
+.carte-concept-text a:hover {
+    color: var(--creme-fouettee);
+}
+
+.carte-highlight {
+    background: rgba(255, 200, 87, 0.2);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--jaune-oeuf);
+    margin-top: 1rem !important;
+}
+
+/* ============================================
+   BLOC 4: MENUS DE COMMUNICATION
+   ============================================ */
+.menus-section {
+    padding: 6rem 5%;
+    background: var(--creme-fouettee);
+}
+
+.menus-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menus-section h2 {
+    font-size: 2.5rem;
+    color: var(--vert-persil);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.menus-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.menus-text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    margin-bottom: 1.5rem;
+}
+
+.menus-text strong {
+    color: var(--vert-persil);
+}
+
+.menus-highlight {
+    background: var(--jaune-oeuf);
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.menus-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.menu-card {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border-left: 5px solid;
+    transition: all 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.menu-entree {
+    border-color: var(--vert-persil);
+}
+
+.menu-plat {
+    border-color: var(--jaune-oeuf);
+}
+
+.menu-dessert {
+    border-color: var(--rouge-tomate);
+}
+
+.menu-type {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+}
+
+.menu-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    color: var(--noir-olive);
+    font-weight: 700;
+}
+
+/* ============================================
+   BLOC 5: SUR-MESURE
+   ============================================ */
+.surmesure-section {
+    padding: 8rem 5%;
+    background: linear-gradient(135deg, var(--noir-olive) 0%, #1a1a18 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.surmesure-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.surmesure-card {
+    background: rgba(255, 241, 220, 0.1);
+    border: 2px solid rgba(255, 241, 220, 0.15);
+    padding: 4rem 3rem;
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.surmesure-card h2 {
+    font-size: 2.5rem;
+    color: var(--creme-fouettee);
+    margin-bottom: 2rem;
+}
+
+.surmesure-card p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 241, 220, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+.surmesure-card strong {
+    color: var(--jaune-oeuf);
+}
+
+.surmesure-conclusion {
+    background: rgba(255, 200, 87, 0.15);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    margin-top: 2rem !important;
+    font-style: italic;
+}
+
+.surmesure-sticker-1 {
+    position: absolute;
+    width: 120px;
+    top: -30px;
+    left: 5%;
+    transform: rotate(-15deg);
+    z-index: 10;
+    animation: float-gentle 5s ease-in-out infinite;
+}
+
+.surmesure-sticker-2 {
+    position: absolute;
+    width: 80px;
+    bottom: -20px;
+    right: 8%;
+    transform: rotate(12deg);
+    z-index: 10;
+    animation: float-gentle 6s ease-in-out infinite 1s;
+}
+
+/* ============================================
+   BLOC 6: PÉDAGOGIE
+   ============================================ */
+.pedagogie-section {
+    padding: 6rem 5%;
+    background: var(--jaune-oeuf);
+}
+
+.pedagogie-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pedagogie-section h2 {
+    font-size: 2.5rem;
+    color: var(--noir-olive);
+    margin-bottom: 3rem;
+}
+
+.pedagogie-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.stat-block {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--vert-persil);
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--noir-olive);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+.stat-separator {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--noir-olive);
+}
+
+.pedagogie-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    margin-bottom: 1rem;
+}
+
+.pedagogie-content a {
+    color: var(--vert-persil);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pedagogie-content a:hover {
+    color: var(--rouge-tomate);
+}
+
+/* ============================================
+   BLOC 7: COMMUNICATION DURABLE
+   ============================================ */
+.durable-section {
+    padding: 6rem 5%;
+    background: var(--creme-fouettee);
+}
+
+.durable-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.durable-content h2 {
+    font-size: 2.5rem;
+    color: var(--vert-persil);
+    margin-bottom: 2rem;
+}
+
+.durable-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    margin-bottom: 1.5rem;
+}
+
+.durable-highlight {
+    background: var(--vert-persil);
+    color: var(--creme-fouettee) !important;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-top: 1rem !important;
+}
+
+.durable-visual {
+    position: relative;
+}
+
+.durable-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.durable-icon {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.durable-icon:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.icon-check {
+    width: 40px;
+    height: 40px;
+    background: var(--vert-persil);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.durable-icon span:last-child {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--noir-olive);
+}
+
+.durable-hand {
+    width: 180px;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.2));
+    animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* ============================================
+   BLOC 8: CTA FINAL
+   ============================================ */
+.cta-concept-section {
+    padding: 8rem 5%;
+    background: linear-gradient(135deg, var(--vert-persil) 0%, #1a4a24 100%);
+    position: relative;
+}
+
+.cta-concept-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255, 241, 220, 0.15);
+    padding: 4rem 3rem;
+    border-radius: 24px;
+    border: 2px solid rgba(255, 241, 220, 0.2);
+}
+
+.cta-concept-section h2 {
+    font-size: 3rem;
+    color: var(--creme-fouettee);
+    margin-bottom: 2rem;
+}
+
+.cta-intro {
+    font-size: 1.3rem;
+    color: rgba(255, 241, 220, 0.95);
+    margin-bottom: 1rem;
+}
+
+.cta-benefits {
+    font-size: 1.15rem;
+    color: rgba(255, 241, 220, 0.9);
+    margin-bottom: 1rem;
+}
+
+.cta-action {
+    font-size: 1.15rem;
+    color: var(--jaune-oeuf);
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .concept-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .constat-content,
+    .carte-concept-content,
+    .menus-content,
+    .durable-container {
+        grid-template-columns: 1fr;
+    }
+
+    .constat-visual,
+    .durable-visual {
+        order: -1;
+        text-align: center;
+    }
+
+    .constat-deco {
+        max-width: 200px;
+    }
+
+    .pedagogie-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .stat-separator {
+        transform: rotate(90deg);
+    }
+
+    .durable-hand {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin: 2rem auto 0;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .concept-hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle-h2 {
+        font-size: 1.3rem;
+    }
+
+    .constat-section h2,
+    .carte-concept-section h2,
+    .menus-section h2,
+    .surmesure-card h2,
+    .pedagogie-section h2,
+    .durable-content h2,
+    .cta-concept-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .floating-sticker,
+    .surmesure-sticker-1,
+    .surmesure-sticker-2 {
+        display: none;
+    }
+
+    .carte-illustration {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .carte-item {
+        padding: 1.5rem 1rem;
+    }
+
+    .surmesure-card {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .stat-block {
+        padding: 1.5rem 2rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .cta-concept-container {
+        padding: 3rem 1.5rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .concept-hero {
+        padding: 5rem 1.5rem;
+    }
+
+    .carte-illustration {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .menu-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}
+
+/* Préférence reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .floating-sticker,
+    .animate-on-scroll {
+        animation: none;
+        transition: none;
+    }
+
+    .animate-on-scroll {
+        opacity: 1;
+        transform: none;
+    }
+}

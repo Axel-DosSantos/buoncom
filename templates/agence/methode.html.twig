@@ -1,0 +1,299 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/methode.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- BLOC 1: Introduction méthode -->
+    <section class="methode-hero">
+        <div class="hero-decoration">
+            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="floating-sticker sticker-1" loading="eager">
+            <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="" class="floating-sticker sticker-2" loading="lazy">
+        </div>
+
+        <div class="hero-content-methode">
+            <h1>Notre façon de travailler, pas à pas</h1>
+            <h2 class="hero-subtitle-h2">Une méthode de communication simple, claire et efficace</h2>
+            <p class="hero-description">
+                Chez La Buon'Com, notre méthode de communication est conçue pour être comprise par tous.
+            </p>
+            <p class="hero-description">
+                Elle s'adresse aux TPE, PME et professions libérales qui souhaitent une communication structurée, sans jargon et sans perte de temps.
+            </p>
+            <p class="hero-highlight">
+                Chaque étape est expliquée clairement, pour vous permettre de savoir où vous allez et pourquoi.
+            </p>
+        </div>
+    </section>
+
+    <!-- Timeline visuelle des étapes -->
+    <section class="timeline-overview">
+        <div class="timeline-container">
+            <div class="timeline-step">
+                <span class="step-number">1</span>
+                <span class="step-label">Écoute</span>
+            </div>
+            <div class="timeline-connector"></div>
+            <div class="timeline-step">
+                <span class="step-number">2</span>
+                <span class="step-label">Stratégie</span>
+            </div>
+            <div class="timeline-connector"></div>
+            <div class="timeline-step">
+                <span class="step-number">3</span>
+                <span class="step-label">Sélection</span>
+            </div>
+            <div class="timeline-connector"></div>
+            <div class="timeline-step">
+                <span class="step-number">4</span>
+                <span class="step-label">Déploiement</span>
+            </div>
+            <div class="timeline-connector"></div>
+            <div class="timeline-step">
+                <span class="step-number">5</span>
+                <span class="step-label">Évolution</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 2: Étape 1 - Comprendre -->
+    <section class="etape-section etape-1">
+        <div class="etape-container">
+            <div class="etape-content">
+                <h2>Comprendre votre activité et vos objectifs pour mieux communiquer</h2>
+                <p>
+                    <strong>Tout commence par l'écoute.</strong>
+                </p>
+                <p>
+                    Nous prenons le temps de comprendre votre activité, vos contraintes, votre cible et vos objectifs.
+                </p>
+                <p class="etape-highlight">
+                    Cette étape permet de définir une stratégie de communication réaliste, adaptée à votre budget et à votre disponibilité.
+                </p>
+            </div>
+            <div class="etape-visual">
+                <div class="etape-icon-card">
+                    <div class="card-magnet magnet-top-right">
+                        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="icon-circle">
+                        <span class="icon-number">1</span>
+                    </div>
+                    <span class="icon-label">Écoute active</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-methode"></div>
+
+    <!-- BLOC 3: Étape 2 - Structurer -->
+    <section class="etape-section etape-2">
+        <div class="etape-container reverse">
+            <div class="etape-content">
+                <h2>Structurer votre communication</h2>
+                <p>
+                    Une fois les objectifs définis, nous structurons votre communication : <strong>messages clés, canaux à activer, priorités</strong>.
+                </p>
+                <p>
+                    Site internet, SEO, réseaux sociaux ou supports de communication : chaque action est choisie pour son utilité réelle, pas par effet de mode.
+                </p>
+            </div>
+            <div class="etape-visual">
+                <div class="etape-icon-card">
+                    <div class="card-magnet magnet-top-left">
+                        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="icon-circle icon-jaune">
+                        <span class="icon-number">2</span>
+                    </div>
+                    <span class="icon-label">Plan stratégique</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-methode pattern-red"></div>
+
+    <!-- BLOC 4: Étape 3 - Choisir -->
+    <section class="etape-section etape-3">
+        <div class="etape-container">
+            <div class="etape-content">
+                <h2>Sélectionner les bonnes prestations de communication</h2>
+                <p>
+                    Vous choisissez les <a href="{{ path('services_a_la_carte') }}">prestations adaptées à votre activité</a>.
+                </p>
+                <p>
+                    Nous vous guidons pour sélectionner les solutions les plus pertinentes, <strong>sans forfait imposé</strong>.
+                </p>
+                <p class="etape-highlight etape-highlight-rouge">
+                    Cette approche à la carte garantit une communication maîtrisée et évolutive.
+                </p>
+            </div>
+            <div class="etape-visual">
+                <div class="etape-icon-card">
+                    <div class="card-magnet magnet-top-center">
+                        <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="icon-circle icon-rouge">
+                         <span class="icon-number">3</span>
+                    </div>
+                    <span class="icon-label">À la carte</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 5: Étape 4 - Déployer -->
+    <section class="etape-section etape-4">
+        <div class="etape-container reverse">
+            <div class="etape-content">
+                <h2>Déployer votre communication</h2>
+                <p>
+                    Nous mettons en œuvre les actions définies ensemble, <strong>en vous expliquant chaque étape</strong>.
+                </p>
+                <p>
+                    Vous savez ce qui est fait, pourquoi et dans quel objectif.
+                </p>
+                <p class="etape-highlight etape-highlight-rose">
+                    Le suivi est simple, lisible et orienté résultats.
+                </p>
+            </div>
+            <div class="etape-visual">
+                <div class="etape-icon-card">
+                    <div class="card-magnet magnet-top-right">
+                        <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="icon-circle icon-rose">
+                        <span class="icon-number">4</span>
+                    </div>
+                    <span class="icon-label">Mise en œuvre</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-methode"></div>
+
+    <!-- BLOC 6: Étape 5 - Ajuster -->
+    <section class="etape-section etape-5">
+        <div class="etape-container">
+            <div class="etape-content">
+                <h2>Faire évoluer votre communication dans le temps</h2>
+                <p>
+                    <strong>Votre communication n'est jamais figée.</strong>
+                </p>
+                <p>
+                    En tant qu'<a href="{{ path('agence_pourquoi') }}">agence de communication au juste prix</a>, nous analysons les résultats, ajustons les actions et faisons évoluer votre stratégie selon :
+                </p>
+                <ul class="evolution-list">
+                    <li>Vos besoins</li>
+                    <li>Votre rythme</li>
+                    <li>Votre budget</li>
+                </ul>
+                <p class="etape-highlight">
+                    L'objectif reste le même : efficacité et cohérence.
+                </p>
+            </div>
+            <div class="etape-visual">
+                <div class="etape-icon-card">
+                    <div class="card-magnet magnet-top-left">
+                        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="icon-circle">
+                        <span class="icon-number">5</span>
+                    </div>
+                    <span class="icon-label">Amélioration continue</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 7: Transparence & pédagogie -->
+    <section class="transparence-section">
+        <div class="transparence-container">
+            <div class="transparence-card">
+                <div class="card-magnet magnet-corner-left">
+                    <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" loading="lazy">
+                </div>
+                <div class="card-magnet magnet-corner-right">
+                    <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                </div>
+
+                <h2>Comprendre pour décider</h2>
+                <p class="transparence-intro">
+                    Notre méthode repose sur la <strong>transparence</strong>.
+                </p>
+                <div class="transparence-points">
+                    <div class="transparence-point">
+                        <p>Chaque action est expliquée simplement</p>
+                    </div>
+                    <div class="transparence-point">
+                        <p>Chaque décision est partagée</p>
+                    </div>
+                    <div class="transparence-point">
+                        <p>Vous gardez le <br>contrôle</p>
+                    </div>
+                </div>
+                <p class="transparence-conclusion">
+                    Sans discours opaque ni dépendance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 8: CTA Final -->
+    <section class="cta-methode-section">
+        <div class="cta-methode-container">
+            <h2>Prêt à passer à table ?</h2>
+            <p class="cta-intro">
+                Notre méthode vous permet d'avancer sereinement, avec une communication claire, structurée et adaptée à votre réalité.
+            </p>
+            <p class="cta-action">
+                Découvrez maintenant nos prestations ou échangeons ensemble sur votre projet.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="{{ path('services_a_la_carte') }}" class="btn btn-primary btn-large">Découvrir nos prestations</a>
+                <a href="{{ path('contacter_chef') }}" class="btn btn-secondary">Contacter un chef</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation des étapes au scroll
+    const etapes = document.querySelectorAll('.etape-section, .transparence-card, .timeline-step');
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        etapes.forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+    }
+
+    // Animation progressive de la timeline
+    const timelineSteps = document.querySelectorAll('.timeline-step');
+    timelineSteps.forEach((step, index) => {
+        step.style.transitionDelay = `${index * 0.1}s`;
+    });
+});
+</script>
+{% endblock %}

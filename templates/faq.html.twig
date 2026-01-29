@@ -1,0 +1,353 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQ - La Buon'Com - Toutes vos questions sur la communication{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/faq.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Hero FAQ -->
+    <section class="faq-hero">
+        <div class="faq-hero-overlay"></div>
+        
+        <!-- Stickers flottants -->
+        <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" class="faq-sticker faq-sticker-1">
+        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="faq-sticker faq-sticker-2">
+        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="faq-sticker faq-sticker-3">
+        <img src="{{ asset('assets/mains/main rose.png') }}" alt="" class="faq-sticker faq-sticker-4">
+        
+        <div class="faq-hero-content">
+            <h1>Les questions que tout le monde<br><span>se pose (mais n'ose pas demander)</span></h1>
+            <p class="faq-subtitle">
+                Cette FAQ s'adresse aux TPE, PME et professions libérales qui souhaitent externaliser 
+                leur communication sans complexité. Nous répondons ici aux questions les plus fréquentes, 
+                avec un objectif simple : vous aider à y voir clair, sans jargon marketing.
+            </p>
+            
+            <!-- Barre de recherche -->
+            <div class="faq-search">
+                <input type="text" id="faqSearch" placeholder="Rechercher une question..." />
+                <button type="button" onclick="faqSearchBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Motif -->
+    <section class="pattern-section"></section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content">
+        <div class="faq-container">
+            
+            <!-- Catégorie 1: Comprendre la communication -->
+            <div class="faq-category">
+                <div class="faq-category-header">
+                    <span class="faq-category-icon">1</span>
+                    <h2>Tout comprendre avant de vous lancer</h2>
+                </div>
+                
+                <div class="faq-grid">
+                    <!-- Question 1 -->
+                    <div class="faq-item" data-category="comprendre">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Est-ce que la communication est vraiment utile pour une petite entreprise ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Oui. Même (et surtout) quand on est une TPE ou une profession libérale.</strong></p>
+                            <p>La communication, ce n'est pas faire du bruit pour faire du bruit : c'est expliquer clairement ce que vous faites à ceux qui en ont besoin.</p>
+                            <p>Comme un petit restaurant de quartier : sans enseigne ni menu visible, même les meilleurs plats restent inconnus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="faq-item" data-category="comprendre">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Comment externaliser sa communication simplement ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>La clé est de choisir une agence de communication pédagogique, capable d'expliquer ses actions et de proposer des prestations adaptées à vos besoins réels.</p>
+                            <p>Chez La Buon'Com, nous avançons étape par étape, avec une <a href="{{ path('agence_methode') }}">méthode claire</a> et des choix compréhensibles.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="faq-item" data-category="comprendre">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Quelle est la différence entre SEO et SEA ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Le SEO, c'est le bouche-à-oreille :</strong> ça prend un peu de temps, mais c'est durable.</p>
+                            <p><strong>Le SEA, c'est la publicité :</strong> ça fonctionne tout de suite, mais dès qu'on arrête de payer, la visibilité disparaît.</p>
+                            <p>Chez La Buon'Com, on compare ça à une cuisine maison (SEO) et à une promo ponctuelle (SEA). L'idéal ? Un bon équilibre des deux.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="faq-item" data-category="comprendre">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Faut-il être présent sur tous les réseaux sociaux ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Non. Et c'est même souvent une erreur.</strong></p>
+                            <p>Mieux vaut un bon réseau bien tenu que cinq comptes abandonnés.</p>
+                            <p>C'est comme vouloir ouvrir une pizzeria, une brasserie et un food-truck en même temps : on s'épuise et on perd en qualité.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie 2: Budget et tarifs -->
+            <div class="faq-category">
+                <div class="faq-category-header">
+                    <span class="faq-category-icon">2</span>
+                    <h2>Budget et tarifs</h2>
+                </div>
+                
+                <div class="faq-grid">
+                    <!-- Question 5 -->
+                    <div class="faq-item" data-category="budget">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Combien coûte une bonne communication pour les TPE ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Chez La Buon'Com, vous ne payez que ce que vous consommez.</p>
+                            <p>Comme au restaurant : vous choisissez à la carte ou un menu, selon votre appétit et votre budget.</p>
+                            <p>L'objectif n'est pas de vendre le plat le plus cher, mais le bon plat au bon moment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 6 -->
+                    <div class="faq-item" data-category="budget">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Est-il possible de communiquer efficacement sans gros budget ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Oui.</strong> Une communication efficace repose avant tout sur des choix pertinents et bien priorisés.</p>
+                            <p>Une stratégie simple, bien structurée et adaptée à votre budget peut générer des résultats concrets, même avec des moyens limités.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 7 -->
+                    <div class="faq-item" data-category="budget">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Qu'est-ce qu'une agence de communication à la carte ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Une <a href="{{ path('services_a_la_carte') }}">agence de communication à la carte</a> vous permet de choisir uniquement les prestations dont vous avez besoin : site internet, référencement naturel (SEO), réseaux sociaux ou accompagnement global.</p>
+                            <p>Il n'y a pas de forfait imposé, tout est modulable. Comme au restaurant : vous choisissez ce que vous voulez consommer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <div class="faq-item" data-category="budget">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Puis-je faire appel à l'agence pour une seule prestation ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Oui.</strong> Vous pouvez confier une mission ponctuelle ou un accompagnement plus global.</p>
+                            <p>La Buon'Com s'adapte à votre situation et à vos priorités, sans engagement inutile.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie 3: Méthode et accompagnement -->
+            <div class="faq-category">
+                <div class="faq-category-header">
+                    <span class="faq-category-icon">3</span>
+                    <h2>Méthode et accompagnement</h2>
+                </div>
+                
+                <div class="faq-grid">
+                    <!-- Question 9 -->
+                    <div class="faq-item" data-category="methode">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Est-ce que le jargon marketing est vraiment indispensable ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Non.</strong></p>
+                            <p>Le jargon sert souvent à impressionner, rarement à être compris.</p>
+                            <p>Nous préférons parler comme en cuisine : simplement, efficacement, avec des mots que tout le monde comprend.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 10 -->
+                    <div class="faq-item" data-category="methode">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Je ne comprends rien au marketing, est-ce un problème ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Pas du tout.</strong></p>
+                            <p>Notre rôle est justement de rendre la communication compréhensible.</p>
+                            <p>Nous expliquons chaque action simplement, afin que vous puissiez prendre des décisions éclairées, même sans connaissances techniques.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 11 -->
+                    <div class="faq-item" data-category="methode">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Comment savoir si les actions mises en place sont utiles ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Chaque action est reliée à un objectif clair.</p>
+                            <p>Nous vous expliquons ce qui est fait, pourquoi et avec quels résultats attendus.</p>
+                            <p>Le suivi est simple, lisible et orienté efficacité.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 12 -->
+                    <div class="faq-item" data-category="methode">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">En combien de temps voit-on des résultats ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Cela dépend des actions mises en place :</p>
+                            <ul>
+                                <li><strong>Publicité :</strong> rapide, comme un plat du jour</li>
+                                <li><strong>SEO :</strong> plus lent, mais durable, comme une recette mijotée</li>
+                            </ul>
+                            <p>Chez La Buon'Com, on vous explique le temps de cuisson réel, sans promesses irréalistes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 13 -->
+                    <div class="faq-item" data-category="methode">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Comment se déroule un accompagnement avec La Buon'Com ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>L'accompagnement débute par un échange pour comprendre vos besoins, puis par la mise en place d'actions prioritaires.</p>
+                            <p>Tout est expliqué clairement, sans jargon, et ajusté dans le temps selon vos objectifs.</p>
+                            <p>Découvrez notre <a href="{{ path('agence_methode') }}">méthode de travail en 5 étapes</a> pour en savoir plus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 14 -->
+                    <div class="faq-item" data-category="methode">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Suis-je engagé sur la durée ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Non.</strong></p>
+                            <p>Nos prestations sont flexibles. Comme dans un buffet à volonté, c'est vous qui choisissez.</p>
+                            <p>Vous pouvez avancer à votre rythme, sans abonnement imposé ni engagement contraignant.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie 4: Professions libérales -->
+            <div class="faq-category">
+                <div class="faq-category-header">
+                    <span class="faq-category-icon">4</span>
+                    <h2>Professions libérales réglementées</h2>
+                </div>
+                
+                <div class="faq-grid">
+                    <!-- Question 15 -->
+                    <div class="faq-item" data-category="professions">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Travaillez-vous avec les professions libérales réglementées ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Oui.</strong> Nous accompagnons des professions libérales réglementées (avocats, experts-comptables, etc.) en respectant leur cadre déontologique.</p>
+                            <p>Les actions de communication sont pensées pour être conformes, utiles et mesurées.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 16 -->
+                    <div class="faq-item" data-category="professions">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Le marketing est-il autorisé pour les professions réglementées ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Oui, sous certaines conditions.</strong></p>
+                            <p>Il est possible de communiquer de manière professionnelle, informative et conforme.</p>
+                            <p>Nous vous guidons pour mettre en place une communication adaptée à votre profession.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie 5: Autonomie et local -->
+            <div class="faq-category">
+                <div class="faq-category-header">
+                    <span class="faq-category-icon">5</span>
+                    <h2>Autonomie et proximité</h2>
+                </div>
+                
+                <div class="faq-grid">
+                    <!-- Question 17 -->
+                    <div class="faq-item" data-category="autonomie">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Puis-je gérer ma communication moi-même ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Oui, sur certains aspects.</strong></p>
+                            <p>Mais comme la cuisine à la maison :</p>
+                            <ul>
+                                <li>On peut faire simple soi-même</li>
+                                <li>Ou déléguer ce qui demande du savoir-faire</li>
+                            </ul>
+                            <p>Notre rôle est aussi de vous dire quoi faire seul et quoi nous confier, sans surplus.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 18 -->
+                    <div class="faq-item" data-category="autonomie">
+                        <button class="faq-question" >
+                            <span class="faq-q-text">Pourquoi travailler avec une agence locale ?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Parce qu'une agence locale connaît le terrain, les clients et les enjeux.</p>
+                            <p>À Évry comme à Antibes, la communication n'a pas le même goût.</p>
+                            <p>C'est la différence entre une chaîne industrielle et une adresse recommandée par les habitués.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section Motif Rouge -->
+    <section class="pattern-section pattern-red"></section>
+
+    <!-- CTA Final -->
+    <section class="faq-cta">
+        <div class="faq-cta-content">
+            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="faq-cta-sticker">
+            <h2>Encore une question ?<br><span>Parlons de votre projet simplement</span></h2>
+            <p>Si vous ne trouvez pas la réponse à votre question, nous sommes là pour en discuter. Chez La Buon'Com, chaque échange commence par l'écoute et la clarté.</p>
+            <a href="{{ path('contacter_chef') }}" class="btn btn-secondary btn-large">Contacter un chef</a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/faq.js') }}"></script>
+{% endblock %}

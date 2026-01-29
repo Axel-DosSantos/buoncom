@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/blog.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1>Notre Blog</h1>
+            <p>Conseils, tendances et actus communication pour nourrir votre stratégie.<br>
+            Des articles pensés pour les TPE, PME et professions libérales.</p>
+        </div>
+    </section>
+
+    <!-- Liste des articles -->
+    <section class="blog-list-section">
+        <div class="blog-grid">
+            {% for slug, article in articles %}
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="{{ article.image }}" 
+                            alt="{{ article.image_alt|default(article.title) }}" 
+                            loading="lazy"
+                            width="400" 
+                            height="220"
+                            decoding="async"
+                            fetchpriority="low">
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-categories">
+                        {% for i, category in article.categories %}
+                            <span class="blog-category {{ article.category_colors[i] }}">{{ category }}</span>
+                        {% endfor %}
+                    </div>
+                    <h3>{{ article.title }}</h3>
+                    <p class="blog-card-excerpt">{{ article.excerpt }}</p>
+                    <div class="blog-card-meta">
+                        <div class="blog-card-info">
+                            <span>{{ article.date }}</span>
+                            <span>{{ article.reading_time }}</span>
+                        </div>
+                        <a href="{{ path('blog_article', {slug: article.slug}) }}" class="blog-card-link">
+                            Lire l'article <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% else %}
+            <div class="no-articles">
+                <p>Aucun article pour le moment. Revenez bientôt !</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="blog-cta-section" style="padding: 4rem 5%; background: var(--vert-persil); text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="color: var(--creme-fouettee); margin-bottom: 1rem;">Besoin d'aide pour votre communication ?</h2>
+            <p style="color: rgba(255, 241, 220, 0.9); margin-bottom: 2rem; font-size: 1.1rem;">
+                Nous accompagnons les TPE et PME dans leur stratégie de communication, sans jargon et au juste prix.
+            </p>
+            <a href="{{ path('contacter_chef') }}" class="btn btn-primary btn-large" style="background: var(--jaune-oeuf); color: var(--noir-olive);">
+                Contacter un chef
+            </a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation simple sans GSAP pour éviter le lag
+    const hero = document.querySelector('.blog-hero-content');
+    if (hero) {
+        hero.style.opacity = '0';
+        hero.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+            hero.style.transition = 'all 0.8s ease';
+            hero.style.opacity = '1';
+            hero.style.transform = 'translateY(0)';
+        }, 100);
+    }
+    
+    // Observer pour les cards (plus performant)
+    const cards = document.querySelectorAll('.blog-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, i * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(40px)';
+        card.style.transition = 'all 0.5s ease';
+        observer.observe(card);
+    });
+});
+</script>
+{% endblock %}

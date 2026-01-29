@@ -1,0 +1,741 @@
+/* ============================================
+   VARIABLES CSS - CHARTE GRAPHIQUE
+   ============================================ */
+:root {
+    --vert-persil: #225D2E;
+    --creme-fouettee: #FFF1DC;
+    --rouge-tomate: #DA4D1B;
+    --jaune-oeuf: #FFC857;
+    --noir-olive: #0B0B09;
+    --rose-bonbon: #EA94A6;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--noir-olive);
+    background-color: var(--creme-fouettee);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1.1;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: var(--vert-persil);
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* ============================================
+   CONTENEURS & LAYOUT
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.main-content {
+    padding-top:84.3px;;
+}
+
+/* ============================================
+   BOUTONS - CLASSES RÉUTILISABLES
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: none;
+}
+
+.btn-primary {
+    background: var(--rouge-tomate);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--vert-persil);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(34, 93, 46, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--vert-persil);
+    border: 2px solid var(--vert-persil);
+}
+
+.btn-secondary:hover {
+    background: var(--vert-persil);
+    color: white;
+}
+
+.btn-cta-header {
+    background: var(--jaune-oeuf);
+    color: var(--noir-olive);
+}
+
+.btn-cta-header:hover {
+    background: var(--rouge-tomate);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   CURSEUR PERSONNALISÉ
+   ============================================ */
+body {
+    cursor: none;
+}
+
+*, *::before, *::after {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    position: fixed !important;
+    pointer-events: none;
+    z-index: 10000;
+    width: 42px;
+    height: 42px;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), filter 0.3s ease-out;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.custom-cursor svg {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-cursor.clicking {
+    transform: translate(-50%, -50%) rotate(-30deg) scale(0.7);
+    transition: transform 0.15s ease-out;
+}
+
+.custom-cursor.hovering {
+    transform: translate(-50%, -50%) rotate(-150deg) scale(1.3);
+    filter: drop-shadow(3px 3px 8px rgba(218, 77, 27, 0.6));
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease-out;
+}
+
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.cursor-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: none;
+}
+
+/* ============================================
+   HEADER GLOBAL
+   ============================================ */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 241, 220, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 2px solid var(--vert-persil);
+    transform: translateY(-100%);
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.5s ease;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+}
+
+.header-logo img {
+    height: 50px;
+    width: auto;
+    transition: opacity 0.3s ease;
+}
+
+/* Switch des logos selon le mode clair/sombre */
+.header-logo .logo-light {
+    display: none;
+    position: absolute;
+}
+
+.site-header.nav-light .logo-dark {
+    display: none;
+}
+
+.site-header.nav-light .logo-light {
+    display: block;
+    position: static;
+}
+
+.site-header.nav-scrolled .logo-dark {
+    display: block;
+}
+
+.site-header.nav-scrolled .logo-light {
+    display: none;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-nav {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.main-nav > li {
+    position: relative;
+}
+
+.main-nav > li > a {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: var(--noir-olive);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav > li > a:hover {
+    color: var(--vert-persil);
+}
+
+.main-nav > li > a .nav-arrow {
+    font-size: 0.6rem;
+    transition: transform 0.3s ease;
+}
+
+.main-nav > li:hover > a .nav-arrow {
+    transform: rotate(180deg);
+}
+
+/* Mode clair/sombre pour le header */
+.site-header.nav-light .main-nav > li > a,
+.site-header.nav-light .mobile-menu-toggle span {
+    color: var(--creme-fouettee);
+}
+
+.site-header.nav-light .mobile-menu-toggle span {
+    background: var(--creme-fouettee);
+}
+
+.site-header.nav-dark .main-nav > li > a {
+    color: var(--noir-olive);
+}
+
+.site-header.nav-dark .mobile-menu-toggle span {
+    background: var(--noir-olive);
+}
+
+.site-header.nav-scrolled {
+    background: rgba(255, 241, 220, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+}
+
+.site-header.nav-scrolled .main-nav > li > a {
+    color: var(--noir-olive);
+}
+
+.site-header.nav-scrolled .mobile-menu-toggle span {
+    background: var(--noir-olive);
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    min-width: 280px;
+    padding: 1rem 0;
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    margin-top: 20px;
+    list-style: none;
+}
+
+.nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.main-nav > li:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 10px;
+}
+
+.nav-dropdown li a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: var(--noir-olive);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.nav-dropdown li a:hover {
+    background: var(--creme-fouettee);
+    color: var(--vert-persil);
+    padding-left: 2rem;
+}
+
+/* Header CTAs */
+.header-ctas {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: none;
+    padding: 5px;
+}
+
+.mobile-menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: var(--vert-persil);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   FOOTER GLOBAL
+   ============================================ */
+.site-footer {
+    background: var(--noir-olive);
+    color: var(--creme-fouettee);
+    padding: 5rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr 1.4fr;
+    gap: 3rem;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255, 241, 220, 0.8);
+    margin-bottom: 1rem;
+}
+
+.footer-brand .footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+.footer-tagline {
+    font-style: italic;
+    color: var(--jaune-oeuf);
+    font-size: 1.1rem;
+}
+
+.footer-column h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--creme-fouettee);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: rgba(255, 241, 220, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--jaune-oeuf);
+    padding-left: 5px;
+}
+
+.footer-contact-info p {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 241, 220, 0.8);
+    font-size: 0.9rem;
+}
+
+.footer-contact-info a {
+    color: rgba(255, 241, 220, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact-info a:hover {
+    color: var(--jaune-oeuf);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 241, 220, 0.1);
+    border-radius: 50%;
+    color: var(--creme-fouettee);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 700;
+}
+
+.footer-social a:hover {
+    background: var(--vert-persil);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 241, 220, 0.1);
+    text-align: center;
+    color: rgba(255, 241, 220, 0.5);
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   STICKERS DÉCORATIFS - CLASSES RÉUTILISABLES
+   ============================================ */
+.sticker {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sticker-tomato {
+    width: 80px;
+    height: 80px;
+    background: var(--rouge-tomate);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-15deg);
+    opacity: 0.15;
+    animation: float 4s ease-in-out infinite;
+}
+
+.sticker-tomato::before {
+    content: '🍅';
+    position: absolute;
+    font-size: 2.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+}
+
+.sticker-leaf {
+    width: 60px;
+    height: 60px;
+    background: var(--vert-persil);
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(25deg);
+    opacity: 0.12;
+    animation: float 5s ease-in-out infinite 0.5s;
+}
+
+.sticker-leaf::before {
+    content: '🌿';
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+}
+
+.sticker-star {
+    width: 50px;
+    height: 50px;
+    background: var(--jaune-oeuf);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    opacity: 0.2;
+    animation: rotate 20s linear infinite;
+}
+
+.sticker-circle {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--vert-persil);
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.sticker-wave {
+    width: 70px;
+    height: 30px;
+    border-bottom: 4px dashed var(--rouge-tomate);
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* ============================================
+   ANIMATIONS RÉUTILISABLES
+   ============================================ */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.15; }
+    50% { transform: scale(1.1); opacity: 0.25; }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   MOTIF DAMIER INCLINÉ - CLASSE RÉUTILISABLE
+   ============================================ */
+.pattern-divider {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+    background: var(--creme-fouettee);
+}
+
+
+@keyframes patternMove {
+    from { transform: translateX(0) translateY(0); }
+    to { transform: translateX(100px) translateY(50px); }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE/TABLETTE
+   ============================================ */
+@media (max-width: 1024px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .header-nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--creme-fouettee);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .header-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+
+    .main-nav > li {
+        width: 100%;
+        border-bottom: 1px solid rgba(34, 93, 46, 0.1);
+    }
+
+    .main-nav > li > a {
+        padding: 1rem 0;
+        justify-content: space-between;
+    }
+
+    .nav-dropdown {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0;
+        background: rgba(34, 93, 46, 0.05);
+        border-radius: 8px;
+    }
+
+    .nav-dropdown::before {
+        display: none;
+    }
+
+    .main-nav > li.dropdown-open .nav-dropdown {
+        max-height: 500px;
+        padding: 0.5rem 0;
+    }
+
+    .header-ctas {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header-ctas .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Désactiver le curseur personnalisé sur mobile */
+    .custom-cursor,
+    #particles-container {
+        display: none !important;
+    }
+
+    body, *, *::before, *::after {
+        cursor: auto !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: span 1;
+    }
+}

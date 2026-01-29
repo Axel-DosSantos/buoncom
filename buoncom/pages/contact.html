@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - La Buon'Com</title>
+
+    <link rel="icon" type="image/png" href="../assets/logos/Favicon La Buon'Com.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --vert-persil: #225D2E;
+            --creme-fouettee: #FFF1DC;
+            --rouge-tomate: #DA4D1B;
+            --jaune-oeuf: #FFC857;
+            --noir-olive: #0B0B09;
+            --rose-bonbon: #EA94A6;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            color: var(--noir-olive);
+            background-color: var(--creme-fouettee);
+        }
+
+        h1, h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        h1 { font-size: 3.5rem; line-height: 1.2; }
+        h2 { font-size: 2rem; margin-bottom: 1rem; }
+        h3 { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 1.3rem; }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 241, 220, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { height: 45px; width: auto; }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links > li { position: relative; }
+        .nav-links > li > a {
+            font-family: 'Libre Baskerville', serif; font-weight: 700;
+            color: var(--noir-olive); text-decoration: none;
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.3rem;
+        }
+        .nav-links > li > a .dropdown-arrow { font-size: 0.6rem; transition: transform 0.3s ease; }
+        .nav-links > li:hover > a .dropdown-arrow { transform: rotate(180deg); }
+
+        .submenu {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: white; min-width: 220px; padding: 1rem 0;
+            border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            z-index: 1001; margin-top: 15px; list-style: none;
+        }
+        .nav-links > li:hover .submenu { opacity: 1; visibility: visible; margin-top: 10px; }
+        .submenu li a {
+            display: block; padding: 0.7rem 1.5rem;
+            color: var(--noir-olive); text-decoration: none;
+            font-size: 0.9rem; transition: all 0.2s ease;
+        }
+        .submenu li a:hover { background: var(--creme-fouettee); color: var(--vert-persil); padding-left: 2rem; }
+
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 2px; background: var(--noir-olive); }
+
+        .page-hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 5% 4rem; background: var(--vert-persil); position: relative;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('../assets/motifs/Carreaux verts.png');
+            background-size: cover; opacity: 0.1;
+        }
+        .page-hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
+        .page-hero h1 { color: var(--creme-fouettee); margin-bottom: 1rem; }
+        .page-hero p { color: rgba(255, 241, 220, 0.9); font-size: 1.2rem; }
+
+        .contact-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 { color: var(--vert-persil); margin-bottom: 2rem; }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-card h3 { color: var(--vert-persil); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
+        .contact-card p { color: #666; line-height: 1.7; margin-bottom: 0.5rem; }
+        .contact-card a { color: var(--vert-persil); text-decoration: none; font-weight: 700; }
+        .contact-card a:hover { color: var(--rouge-tomate); }
+
+        .contact-icon {
+            width: 45px; height: 45px;
+            background: var(--vert-persil);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex; gap: 1rem; margin-top: 2rem;
+        }
+        .social-links a {
+            display: flex; align-items: center; justify-content: center;
+            width: 50px; height: 50px;
+            background: var(--vert-persil);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--rouge-tomate);
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 { color: var(--vert-persil); margin-bottom: 2rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group.full { grid-column: span 2; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--noir-olive);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--vert-persil);
+            background: white;
+        }
+
+        .form-group textarea { min-height: 150px; resize: vertical; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--vert-persil);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--noir-olive);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(34, 93, 46, 0.3);
+        }
+
+        .site-footer {
+            background: var(--noir-olive); color: var(--creme-fouettee); padding: 4rem 5% 2rem;
+        }
+        .footer-container {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 3rem;
+        }
+        .footer-brand { padding-right: 2rem; }
+        .footer-logo { height: 50px; width: auto; margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.95rem; line-height: 1.7; color: rgba(255, 241, 220, 0.8); margin-bottom: 1rem; }
+        .footer-tagline { font-style: italic; color: var(--jaune-oeuf); }
+        .footer-section h4 {
+            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem;
+            color: var(--creme-fouettee); margin-bottom: 1.5rem; text-transform: uppercase;
+        }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.8rem; }
+        .footer-section ul li a { color: rgba(255, 241, 220, 0.7); text-decoration: none; transition: all 0.3s ease; font-size: 0.9rem; }
+        .footer-section ul li a:hover { color: var(--jaune-oeuf); padding-left: 5px; }
+        .footer-contact p { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; color: rgba(255, 241, 220, 0.8); font-size: 0.9rem; }
+        .footer-contact a { color: rgba(255, 241, 220, 0.8); text-decoration: none; }
+        .footer-contact a:hover { color: var(--jaune-oeuf); }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .footer-social a {
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; background: rgba(255, 241, 220, 0.1);
+            border-radius: 50%; color: var(--creme-fouettee); text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-social a:hover { background: var(--vert-persil); transform: translateY(-3px); }
+        .footer-bottom {
+            margin-top: 3rem; padding-top: 2rem;
+            border-top: 1px solid rgba(255, 241, 220, 0.1);
+            text-align: center; color: rgba(255, 241, 220, 0.5); font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(255, 241, 220, 0.98);
+                flex-direction: column; padding: 2rem; gap: 1rem;
+                transform: translateY(-20px); opacity: 0; visibility: hidden;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; visibility: visible; }
+            .contact-section { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-brand { grid-column: span 2; }
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .footer-container { grid-template-columns: 1fr; }
+            .footer-brand { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html" class="logo"><img src="../assets/logos/Logo principal.svg" alt="La Buon'Com"></a>
+        <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="agence.html">L'agence <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="agence.html#qui-sommes-nous">Qui sommes-nous ?</a></li>
+                    <li><a href="agence.html#concept">Notre concept</a></li>
+                    <li><a href="agence.html#methode">Notre méthode</a></li>
+                </ul>
+            </li>
+            <li><a href="services.html">Nos services <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="services.html#carte">Services à la carte</a></li>
+                    <li><a href="services.html#formules">Formules</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ressources <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Contactez-nous</h1>
+            <p>Discutons de votre projet autour d'un bon café virtuel</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-info">
+            <h2>Restons en contact</h2>
+
+            <div class="contact-card">
+                <h3><span class="contact-icon">📍</span> Nos bureaux</h3>
+                <p><strong>Évry-Courcouronnes</strong> (Île-de-France)</p>
+                <p><strong>Valbonne – Sophia Antipolis</strong> (Alpes-Maritimes)</p>
+            </div>
+
+            <div class="contact-card">
+                <h3><span class="contact-icon">📞</span> Téléphone</h3>
+                <p><a href="tel:+33176217759">01 76 21 77 59</a></p>
+                <p>Du lundi au vendredi, 9h-18h</p>
+            </div>
+
+            <div class="contact-card">
+                <h3><span class="contact-icon">✉️</span> Email</h3>
+                <p><a href="mailto:hello@labuoncom.fr">hello@labuoncom.fr</a></p>
+                <p>Réponse sous 24h en jours ouvrés</p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Envoyez-nous un message</h2>
+            <form action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstname">Prénom *</label>
+                        <input type="text" id="firstname" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Nom *</label>
+                        <input type="text" id="lastname" name="lastname" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Entreprise</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Sujet *</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Choisissez un sujet</option>
+                        <option value="devis">Demande de devis</option>
+                        <option value="info">Demande d'information</option>
+                        <option value="partenariat">Partenariat</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Votre message *</label>
+                    <textarea id="message" name="message" placeholder="Décrivez votre projet ou posez-nous vos questions..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="../assets/logos/Logo blanc.svg" alt="La Buon'Com" class="footer-logo">
+                <p>Agence de communication à Évry & Valbonne</p>
+                <p class="footer-tagline">Composez votre menu, on s'occupe du reste.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#carte">Services à la carte</a></li>
+                    <li><a href="services.html#formules">Formules</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-contact">
+                <h4>Contact</h4>
+                <p>📍 Évry-Courcouronnes</p>
+                <p>📍 Valbonne – Sophia Antipolis</p>
+                <p>📞 <a href="tel:+33176217759">01 76 21 77 59</a></p>
+                <p>✉️ <a href="mailto:hello@labuoncom.fr">hello@labuoncom.fr</a></p>
+                <div class="footer-social"><a href="https://linkedin.com" target="_blank">in</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 La Buon'Com - Tous droits réservés</p></div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        }
+
+        // Animation
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.page-hero-content', { opacity: 0, y: 50, duration: 1, ease: 'power3.out' });
+            gsap.from('.contact-card', { opacity: 0, x: -30, duration: 0.6, stagger: 0.15, delay: 0.3 });
+            gsap.from('.contact-form', { opacity: 0, y: 30, duration: 0.8, delay: 0.5 });
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message envoyé ! Nous vous répondrons rapidement.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

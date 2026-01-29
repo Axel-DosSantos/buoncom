@@ -1,0 +1,815 @@
+/* ============================================
+   SERVICES À LA CARTE - CSS
+   ============================================ */
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.services-hero {
+    background: linear-gradient(135deg, var(--vert-persil) 0%, #1a4a24 100%);
+    min-height: 50vh;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services-hero .hero-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.services-hero .floating-sticker {
+    position: absolute;
+    opacity: 0.15;
+}
+
+.services-hero .sticker-1 {
+    width: 120px;
+    top: 15%;
+    right: 10%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.services-hero .sticker-2 {
+    width: 150px;
+    bottom: 20%;
+    left: 5%;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+.services-hero .sticker-3 {
+    width: 80px;
+    top: 60%;
+    right: 20%;
+    animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.hero-content-services {
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content-services h1 {
+    font-size: 3rem;
+    color: var(--creme-fouettee);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-content-services .hero-description {
+    font-size: 1.15rem;
+    color: rgba(255, 241, 220, 0.9);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.hero-content-services .hero-description strong {
+    color: var(--jaune-oeuf);
+}
+
+/* ============================================
+   NAVIGATION CATÉGORIES
+   ============================================ */
+.categories-nav {
+    background: white;
+    padding: 1.5rem 5%;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.categories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.category-pill {
+    padding: 0.6rem 1.2rem;
+    background: var(--creme-fouettee);
+    border: 2px solid transparent;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--noir-olive);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.category-pill:hover {
+    background: var(--vert-persil);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   INTRO SECTION
+   ============================================ */
+.intro-section {
+    padding: 5rem 5%;
+    background: var(--creme-fouettee);
+}
+
+.intro-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 4rem;
+    align-items: center;
+}
+
+.intro-content h2 {
+    font-size: 2.2rem;
+    color: var(--vert-persil);
+    margin-bottom: 1.5rem;
+}
+
+.intro-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    margin-bottom: 1rem;
+}
+
+.intro-content a {
+    color: var(--rouge-tomate);
+    text-decoration: underline;
+}
+
+.intro-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.intro-hand {
+    width: 200px;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* ============================================
+   PATTERN DIVIDERS
+   ============================================ */
+.pattern-divider-services {
+    height: 80px;
+    background-image: url('/assets/motifs/carreauxverts.png');
+    background-size: 300px;
+    background-repeat: repeat;
+}
+
+.pattern-divider-services.pattern-red {
+    background-image: url('/assets/motifs/carreauxrouges.png');
+}
+
+/* ============================================
+   SERVICE CATEGORY SECTIONS
+   ============================================ */
+.service-category {
+    padding: 5rem 5%;
+    background: var(--vert-persil);
+    position: relative;
+}
+
+.service-category.category-alt {
+    background: var(--jaune-oeuf);
+}
+
+/* Titres et textes adaptés aux fonds colorés */
+.service-category .category-number {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.service-category .category-titles h2 {
+    color: var(--creme-fouettee);
+}
+
+.service-category .category-titles h3 {
+    color: rgba(255, 241, 220, 0.8);
+}
+
+.service-category .category-description {
+    color: rgba(255, 241, 220, 0.9);
+}
+
+/* Styles pour la variante alt (jaune) */
+.service-category.category-alt .category-number {
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.service-category.category-alt .category-titles h2 {
+    color: var(--noir-olive);
+}
+
+.service-category.category-alt .category-titles h3 {
+    color: var(--rouge-tomate);
+}
+
+.service-category.category-alt .category-description {
+    color: var(--noir-olive);
+}
+
+/* Tagline adapté */
+.service-category .category-tagline {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--creme-fouettee);
+    border-left-color: var(--creme-fouettee);
+}
+
+.service-category.category-alt .category-tagline {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--noir-olive);
+    border-left-color: var(--rouge-tomate);
+}
+
+.category-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Category Header */
+.category-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.category-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    color: var(--jaune-oeuf);
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.category-titles h2 {
+    font-size: 2rem;
+    color: var(--vert-persil);
+    margin-bottom: 0.5rem;
+}
+
+.category-titles h3 {
+    font-size: 1.2rem;
+    color: var(--rouge-tomate);
+    font-weight: 500;
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+}
+
+.category-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    max-width: 800px;
+    margin-bottom: 2.5rem;
+}
+
+/* ============================================
+   SERVICES SLIDER
+   ============================================ */
+.services-slider {
+    overflow-x: auto;
+    margin: 0 -5%;
+    padding: 1rem 5% 2rem;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.services-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.services-slider.active {
+    cursor: grabbing;
+}
+
+.services-track {
+    display: flex;
+    gap: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Service Cards - Nouvelles cartes avec images de fond */
+.service-card {
+    flex: 0 0 auto;
+    width: 320px;
+    min-height: 280px;
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: none;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Overlay gradient sur les cartes */
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 1;
+    transition: background 0.4s ease;
+}
+
+.service-card:hover::before {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+}
+
+/* Contenu des cartes */
+.service-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-card-content {
+    transform: translateY(-8px);
+}
+
+.category-alt .service-card {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.service-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.service-card-large {
+    width: 400px;
+    min-height: 320px;
+}
+
+.service-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Images de fond par catégorie - Stratégie */
+.service-card[data-service="strategie-contenu"] {
+    background-image: url('/assets/services/strategie-contenu.jpg');
+}
+.service-card[data-service="calendrier-editorial"] {
+    background-image: url('/assets/services/calendrier.jpg');
+}
+.service-card[data-service="benchmark"] {
+    background-image: url('/assets/services/benchmark.jpg');
+}
+
+/* Images de fond par catégorie - Rédaction */
+.service-card[data-service="articles-blog"] {
+    background-image: url('/assets/services/blog.jpg');
+}
+.service-card[data-service="posts-linkedin"] {
+    background-image: url('/assets/services/linkedin.jpg');
+}
+.service-card[data-service="posts-instagram"] {
+    background-image: url('/assets/services/instagram.jpg');
+}
+.service-card[data-service="posts-facebook"] {
+    background-image: url('/assets/services/facebook.jpg');
+}
+.service-card[data-service="communique-presse"] {
+    background-image: url('/assets/services/presse.jpg');
+}
+.service-card[data-service="livre-blanc"] {
+    background-image: url('/assets/services/livre-blanc.jpg');
+}
+.service-card[data-service="newsletter"] {
+    background-image: url('/assets/services/newsletter.jpg');
+}
+
+/* Images de fond par catégorie - Graphisme */
+.service-card[data-service="creation-logo"] {
+    background-image: url('/assets/services/logo.jpg');
+}
+.service-card[data-service="templates-reseaux"] {
+    background-image: url('/assets/services/templates.jpg');
+}
+.service-card[data-service="pack-templates"] {
+    background-image: url('/assets/services/pack-templates.jpg');
+}
+.service-card[data-service="banniere-linkedin"] {
+    background-image: url('/assets/services/banniere.jpg');
+}
+.service-card[data-service="fond-teams"] {
+    background-image: url('/assets/services/teams.jpg');
+}
+.service-card[data-service="flyers"] {
+    background-image: url('/assets/services/flyers.jpg');
+}
+.service-card[data-service="cartes-visite"] {
+    background-image: url('/assets/services/cartes-visite.jpg');
+}
+.service-card[data-service="kakemono"] {
+    background-image: url('/assets/services/kakemono.jpg');
+}
+.service-card[data-service="goodies"] {
+    background-image: url('/assets/services/goodies.jpg');
+}
+
+/* Images de fond par catégorie - Vidéo */
+.service-card[data-service="creation-reel"] {
+    background-image: url('/assets/services/reel.jpg');
+}
+.service-card[data-service="montage-reel"] {
+    background-image: url('/assets/services/montage.jpg');
+}
+
+/* Images de fond par catégorie - Réseaux sociaux */
+.service-card[data-service="optim-facebook"] {
+    background-image: url('/assets/services/optim-facebook.jpg');
+}
+.service-card[data-service="optim-instagram"] {
+    background-image: url('/assets/services/optim-instagram.jpg');
+}
+.service-card[data-service="optim-linkedin-perso"] {
+    background-image: url('/assets/services/optim-linkedin.jpg');
+}
+.service-card[data-service="optim-linkedin-page"] {
+    background-image: url('/assets/services/linkedin-page.jpg');
+}
+.service-card[data-service="creation-linkedin-page"] {
+    background-image: url('/assets/services/creation-linkedin.jpg');
+}
+
+/* Images de fond par catégorie - Publicité */
+.service-card[data-service="google-ads"] {
+    background-image: url('/assets/services/google-ads.jpg');
+}
+.service-card[data-service="meta-ads"] {
+    background-image: url('/assets/services/meta-ads.jpg');
+}
+
+/* Images de fond par catégorie - SEO */
+.service-card[data-service="optimisation-seo"] {
+    background-image: url('/assets/services/seo.jpg');
+}
+
+/* Images de fond par catégorie - Sites */
+.service-card[data-service="site-vitrine"] {
+    background-image: url('/assets/services/site-vitrine.jpg');
+}
+.service-card[data-service="site-ecommerce"] {
+    background-image: url('/assets/services/ecommerce.jpg');
+}
+.service-card[data-service="landing-page"] {
+    background-image: url('/assets/services/landing.jpg');
+}
+.service-card[data-service="application-web"] {
+    background-image: url('/assets/services/app-web.jpg');
+}
+
+/* Images de fond par catégorie - Ateliers */
+.service-card[data-service="atelier-chatgpt"] {
+    background-image: url('/assets/services/chatgpt.jpg');
+}
+.service-card[data-service="atelier-personas"] {
+    background-image: url('/assets/services/personas.jpg');
+}
+
+/* Fallback avec gradients colorés si pas d'image */
+.service-card:not([style*="background-image"]):not([data-service]) {
+    background: linear-gradient(135deg, var(--vert-persil) 0%, #1a4a24 100%);
+}
+
+.category-alt .service-card:not([style*="background-image"]):not([data-service]) {
+    background: linear-gradient(135deg, var(--rouge-tomate) 0%, #a52828 100%);
+}
+
+/* Card Magnets */
+.service-card .card-magnet {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    z-index: 15;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.service-card .card-magnet img {
+    width: 100%;
+    height: auto;
+}
+
+.service-card .magnet-top-right {
+    top: -20px;
+    right: -18px;
+    transform: rotate(12deg);
+}
+
+.service-card .magnet-top-left {
+    top: -20px;
+    left: -18px;
+    transform: rotate(-12deg);
+}
+
+.service-card:hover .card-magnet {
+    transform: rotate(0deg) scale(1.15);
+}
+
+/* Card Animations */
+.service-card.animate-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.service-card.animate-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* ============================================
+   CATEGORY TAGLINE & CTA
+   ============================================ */
+.category-tagline {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--vert-persil);
+    text-align: center;
+    margin: 2.5rem 0 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 200, 87, 0.15);
+    border-radius: 12px;
+    border-left: 4px solid var(--jaune-oeuf);
+}
+
+.category-cta {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* ============================================
+   CTA FINAL SECTION
+   ============================================ */
+.cta-services-section {
+    padding: 6rem 5%;
+    background: var(--noir-olive);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-services-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cta-sticker {
+    position: absolute;
+    z-index: 10;
+}
+
+.cta-sticker-1 {
+    width: 120px;
+    top: -30px;
+    left: -60px;
+    transform: rotate(-15deg);
+}
+
+.cta-sticker-2 {
+    width: 80px;
+    bottom: -20px;
+    right: -40px;
+    transform: rotate(20deg);
+}
+
+.cta-services-card {
+    background: white;
+    border-radius: 24px;
+    padding: 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.cta-services-card h2 {
+    font-size: 2rem;
+    color: var(--vert-persil);
+    margin-bottom: 1.5rem;
+}
+
+.cta-services-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    margin-bottom: 1rem;
+}
+
+.cta-services-card a:not(.btn) {
+    color: var(--rouge-tomate);
+    text-decoration: underline;
+}
+
+.cta-conclusion {
+    font-size: 1.15rem;
+    padding: 1.5rem;
+    background: var(--creme-fouettee);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+    .services-hero {
+        min-height: 40vh;
+        padding: 6rem 5% 4rem;
+    }
+
+    .hero-content-services h1 {
+        font-size: 2.2rem;
+    }
+
+    .intro-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .intro-visual {
+        order: -1;
+    }
+
+    .intro-hand {
+        width: 150px;
+    }
+
+    .category-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .category-number {
+        font-size: 2.5rem;
+    }
+
+    .category-titles h2 {
+        font-size: 1.6rem;
+    }
+
+    .cta-services-card {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .cta-services-card h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .categories-nav {
+        padding: 1rem 3%;
+    }
+
+    .category-pill {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.75rem;
+    }
+
+    .service-card {
+        width: 280px;
+        min-height: 240px;
+    }
+
+    .service-card-content {
+        padding: 1.5rem;
+    }
+
+    .service-card h4 {
+        font-size: 1.1rem;
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+    }
+
+    .service-card-large {
+        width: 320px;
+        min-height: 280px;
+    }
+
+    .pattern-divider-services {
+        height: 60px;
+        background-size: 200px;
+    }
+
+    .category-tagline {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   SCROLL-TRIGGERED CAROUSEL ANIMATION
+   ============================================ */
+.services-slider {
+    scroll-behavior: smooth;
+}
+
+.services-slider.auto-scrolling {
+    scroll-behavior: auto;
+}
+
+/* Animation de rotation des cartes au scroll */
+.service-card {
+    transform-origin: center center;
+}
+
+.service-card.scroll-rotate {
+    animation: cardScrollRotate 0.6s ease-out forwards;
+}
+
+@keyframes cardScrollRotate {
+    0% {
+        opacity: 0.6;
+        transform: translateX(-30px) rotateY(-15deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(0);
+    }
+}

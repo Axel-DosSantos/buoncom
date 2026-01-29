@@ -1,0 +1,415 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Composez votre menu - La Buon'Com{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('style/composer-menu.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="composer-hero">
+    <div class="hero-decoration">
+        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="floating-sticker sticker-1" loading="eager">
+        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="floating-sticker sticker-2" loading="lazy">
+    </div>
+    <div class="hero-content-composer">
+        <h1>Composez votre communication sur-mesure</h1>
+        <p class="hero-intro">
+            Comme dans un restaurant, vous choisissez uniquement ce dont vous avez besoin.<br>
+            <strong>On s'occupe de la recette.</strong>
+        </p>
+        <p class="hero-tagline">Sans jargon. Sans engagement. Au juste prix.</p>
+    </div>
+</section>
+
+<!-- Pattern Divider -->
+<div class="pattern-divider-composer"></div>
+
+<!-- Main Content -->
+<div class="composer-main">
+    <!-- Addition Ticket (gauche) -->
+    <aside class="addition-wrapper">
+        <div class="addition-ticket">
+            <div class="addition-torn-top"></div>
+            <div class="addition-torn-bottom"></div>
+
+            <div class="addition-header">
+                <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="La Buon'Com">
+                <h3>Votre Commande</h3>
+                <p>* * * La Buon'Com * * *</p>
+            </div>
+
+            <div class="addition-content">
+                <div class="addition-date" id="addition-date"></div>
+                <div class="addition-separator"></div>
+
+                <!-- Section Objectifs -->
+                <div class="addition-section" id="section-objectifs" style="display: none;">
+                    <div class="addition-section-title">OBJECTIFS</div>
+                    <div class="addition-section-items" id="items-objectifs"></div>
+                </div>
+
+                <!-- Section Menu -->
+                <div class="addition-section" id="section-menu" style="display: none;">
+                    <div class="addition-section-title">MENU</div>
+                    <div class="addition-section-items" id="items-menu"></div>
+                </div>
+
+                <!-- Section Disponibilité -->
+                <div class="addition-section" id="section-dispo" style="display: none;">
+                    <div class="addition-section-title">DISPONIBILITE</div>
+                    <div class="addition-section-items" id="items-dispo"></div>
+                </div>
+
+                <div class="addition-empty" id="addition-empty">
+                    Votre assiette est vide...<br>
+                    Choisissez vos ingrédients !
+                </div>
+
+                <div class="addition-separator"></div>
+
+                <div class="addition-total">
+                    <span>TOTAL</span>
+                    <span class="addition-total-count" id="addition-count">0 élément</span>
+                </div>
+            </div>
+
+            <p class="addition-merci">~ Merci de votre visite ~</p>
+        </div>
+    </aside>
+
+    <!-- Formulaire (droite) -->
+    <div class="composer-form">
+        <form id="menu-form" action="{{ path('composer_menu_submit') }}" method="post">
+            <!-- Section Objectifs -->
+            <div class="form-section">
+                <h2>Vos objectifs</h2>
+                <h3>Quel est votre objectif principal aujourd'hui ?</h3>
+                <p class="section-subtitle">Cochez ce qui correspond le mieux à votre situation (un ou plusieurs choix possibles).</p>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="visibilite" data-label="Gagner en visibilité" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Gagner en visibilité</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="clients" data-label="Trouver de nouveaux clients" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Trouver de nouveaux clients</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="image" data-label="Professionnaliser mon image" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Professionnaliser mon image</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="lancement" data-label="Lancer ou relancer mon activité" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Lancer ou relancer mon activité</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="deleguer" data-label="Gagner du temps et déléguer" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Gagner du temps et déléguer</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="strategie" data-label="Clarifier ma stratégie" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Clarifier ma stratégie de communication</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="objectifs[]" value="autre_objectif" data-label="Autre objectif" data-section="objectifs">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Autre</span>
+                    </label>
+                </div>
+
+                <p class="section-note">Pas besoin d'être expert : nous traduisons vos objectifs en actions concrètes.</p>
+            </div>
+
+            <!-- Pattern Divider -->
+            <div class="form-divider"></div>
+
+            <!-- Section Menu -->
+            <div class="form-section">
+                <h2>Votre menu</h2>
+                <h3>De quoi avez-vous besoin pour atteindre vos objectifs ?</h3>
+
+                <!-- À la carte -->
+                <div class="menu-subsection">
+                    <h4 class="subsection-title">À la carte</h4>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="menu[]" value="supports" data-label="Supports de communication" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Création de supports de communication (affiche, document commercial, newsletter...)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="menu[]" value="seo" data-label="Référencement naturel (SEO)" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Référencement naturel (SEO)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="menu[]" value="optimisation_rs" data-label="Optimisation réseaux sociaux" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Optimisation de profil sur les réseaux sociaux</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="menu[]" value="securisation" data-label="Sécurisation de site" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Sécurisation de site internet</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="menu[]" value="objets" data-label="Objets personnalisés" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Objets de communication personnalisés</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="menu[]" value="conseils" data-label="Accompagnements et conseils" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Accompagnements et conseils</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- En formule -->
+                <div class="menu-subsection">
+                    <h4 class="subsection-title">En formule</h4>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item checkbox-item-formule">
+                            <input type="checkbox" name="menu[]" value="site" data-label="Création/refonte site internet" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Création ou refonte de site internet</span>
+                        </label>
+                        <label class="checkbox-item checkbox-item-formule">
+                            <input type="checkbox" name="menu[]" value="community" data-label="Gestion réseaux sociaux" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Gestion de vos réseaux sociaux (community management)</span>
+                        </label>
+                        <label class="checkbox-item checkbox-item-formule">
+                            <input type="checkbox" name="menu[]" value="identite" data-label="Identité visuelle" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Création / refonte de votre identité visuelle</span>
+                        </label>
+                        <label class="checkbox-item checkbox-item-formule">
+                            <input type="checkbox" name="menu[]" value="landing" data-label="Page web publicitaire" data-section="menu">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Création page web publicitaire ou application</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="section-highlight">
+                    <p><strong>Vous ne payez que ce que vous consommez.</strong></p>
+                    <p>Aucun ingrédient inutile n'est ajouté à votre menu.</p>
+                </div>
+            </div>
+
+            <!-- Pattern Divider -->
+            <div class="form-divider form-divider-red"></div>
+
+            <!-- Section Disponibilité -->
+            <div class="form-section">
+                <h3>Quel est votre niveau de disponibilité ?</h3>
+                <div class="checkbox-grid checkbox-grid-single">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="disponibilite[]" value="cle_en_main" data-label="Accompagnement clé en main" data-section="dispo">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">J'ai peu de temps, j'ai besoin d'un accompagnement clé en main</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="disponibilite[]" value="comprendre" data-label="Comprendre étape par étape" data-section="dispo">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Je souhaite comprendre ce qui est fait, étape par étape</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="disponibilite[]" value="deleguer_vision" data-label="Déléguer avec vision claire" data-section="dispo">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Je veux déléguer tout en gardant une vision claire</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="disponibilite[]" value="progressif" data-label="Avancer progressivement" data-section="dispo">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Je préfère avancer progressivement</span>
+                    </label>
+                </div>
+                <p class="section-note">Nous adaptons notre accompagnement à votre rythme, pas l'inverse.</p>
+            </div>
+
+            <!-- Pattern Divider -->
+            <div class="form-divider"></div>
+
+            <!-- Section Contact -->
+            <div class="form-section">
+                <h3>Parlons de vous</h3>
+                <div class="contact-fields">
+                    <div class="field-group">
+                        <label for="nom">Nom et prénom</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
+                    </div>
+                    <div class="field-group">
+                        <label for="entreprise">Nom de l'entreprise</label>
+                        <input type="text" id="entreprise" name="entreprise" placeholder="Ma Société">
+                    </div>
+                    <div class="field-group">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" required placeholder="jean@exemple.fr">
+                    </div>
+                    <div class="field-group">
+                        <label for="telephone">Numéro de téléphone</label>
+                        <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78">
+                    </div>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large" id="submit-btn">
+                        Envoyer ma commande
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Section Hésitation -->
+        <div class="hesitation-section">
+            <h3>Vous hésitez ?</h3>
+            <p>
+                Contactez-nous directement au <a href="tel:0176217759" class="phone-link">01 76 21 77 59</a>
+                ou <a href="{{ path('contacter_chef') }}" class="rdv-link">prenez rendez-vous avec un chef</a>
+                pour en parler simplement, sans engagement.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="confirmation-modal" id="confirmation-modal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="">
+        </div>
+        <h2>Merci pour votre commande !</h2>
+        <p>Nous revenons rapidement vers vous.</p>
+        <p class="modal-subtitle">Une copie de votre demande vous a été envoyée par email.</p>
+        <a href="{{ path('app_home') }}" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const additionDate = document.getElementById('addition-date');
+    const additionCount = document.getElementById('addition-count');
+    const additionEmpty = document.getElementById('addition-empty');
+    const form = document.getElementById('menu-form');
+    const modal = document.getElementById('confirmation-modal');
+
+    // Sections de l'addition
+    const sections = {
+        objectifs: {
+            container: document.getElementById('section-objectifs'),
+            items: document.getElementById('items-objectifs')
+        },
+        menu: {
+            container: document.getElementById('section-menu'),
+            items: document.getElementById('items-menu')
+        },
+        dispo: {
+            container: document.getElementById('section-dispo'),
+            items: document.getElementById('items-dispo')
+        }
+    };
+
+    // Afficher la date actuelle
+    const now = new Date();
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+    additionDate.textContent = now.toLocaleDateString('fr-FR', options);
+
+    // Mettre à jour l'addition en temps réel
+    function updateAddition() {
+        let totalCount = 0;
+
+        // Pour chaque section
+        Object.keys(sections).forEach(sectionKey => {
+            const section = sections[sectionKey];
+            const sectionCheckboxes = document.querySelectorAll(`input[data-section="${sectionKey}"]:checked`);
+
+            if (sectionCheckboxes.length > 0) {
+                section.container.style.display = 'block';
+                section.items.innerHTML = '';
+
+                sectionCheckboxes.forEach(cb => {
+                    const item = document.createElement('div');
+                    item.className = 'addition-item';
+                    item.innerHTML = `
+                        <span class="addition-item-name">${cb.dataset.label}</span>
+                        <span class="addition-item-check">OK</span>
+                    `;
+                    section.items.appendChild(item);
+                    totalCount++;
+                });
+            } else {
+                section.container.style.display = 'none';
+            }
+        });
+
+        // Afficher/masquer le message vide
+        if (totalCount === 0) {
+            additionEmpty.style.display = 'block';
+            additionCount.textContent = '0 élément';
+        } else {
+            additionEmpty.style.display = 'none';
+            additionCount.textContent = totalCount + (totalCount > 1 ? ' éléments' : ' élément');
+        }
+    }
+
+    // Événements sur les checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            this.closest('.checkbox-item').classList.toggle('selected', this.checked);
+            updateAddition();
+        });
+    });
+
+    // Soumission du formulaire
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Collecter les données
+        const formData = new FormData(form);
+
+        // Envoyer via AJAX
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Afficher le modal de confirmation
+                modal.classList.add('show');
+            } else {
+                alert('Une erreur est survenue. Veuillez réessayer.');
+            }
+        })
+        .catch(error => {
+            // En attendant le backend, afficher quand même la confirmation
+            modal.classList.add('show');
+        });
+    });
+
+    // Fermer le modal en cliquant à l'extérieur
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+});
+</script>
+{% endblock %}

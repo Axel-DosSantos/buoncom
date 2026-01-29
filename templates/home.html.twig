@@ -1,0 +1,346 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agence de communication à Évry & Valbonne - La Buon'Com{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Loader simplifié -->
+    <div class="intro-loader" id="intro-loader">
+        <div class="intro-content">
+            <div class="intro-logo">
+                <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="La Buon'Com">
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOC 1: Hero -->
+    <section class="hero" id="accueil">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Agence de communication à Évry & Valbonne : <span>simple, efficace et au juste prix</span></h1>
+                <p class="hero-description">
+                    Chez La Buon'Com, nous aidons les TPE, PME et professions libérales à construire une communication claire, utile et adaptée à leur réalité. Pas de jargon, pas de superflu : uniquement des prestations de communication, de site internet, de SEO et de réseaux sociaux pensées pour vous faire gagner du temps… et de l'efficacité.
+                </p>
+                <div class="hero-ctas">
+                    <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+                    <a href="{{ path('contacter_chef') }}" class="btn btn-secondary">Contacter un chef</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Animation marmite avec effet entonnoir -->
+                <div class="marmite-animation">
+                    <div class="marmite">
+                        <div class="marmite-anse-left"></div>
+                        <div class="marmite-anse-right"></div>
+                        <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" class="marmite-logo">
+                    </div>
+                    <div class="ingredients">
+                        <span class="ingredient ingredient-1">Site web</span>
+                        <span class="ingredient ingredient-2">SEO</span>
+                        <span class="ingredient ingredient-3">Réseaux</span>
+                        <span class="ingredient ingredient-4">Design</span>
+                    </div>
+                    <div class="cuillere">
+                        <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="" class="cuillere-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 2: ADN & Promesse -->
+    <section class="adn-section" id="adn">
+        <div class="adn-container">
+            <h2>Une communication bien préparée, sans prise de tête</h2>
+            <p class="adn-intro">
+                Comme en cuisine, une bonne communication repose sur des bases solides : comprendre vos besoins, choisir les bons ingrédients et respecter les temps de cuisson. Nous concevons des stratégies simples, efficaces et compréhensibles, pensées pour des dirigeants pressés mais exigeants.
+            </p>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-hand">
+                        <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Simplicité</h3>
+                    <p>Des prestations expliquées clairement, sans jargon marketing inutile.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-hand">
+                        <img src="{{ asset('assets/mains/Main rose.png') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Efficacité</h3>
+                    <p>Chaque action a un objectif précis : visibilité, crédibilité ou performance.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-hand">
+                        <img src="{{ asset('assets/mains/Main verte.png') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Adaptabilité</h3>
+                    <p>Des services modulables, à la carte, qui s'ajustent à votre activité et à votre budget.</p>
+                </div>
+            </div>
+
+            <div class="adn-quote">
+                <blockquote>
+                    "Une bonne communication, comme une bonne recette, n'a pas besoin d'en faire trop pour marquer les esprits."
+                </blockquote>
+            </div>
+
+            <div class="adn-cta">
+                <a href="{{ path('agence_methode') }}" class="link-discover">Découvrir notre méthode en 5 étapes →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motif décoratif -->
+    <div class="pattern-divider"></div>
+
+    <!-- BLOC 3: Offres / Services -->
+    <section class="services-section" id="services">
+        <div class="services-container">
+            <h2>Nos services à la carte</h2>
+            <p class="services-intro">
+                Choisissez uniquement ce dont vous avez besoin. Chez La Buon'Com, pas de menu imposé ni de formule indigeste : vous composez votre communication comme un plat sur-mesure, selon vos priorités et votre rythme.
+            </p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-magnet magnet-top-left">
+                        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Site<br> internet</h3>
+                    <p>Création, protection ou refonte de site internet clair, professionnel et optimisé pour vos objectifs business. Un site bien structuré, comme une assiette bien dressée.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-magnet magnet-top-right">
+                        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Supports de communication</h3>
+                    <p>Cartes de visite, plaquettes, présentations… Des supports cohérents et lisibles pour renforcer votre image, sans surcharge inutile.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-magnet magnet-top-center">
+                        <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Présence en ligne (SEO)</h3>
+                    <p>Optimisation SEO pour améliorer votre visibilité locale et attirer les bons clients, au bon moment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-magnet magnet-top-left">
+                        <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" loading="lazy">
+                    </div>
+                    <h3>Réseaux <br>sociaux</h3>
+                    <p>Une présence régulière et pertinente sur les réseaux sociaux, sans y passer vos soirées. Nous cuisinons le contenu, vous récoltez l'attention.</p>
+                </div>
+            </div>
+
+            <div class="services-cta">
+                <p>Besoin d'un menu personnalisé selon vos objectifs et votre budget ?</p>
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motif vert avant réassurance -->
+    <div class="pattern-divider"></div>
+
+    <!-- BLOC 4: Réassurance -->
+    <section class="reassurance-section" id="reassurance">
+        <div class="reassurance-container">
+            <h2>Nos ingrédients de réussite</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-start="0" data-end="100" data-suffix="%">0%</span>
+                    <span class="stat-label">de prestations expliquées clairement, sans jargon inutile</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-start="100" data-end="0">100</span>
+                    <span class="stat-label">formule imposée : tout est à la carte</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-start="0" data-end="2">0</span>
+                    <span class="stat-label">implantations locales : Évry (Île-de-France) & Valbonne (Alpes-Maritimes)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-start="0" data-end="1">0</span>
+                    <span class="stat-label">seul objectif : une communication utile, efficace et au juste prix</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motif rouge entre réassurance et CTA final -->
+    <div class="pattern-divider pattern-red"></div>
+
+    <!-- BLOC 5: Conversion / CTA Final -->
+    <section class="cta-final-section" id="contact">
+        <div class="cta-final-container">
+            <h2>À table ! Votre communication n'attend plus que vous.</h2>
+            <p class="cta-final-intro">
+                Votre communication mérite mieux qu'un plat réchauffé ou une recette "copié-collé". Prenons le temps de préparer ensemble une stratégie qui vous ressemble, adaptée à vos contraintes et à vos ambitions.
+            </p>
+
+            <div class="cta-options">
+                <div class="cta-option cta-option-primary">
+                    <div class="cta-option-icon">
+                        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="">
+                    </div>
+                    <h3>Recevez votre addition</h3>
+                    <p>Sélectionnez vos besoins et recevez votre addition par mail, sans engagement.</p>
+                    <a href="{{ path('composer_menu') }}" class="btn btn-primary">Composer mon menu</a>
+                </div>
+                <div class="cta-option cta-option-secondary">
+                    <div class="cta-option-icon">
+                        <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="">
+                    </div>
+                    <h3>Échangez avec un chef</h3>
+                    <p>Échangez directement avec nous lors d'un rendez-vous planifié, comme en cuisine : simple et efficace.</p>
+                    <a href="{{ path('contacter_chef') }}" class="btn btn-secondary">Contacter un chef</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+(function() {
+    'use strict';
+
+    // Nettoyer les anciennes animations au refresh
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.getAll().forEach(t => t.kill());
+        gsap.killTweensOf('*');
+    }
+
+    // Variables
+    var loader = document.getElementById('intro-loader');
+    var loaderLogo = loader ? loader.querySelector('.intro-logo img') : null;
+
+    // Animation du loader (CSS + JS minimal)
+    function hideLoader() {
+        if (!loader) return;
+        loader.classList.add('fade-out');
+        setTimeout(function() {
+            loader.style.display = 'none';
+            animateHero();
+        }, 400);
+    }
+
+    // Animation hero simple
+    function animateHero() {
+        var heroText = document.querySelector('.hero-text');
+        var heroVisual = document.querySelector('.hero-visual');
+
+        if (heroText) {
+            heroText.style.opacity = '1';
+            heroText.style.transform = 'translateY(0)';
+        }
+        if (heroVisual) {
+            setTimeout(function() {
+                heroVisual.style.opacity = '1';
+                heroVisual.style.transform = 'translateY(0)';
+            }, 200);
+        }
+    }
+
+    // Lancer le loader
+    if (loaderLogo) {
+        // Animation du logo (grossir)
+        loaderLogo.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        loaderLogo.style.opacity = '1';
+        loaderLogo.style.transform = 'scale(1)';
+
+        // Cacher après 1.2s
+        setTimeout(hideLoader, 1200);
+    } else {
+        // Fallback si pas de loader
+        hideLoader();
+    }
+
+    // Fallback absolu - cacher le loader après 3s quoi qu'il arrive
+    setTimeout(function() {
+        if (loader && loader.style.display !== 'none') {
+            loader.style.display = 'none';
+            animateHero();
+        }
+    }, 3000);
+
+    // Observer pour animations au scroll (performant, sans GSAP)
+    document.addEventListener('DOMContentLoaded', function() {
+        var animatedElements = document.querySelectorAll('.value-card, .service-card, .stat-item, .cta-option');
+
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        setTimeout(function() {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            animatedElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        } else {
+            // Fallback pour vieux navigateurs
+            animatedElements.forEach(function(el) {
+                el.classList.add('visible');
+            });
+        }
+
+        // Animation des compteurs
+        var statNumbers = document.querySelectorAll('.stat-number[data-start]');
+
+        if ('IntersectionObserver' in window && statNumbers.length > 0) {
+            var counterObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(function(el) {
+                counterObserver.observe(el);
+            });
+        }
+
+        function animateCounter(element) {
+            var start = parseInt(element.dataset.start);
+            var end = parseInt(element.dataset.end);
+            var suffix = element.dataset.suffix || '';
+            var duration = 1500;
+            var startTime = null;
+
+            function easeOutQuart(t) {
+                return 1 - Math.pow(1 - t, 4);
+            }
+
+            function updateCounter(currentTime) {
+                if (!startTime) startTime = currentTime;
+                var elapsed = currentTime - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var easedProgress = easeOutQuart(progress);
+                var currentValue = Math.round(start + (end - start) * easedProgress);
+
+                element.textContent = currentValue + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+    });
+})();
+</script>
+{% endblock %}

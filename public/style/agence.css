@@ -1,0 +1,752 @@
+/* ============================================
+   AGENCE.CSS - PAGE QUI SOMMES-NOUS
+   Design fun et décalé
+   ============================================ */
+
+/* ============================================
+   HERO SECTION - Design asymétrique
+   ============================================ */
+.agence-hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--creme-fouettee) 0%, #FFF5E6 50%, var(--jaune-oeuf) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 5%;
+}
+
+.hero-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.floating-sticker {
+    position: absolute;
+    animation: float-gentle 4s ease-in-out infinite;
+}
+
+.sticker-1 {
+    width: 100px;
+    top: 10%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.sticker-2 {
+    width: 70px;
+    top: 20%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.sticker-3 {
+    width: 60px;
+    bottom: 15%;
+    left: 12%;
+    animation-delay: 2s;
+}
+
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.hero-content-agence {
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: var(--noir-olive);
+}
+
+.hero-title .highlight {
+    background: linear-gradient(90deg, var(--vert-persil), var(--rouge-tomate));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--noir-olive);
+    opacity: 0.9;
+}
+
+/* ============================================
+   MISSION SECTION - Simple et clair
+   ============================================ */
+.mission-section {
+    padding: 6rem 5%;
+    background: linear-gradient(10deg, var(--creme-fouettee) 0%, #FFF5E6 70%, var(--jaune-oeuf) 100%);
+    text-align: center;
+}
+
+.section-title-center {
+    font-size: 3rem;
+    color: var(--vert-persil);
+    margin-bottom: 1.5rem;
+}
+
+.section-intro {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+}
+
+.mission-goal {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--rouge-tomate);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ============================================
+   PATTERN DIVIDER
+   ============================================ */
+.pattern-divider-agence {
+    height: 80px;
+    background-image: url('/assets/motifs/carreauxverts.png');
+    background-size: 300px;
+    background-repeat: repeat;
+}
+
+.pattern-divider-agence.pattern-red {
+    background-image: url('/assets/motifs/carreauxrouges.png');
+}
+
+/* ============================================
+   WHY SECTION - 3 cartes animées
+   ============================================ */
+.why-section {
+    padding: 6rem 5%;
+    background: var(--vert-persil);
+    position: relative;
+    overflow: hidden;
+}
+
+.why-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: 400px;
+    opacity: 0.05;
+}
+
+.why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.why-content h2 {
+    color: var(--creme-fouettee);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.why-content > p {
+    color: rgba(255, 241, 220, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* 3 cartes bases - apparition en cascade */
+.bases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.base-card {
+    background: rgba(255, 241, 220, 0.15);
+    padding: 2.5rem 1.5rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid rgba(255, 241, 220, 0.2);
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+    position: relative;
+    overflow: visible;
+}
+
+.base-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.base-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(255, 241, 220, 0.15);
+    border-color: var(--jaune-oeuf);
+}
+
+.base-card h3 {
+    color: var(--jaune-oeuf);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.base-card p {
+    color: rgba(255, 241, 220, 0.8);
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   CARD MAGNETS - Stickers style magnets
+   ============================================ */
+.card-magnet {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
+}
+
+.card-magnet img {
+    width: 100%;
+    height: auto;
+}
+
+.magnet-top-right {
+    top: -20px;
+    right: -18px;
+    transform: rotate(12deg);
+}
+
+.magnet-top-left {
+    top: -25px;
+    left: 90px;
+    transform: rotate(30deg);
+}
+
+.magnet-corner-left {
+    top: -25px;
+    left: -25px;
+    width: 70px;
+    height: 70px;
+    transform: rotate(-15deg);
+}
+
+.magnet-corner-right {
+    top: -25px;
+    right: -25px;
+    width: 60px;
+    height: 60px;
+    transform: rotate(15deg);
+}
+
+/* Hover effect on magnets */
+.base-card:hover .card-magnet,
+.problem-card:hover .card-magnet,
+.presta-card:hover .card-magnet,
+.final-cta-card:hover .card-magnet {
+    transform: rotate(0deg) scale(1.15);
+}
+
+.why-metaphor {
+    font-style: italic;
+    color: var(--jaune-oeuf) !important;
+    font-size: 1.2rem !important;
+    margin: 2rem 0 !important;
+}
+
+.why-conclusion {
+    font-size: 1.1rem !important;
+    color: rgba(255, 241, 220, 0.9) !important;
+}
+
+.cta-center {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Visuel décoratif */
+.why-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deco-main {
+    width: 100%;
+    max-width: 300px;
+    filter: drop-shadow(0 10px 40px rgba(0,0,0,0.3));
+    animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* ============================================
+   PROBLEM SECTION - Carte inclinée
+   ============================================ */
+.problem-section {
+    padding: 8rem 5%;
+    background: var(--creme-fouettee);
+    position: relative;
+    overflow: hidden;
+}
+
+.problem-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.problem-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.08),
+        0 2px 8px rgba(0,0,0,0.06);
+    transform: rotate(-1deg);
+    transition: transform 0.4s ease;
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+}
+
+.problem-card:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.problem-badge {
+    display: inline-block;
+    background: var(--rouge-tomate);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.problem-card h2 {
+    color: var(--noir-olive);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.problem-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    color: var(--noir-olive);
+}
+
+.solution-highlight {
+    background: var(--jaune-oeuf);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+}
+
+.solution-highlight strong {
+    color: var(--noir-olive);
+}
+
+.link-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--vert-persil);
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: gap 0.3s ease;
+}
+
+.link-inline:hover {
+    gap: 1rem;
+}
+
+/* ============================================
+   CARTE SECTION - 4 cartes prestations
+   ============================================ */
+.carte-section {
+    padding: 6rem 5%;
+    background: var(--noir-olive);
+    position: relative;
+}
+
+.carte-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/motifs/tete.png');
+    background-size: 350px;
+    opacity: 0.03;
+}
+
+.section-intro-wide {
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    line-height: 1.8;
+    text-align: center;
+    color: rgba(255, 241, 220, 0.9);
+}
+
+.carte-section .section-title-center {
+    color: var(--creme-fouettee);
+    margin-bottom: 1.5rem;
+}
+
+.prestations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.presta-card {
+    background: rgba(255, 241, 220, 0.08);
+    border: 2px solid rgba(255, 241, 220, 0.1);
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    will-change: transform;
+    position: relative;
+    overflow: visible;
+}
+
+.presta-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: rgba(255, 241, 220, 0.1);
+    border-color: var(--jaune-oeuf);
+    box-shadow: 0 20px 50px rgba(255, 200, 87, 0.2);
+}
+
+.presta-card h3 {
+    color: var(--jaune-oeuf);
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.presta-card p {
+    color: rgba(255, 241, 220, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.carte-conclusion {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 241, 220, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.carte-conclusion strong {
+    color: var(--jaune-oeuf);
+}
+
+/* ============================================
+   LOCAL SECTION - Design asymétrique
+   ============================================ */
+.local-section {
+    padding: 6rem 5%;
+    background: var(--creme-fouettee);
+}
+
+.local-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.local-text h2 {
+    font-size: 2.5rem;
+    color: var(--vert-persil);
+    margin-bottom: 2rem;
+    line-height: 1.3;
+}
+
+.local-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.local-highlight {
+    background: var(--jaune-oeuf);
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    color: var(--noir-olive) !important;
+    margin-top: 2rem !important;
+}
+
+/* Carte Leaflet */
+.local-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.leaflet-map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+/* Marqueurs personnalisés Leaflet */
+.custom-map-marker {
+    background: transparent;
+    border: none;
+}
+
+.marker-pin {
+    width: 40px;
+    height: 50px;
+    background: var(--jaune-oeuf);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.marker-pin img {
+    width: 24px;
+    height: 24px;
+    transform: rotate(45deg);
+}
+
+.custom-map-marker:hover .marker-pin {
+    transform: rotate(-45deg) scale(1.15);
+}
+
+/* Popup Leaflet personnalisé */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.leaflet-popup-content {
+    margin: 12px 16px;
+}
+
+.map-popup {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.map-popup strong {
+    color: var(--vert-persil);
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.map-popup span {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.location-badges-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Badges localisation */
+
+.location-badge {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.location-badge:hover {
+    transform: translateX(10px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.location-pin {
+    font-size: 2rem;
+}
+
+.location-badge strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: var(--vert-persil);
+}
+
+.location-badge span {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.location-idf {
+    border-left: 4px solid var(--vert-persil);
+}
+
+.location-paca {
+    border-left: 4px solid var(--rouge-tomate);
+}
+
+.local-deco {
+    position: absolute;
+    width: 150px;
+    bottom: -50px;
+    right: -30px;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+    transform: rotate(20deg);
+}
+
+/* ============================================
+   FINAL CTA - Carte flottante
+   ============================================ */
+.final-cta-section {
+    padding: 8rem 5%;
+    background: linear-gradient(135deg, var(--vert-persil) 0%, #1a4a24 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255, 241, 220, 0.15);
+    padding: 4rem 3rem;
+    border-radius: 24px;
+    border: 2px solid rgba(255, 241, 220, 0.2);
+    position: relative;
+    overflow: visible;
+    z-index: 2;
+}
+
+.final-cta-card h2 {
+    color: var(--creme-fouettee);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.final-cta-card p {
+    color: rgba(255, 241, 220, 0.9);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .why-container {
+        grid-template-columns: 1fr;
+    }
+
+    .bases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prestations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .local-container {
+        grid-template-columns: 1fr;
+    }
+
+    .local-deco {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title-center {
+        font-size: 2rem;
+    }
+
+    .floating-sticker {
+        display: none;
+    }
+
+    .prestations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-magnet {
+        display: none;
+    }
+
+    .leaflet-map-container {
+        height: 250px;
+    }
+}
+
+/* Préférence reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .floating-sticker {
+        animation: none;
+    }
+
+    .base-card,
+    .presta-card,
+    .problem-card,
+    .location-badge {
+        transition: none;
+    }
+}

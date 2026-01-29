@@ -1,0 +1,284 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/concept.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- BLOC 1: Hero - Une autre façon de travailler -->
+    <section class="concept-hero">
+        <div class="hero-decoration">
+            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="floating-sticker sticker-1" loading="eager">
+            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="floating-sticker sticker-2" loading="lazy">
+            <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="" class="floating-sticker sticker-3" loading="lazy">
+        </div>
+
+        <div class="hero-content-concept">
+            <h1>Une autre façon de travailler la communication</h1>
+            <h2 class="hero-subtitle-h2">Une agence de communication qui fonctionne comme un restaurant</h2>
+            <p class="hero-description">
+                Chez La Buon'Com, nous avons imaginé un concept simple : adapter la communication aux vrais besoins des TPE, PME et professions libérales.
+            </p>
+            <p class="hero-description">
+                Comme dans un restaurant, vous choisissez à la carte ou optez pour un menu existant, selon vos objectifs, votre budget et votre temps disponible.
+            </p>
+            <p class="hero-highlight">
+                Résultat : une communication claire, efficace et sans superflu.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-concept"></div>
+
+    <!-- BLOC 2: Le constat de départ -->
+    <section class="constat-section">
+        <div class="constat-container">
+            <span class="section-surtitre">Pourquoi ce concept était nécessaire</span>
+            <h2>Des entrepreneurs noyés dans le jargon et les offres standardisées</h2>
+
+            <div class="constat-content">
+                <div class="constat-text">
+                    <p>
+                        Trop souvent, la communication est perçue comme complexe, chronophage et coûteuse.
+                    </p>
+                    <p>
+                        Les TPE et professions libérales manquent de temps pour décrypter les offres, comprendre le SEO, gérer un site internet ou animer leurs réseaux sociaux.
+                    </p>
+                    <p class="constat-consequence">
+                        Ce manque de clarté entraîne des projets mal définis, peu efficaces et retardés.
+                    </p>
+                </div>
+                <div class="constat-visual">
+                    <img src="{{ asset('assets/mains/Main rose.png') }}" alt="" class="constat-deco" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-concept pattern-red"></div>
+
+    <!-- BLOC 3: Le fonctionnement à la carte -->
+    <section class="carte-concept-section">
+        <div class="carte-concept-container">
+            <h2>Vous choisissez, nous mijotons.</h2>
+
+            <div class="carte-concept-content">
+                <div class="carte-concept-visual">
+                    <div class="carte-illustration">
+                        <div class="carte-item">
+                            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                            <span>Site internet</span>
+                        </div>
+                        <div class="carte-item">
+                            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                            <span>SEO</span>
+                        </div>
+                        <div class="carte-item">
+                            <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                            <span>Réseaux</span>
+                        </div>
+                        <div class="carte-item">
+                            <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" loading="lazy">
+                            <span>Global</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carte-concept-text">
+                    <p>
+                        Notre concept repose sur la <strong>modularité</strong>.
+                    </p>
+                    <p>
+                        Vous sélectionnez uniquement les <a href="{{ path('services_a_la_carte') }}">prestations de communication à la carte</a> dont vous avez réellement besoin : création ou refonte de site internet, référencement naturel (SEO), réseaux sociaux ou accompagnement global.
+                    </p>
+                    <p class="carte-highlight">
+                        Chaque action est pensée pour servir vos objectifs, sans forfait imposé ni engagement inutile.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 4: Les menus de communication -->
+    <section class="menus-section">
+        <div class="menus-container">
+            <h2>Des menus de communication prêts à l'emploi</h2>
+
+            <div class="menus-content">
+                <div class="menus-text">
+                    <p>
+                        Pour les entrepreneurs qui souhaitent aller à l'essentiel, nous proposons des <strong>menus de communication</strong> clairs et éprouvés.
+                    </p>
+                    <p>
+                        Ces formules regroupent les prestations les plus pertinentes selon votre situation.
+                    </p>
+                    <p class="menus-highlight">
+                        Elles offrent un cadre rassurant, tout en restant ajustables et évolutives.
+                    </p>
+                </div>
+
+                <div class="menus-visual">
+                    <div class="menu-card menu-entree">
+                        <span class="menu-type">Entrée</span>
+                        <span class="menu-name">Visibilité locale</span>
+                    </div>
+                    <div class="menu-card menu-plat">
+                        <span class="menu-type">Plat</span>
+                        <span class="menu-name">Présence digitale</span>
+                    </div>
+                    <div class="menu-card menu-dessert">
+                        <span class="menu-type">Dessert</span>
+                        <span class="menu-name">Communication complète</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-concept"></div>
+
+    <!-- BLOC 5: Le sur-mesure -->
+    <section class="surmesure-section">
+        <div class="surmesure-container">
+            <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" class="surmesure-sticker-1" loading="lazy">
+
+            <div class="surmesure-card">
+                <h2>Une communication sur mesure, jamais standardisée</h2>
+                <p>
+                    Même avec des menus existants, <strong>rien n'est figé</strong>.
+                </p>
+                <p>
+                    Chaque projet est ajusté selon votre activité, votre cible et vos contraintes, notamment pour les <strong>professions libérales réglementées</strong>.
+                </p>
+                <p class="surmesure-conclusion">
+                    Parce que chaque activité est différente, nous construisons une communication cohérente, alignée avec votre image et vos priorités.
+                </p>
+            </div>
+
+            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="surmesure-sticker-2" loading="lazy">
+        </div>
+    </section>
+
+    <!-- BLOC 6: Pédagogie & transparence -->
+    <section class="pedagogie-section">
+        <div class="pedagogie-container">
+            <h2>Une communication expliquée simplement</h2>
+
+            <div class="pedagogie-stats">
+                <div class="stat-block">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">jargon</span>
+                </div>
+                <div class="stat-separator">=</div>
+                <div class="stat-block">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">compréhension</span>
+                </div>
+            </div>
+
+            <div class="pedagogie-content">
+                <p>
+                    Nous prenons le temps de vous expliquer chaque choix stratégique.
+                </p>
+                <p>
+                    SEO, réseaux sociaux, site internet : vous comprenez à quoi sert chaque action et ce qu'elle peut vous apporter.
+                </p>
+                <p>
+                    Notre <a href="{{ path('agence_methode') }}">méthode de communication pédagogique</a> vous permet de décider sereinement et d'avancer en toute confiance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-concept pattern-red"></div>
+
+    <!-- BLOC 7: Communication efficace et durable -->
+    <section class="durable-section">
+        <div class="durable-container">
+            <div class="durable-content">
+                <h2>Une communication efficace et durable</h2>
+                <p>
+                    Nous privilégions des outils et des stratégies adaptés à votre réalité, pas des tendances éphémères.
+                </p>
+                <p>
+                    Votre communication évolue avec votre activité et les usages, tout en restant simple, cohérente et efficace.
+                </p>
+                <p class="durable-highlight">
+                    L'objectif : des résultats concrets, pas des promesses abstraites.
+                </p>
+            </div>
+
+            <div class="durable-visual">
+                <div class="durable-icons">
+                    <div class="durable-icon">
+                        <span class="icon-check">✓</span>
+                        <span>Adapté</span>
+                    </div>
+                    <div class="durable-icon">
+                        <span class="icon-check">✓</span>
+                        <span>Évolutif</span>
+                    </div>
+                    <div class="durable-icon">
+                        <span class="icon-check">✓</span>
+                        <span>Concret</span>
+                    </div>
+                </div>
+                <img src="{{ asset('assets/mains/Main verte.png') }}" alt="" class="durable-hand" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 8: Conclusion & CTA Final -->
+    <section class="cta-concept-section">
+        <div class="cta-concept-container">
+            <h2>Prêt à commander ?</h2>
+            <p class="cta-intro">
+                Avec La Buon'Com, vous reprenez le contrôle de votre communication.
+            </p>
+            <p class="cta-benefits">
+                Vous choisissez ce qui est utile, comprenez ce qui est mis en place et investissez au juste prix.
+            </p>
+            <p class="cta-action">
+                Découvrez maintenant nos prestations ou échangeons ensemble sur votre projet.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+                <a href="{{ path('contacter_chef') }}" class="btn btn-secondary">Contacter un chef</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation simple au scroll avec IntersectionObserver
+    const animatedElements = document.querySelectorAll('.constat-content, .carte-concept-content, .menus-content, .surmesure-card, .pedagogie-content, .durable-content, .menu-card, .carte-item, .stat-block');
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        animatedElements.forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+    }
+});
+</script>
+{% endblock %}

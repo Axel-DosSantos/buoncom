@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - La Buon'Com</title>
+
+    <link rel="icon" type="image/png" href="../assets/logos/Favicon La Buon'Com.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --vert-persil: #225D2E;
+            --creme-fouettee: #FFF1DC;
+            --rouge-tomate: #DA4D1B;
+            --jaune-oeuf: #FFC857;
+            --noir-olive: #0B0B09;
+            --rose-bonbon: #EA94A6;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            color: var(--noir-olive);
+            background-color: var(--creme-fouettee);
+        }
+
+        h1, h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        h1 { font-size: 3.5rem; line-height: 1.2; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 241, 220, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { height: 45px; width: auto; }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links > li { position: relative; }
+        .nav-links > li > a {
+            font-family: 'Libre Baskerville', serif; font-weight: 700;
+            color: var(--noir-olive); text-decoration: none;
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.3rem;
+        }
+        .nav-links > li > a .dropdown-arrow { font-size: 0.6rem; transition: transform 0.3s ease; }
+        .nav-links > li:hover > a .dropdown-arrow { transform: rotate(180deg); }
+
+        .submenu {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: white; min-width: 220px; padding: 1rem 0;
+            border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            z-index: 1001; margin-top: 15px; list-style: none;
+        }
+        .nav-links > li:hover .submenu { opacity: 1; visibility: visible; margin-top: 10px; }
+        .submenu li a {
+            display: block; padding: 0.7rem 1.5rem;
+            color: var(--noir-olive); text-decoration: none;
+            font-size: 0.9rem; transition: all 0.2s ease;
+        }
+        .submenu li a:hover { background: var(--creme-fouettee); color: var(--vert-persil); padding-left: 2rem; }
+
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 2px; background: var(--noir-olive); }
+
+        .page-hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 5% 4rem; background: var(--rose-bonbon); position: relative;
+        }
+        .page-hero-content { text-align: center; max-width: 800px; }
+        .page-hero h1 { color: var(--noir-olive); margin-bottom: 1rem; }
+        .page-hero p { color: rgba(11, 11, 9, 0.8); font-size: 1.2rem; }
+
+        .faq-section { padding: 4rem 5%; max-width: 900px; margin: 0 auto; }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: white;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--noir-olive);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--creme-fouettee);
+        }
+
+        .faq-question.active {
+            background: var(--vert-persil);
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: white;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .cta-section {
+            background: var(--vert-persil);
+            padding: 4rem 5%;
+            text-align: center;
+            color: var(--creme-fouettee);
+        }
+        .cta-section h2 { color: var(--creme-fouettee); margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255, 241, 220, 0.8); margin-bottom: 2rem; }
+        .cta-btn {
+            display: inline-block; padding: 1rem 2.5rem;
+            background: var(--jaune-oeuf); color: var(--noir-olive);
+            text-decoration: none; font-family: 'Montserrat', sans-serif;
+            font-weight: 700; border-radius: 50px; transition: all 0.3s ease;
+        }
+        .cta-btn:hover { background: var(--creme-fouettee); transform: translateY(-3px); }
+
+        .site-footer {
+            background: var(--noir-olive); color: var(--creme-fouettee); padding: 4rem 5% 2rem;
+        }
+        .footer-container {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 3rem;
+        }
+        .footer-brand { padding-right: 2rem; }
+        .footer-logo { height: 50px; width: auto; margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.95rem; line-height: 1.7; color: rgba(255, 241, 220, 0.8); margin-bottom: 1rem; }
+        .footer-tagline { font-style: italic; color: var(--jaune-oeuf); }
+        .footer-section h4 {
+            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem;
+            color: var(--creme-fouettee); margin-bottom: 1.5rem; text-transform: uppercase;
+        }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.8rem; }
+        .footer-section ul li a { color: rgba(255, 241, 220, 0.7); text-decoration: none; transition: all 0.3s ease; font-size: 0.9rem; }
+        .footer-section ul li a:hover { color: var(--jaune-oeuf); padding-left: 5px; }
+        .footer-contact p { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; color: rgba(255, 241, 220, 0.8); font-size: 0.9rem; }
+        .footer-contact a { color: rgba(255, 241, 220, 0.8); text-decoration: none; }
+        .footer-contact a:hover { color: var(--jaune-oeuf); }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .footer-social a {
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; background: rgba(255, 241, 220, 0.1);
+            border-radius: 50%; color: var(--creme-fouettee); text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-social a:hover { background: var(--vert-persil); transform: translateY(-3px); }
+        .footer-bottom {
+            margin-top: 3rem; padding-top: 2rem;
+            border-top: 1px solid rgba(255, 241, 220, 0.1);
+            text-align: center; color: rgba(255, 241, 220, 0.5); font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(255, 241, 220, 0.98);
+                flex-direction: column; padding: 2rem; gap: 1rem;
+                transform: translateY(-20px); opacity: 0; visibility: hidden;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; visibility: visible; }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-brand { grid-column: span 2; }
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .footer-container { grid-template-columns: 1fr; }
+            .footer-brand { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html" class="logo"><img src="../assets/logos/Logo principal.svg" alt="La Buon'Com"></a>
+        <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="agence.html">L'agence <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="agence.html#qui-sommes-nous">Qui sommes-nous ?</a></li>
+                    <li><a href="agence.html#concept">Notre concept</a></li>
+                    <li><a href="agence.html#methode">Notre méthode</a></li>
+                </ul>
+            </li>
+            <li><a href="services.html">Nos services <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="services.html#carte">Services à la carte</a></li>
+                    <li><a href="services.html#formules">Formules</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ressources <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Foire aux Questions</h1>
+            <p>Toutes les réponses à vos questions les plus fréquentes</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-item">
+            <button class="faq-question">
+                Quels sont vos délais de réalisation ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Les délais varient selon le type de projet. Pour un logo, comptez environ 2 semaines. Un site web vitrine prend généralement 4 à 6 semaines. Nous vous communiquons un planning détaillé dès le début du projet.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Comment se déroule un projet type ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Chaque projet suit notre méthode en 4 étapes : L'Inspiration (brief et écoute), La Préparation (stratégie et proposition), La Cuisson (création et ajustements), Le Service (livraison et suivi). Vous êtes impliqué à chaque étape clé.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Proposez-vous un accompagnement sur le long terme ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Absolument ! Nous proposons des formules de community management mensuel, de maintenance de site web, et d'accompagnement stratégique continu. Nous pouvons devenir votre département communication externalisé.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Quels sont vos tarifs ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Nos tarifs dépendent de la complexité de chaque projet. Nous proposons des formules à partir de 500€ et des prestations à la carte. Contactez-nous pour obtenir un devis personnalisé gratuit.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Travaillez-vous avec tous types d'entreprises ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Oui ! Nous accompagnons des entreprises de toutes tailles : auto-entrepreneurs, TPE, PME, associations... Chaque projet est unique et nous adaptons notre approche à vos besoins et votre budget.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Êtes-vous basés où ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Nous avons deux implantations : Évry-Courcouronnes en Île-de-France et Valbonne – Sophia Antipolis dans les Alpes-Maritimes. Nous travaillons également à distance avec des clients partout en France.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Comment puis-je vous contacter ?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Vous pouvez nous joindre par téléphone au 01 76 21 77 59, par email à hello@labuoncom.fr, ou via notre formulaire de contact. Nous répondons sous 24h en jours ouvrés.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+        <p>Notre équipe est là pour répondre à toutes vos questions</p>
+        <a href="contact.html" class="cta-btn">Nous contacter</a>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="../assets/logos/Logo blanc.svg" alt="La Buon'Com" class="footer-logo">
+                <p>Agence de communication à Évry & Valbonne</p>
+                <p class="footer-tagline">Composez votre menu, on s'occupe du reste.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#carte">Services à la carte</a></li>
+                    <li><a href="services.html#formules">Formules</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-contact">
+                <h4>Contact</h4>
+                <p>📍 Évry-Courcouronnes</p>
+                <p>📍 Valbonne – Sophia Antipolis</p>
+                <p>📞 <a href="tel:+33176217759">01 76 21 77 59</a></p>
+                <p>✉️ <a href="mailto:hello@labuoncom.fr">hello@labuoncom.fr</a></p>
+                <div class="footer-social"><a href="https://linkedin.com" target="_blank">in</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 La Buon'Com - Tous droits réservés</p></div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        }
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // Fermer tous les autres
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question').classList.remove('active');
+                });
+
+                // Toggle l'actuel
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    question.classList.add('active');
+                }
+            });
+        });
+
+        // Animation
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.page-hero-content', { opacity: 0, y: 50, duration: 1, ease: 'power3.out' });
+            gsap.from('.faq-item', { opacity: 0, y: 30, duration: 0.5, stagger: 0.1, delay: 0.3 });
+        }
+    </script>
+</body>
+</html>

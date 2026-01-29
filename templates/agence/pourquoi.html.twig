@@ -1,0 +1,295 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pourquoi choisir La Buon'Com - Communication simple pour pros débordés{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/pourquoi.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <section class="pourquoi-hero">
+        <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" class="hero-sticker-pourquoi hero-sticker-1">
+        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="hero-sticker-pourquoi hero-sticker-2">
+        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="hero-sticker-pourquoi hero-sticker-3">
+
+        <div class="hero-pourquoi-content">
+            <h1>Communication simple pour pros débordés</h1>
+            <p class="intro-text">
+                Chez La Buon'Com, nous aidons les entrepreneurs et professions libérales à structurer 
+                leur communication sans complexité inutile.
+            </p>
+            <p class="intro-text">
+                Notre agence de communication accompagne les TPE et PME qui manquent de temps, 
+                avec des solutions simples, efficaces et compréhensibles.
+            </p>
+            <p class="highlight-promise">
+                Ici, vous savez pourquoi vous communiquez, comment et à quel coût.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-pourquoi"></div>
+
+    <!-- Simplicité Section - Fond carreaux verts -->
+    <section class="simplicity-section">
+        <div class="simplicity-container">
+            <h2>Externalisez votre communication en toute confiance</h2>
+            <p>
+                Nous concevons des stratégies de communication pensées pour les entrepreneurs débordés.
+            </p>
+            <p>
+                En externalisant votre communication (site internet, SEO, réseaux sociaux), vous gagnez 
+                du temps tout en conservant une vision claire sur chaque action menée.
+            </p>
+            <div class="simplicity-highlight">
+                <p>
+                    <strong>Tout est expliqué simplement, sans jargon marketing.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red (next section is crème with cards) -->
+    <div class="pattern-divider-pourquoi pattern-red"></div>
+
+    <!-- Prestations à la carte -->
+    <section class="carte-prestations-section">
+        <div class="carte-header">
+            <h2>Des prestations modulables, sans forfait imposé</h2>
+            <p>
+                Contrairement aux agences traditionnelles, La Buon'Com propose des prestations 
+                de communication sur mesure.
+            </p>
+        </div>
+
+        <div class="prestations-asymmetric">
+            <div class="presta-card-large">
+                <div class="card-magnet magnet-top-right">
+                    <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                </div>
+                <h3>Sélectionnez ce dont vous avez besoin</h3>
+                <p>
+                    Vous sélectionnez uniquement les services utiles à votre activité, selon vos
+                    priorités et votre budget.
+                </p>
+                <p>
+                    Chaque projet est conçu comme une recette personnalisée, évolutive et maîtrisée.
+                </p>
+            </div>
+
+            <div class="presta-card-large">
+                <div class="card-magnet magnet-top-left">
+                    <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                </div>
+                <h3>Recevez votre devis</h3>
+                <p>
+                    Sélectionnez vos besoins et recevez votre addition par mail, sans engagement.
+                </p>
+            </div>
+        </div>
+
+        <div class="prestations-cta-center">
+            <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">
+                Composer mon menu
+            </a>
+        </div>
+    </section>
+
+    <!-- Pattern Divider (next is jaune) -->
+    <div class="pattern-divider-pourquoi pattern-red"></div>
+
+    <!-- Juste Prix Section - Ticket design -->
+    <section class="juste-prix-section">
+        <div class="juste-prix-container">
+            <div class="prix-visual">
+                <div class="prix-ticket">
+                    <div class="card-magnet magnet-corner-right">
+                        <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="prix-ticket-header">
+                        <div class="prix-ticket-title">L'Addition</div>
+                    </div>
+                    <div class="prix-items">
+                        <div class="prix-item">
+                            <span class="prix-item-name">Devis clair et détaillé</span>
+                            <span class="prix-item-check">✓</span>
+                        </div>
+                        <div class="prix-item">
+                            <span class="prix-item-name">Prix transparents</span>
+                            <span class="prix-item-check">✓</span>
+                        </div>
+                        <div class="prix-item">
+                            <span class="prix-item-name">Sans frais cachés</span>
+                            <span class="prix-item-check">✓</span>
+                        </div>
+                        <div class="prix-item">
+                            <span class="prix-item-name">Actions utiles uniquement</span>
+                            <span class="prix-item-check">✓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prix-content">
+                <h2>Une agence de communication au juste prix</h2>
+                <p>
+                    Nous défendons une communication sans frais inutiles.
+                </p>
+                <p>
+                    Nos devis sont clairs, détaillés et compréhensibles, afin que vous sachiez 
+                    exactement ce que vous payez.
+                </p>
+                <p>
+                    Vous investissez dans des actions réellement utiles, adaptées à vos objectifs 
+                    et à votre budget.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider (next is noir/dark) -->
+    <div class="pattern-divider-pourquoi"></div>
+
+    <!-- Pédagogie Section -->
+    <section class="pedagogie-section">
+        <div class="pedagogie-container">
+            <h2>Une agence de communication pédagogique</h2>
+            <p>
+                Chez La Buon'Com, nous prenons le temps d'expliquer <a href="{{ path('agence_methode') }}" style="color: var(--creme-fouettee); text-decoration: underline;">chaque étape de votre communication</a>.
+            </p>
+            <p>
+                Notre approche pédagogique vous permet de comprendre le vocabulaire du SEO, des réseaux 
+                sociaux ou de votre site internet ainsi que leurs enjeux.
+            </p>
+            <p>
+                Vous avancez avec des décisions éclairées, sans discours opaque.
+            </p>
+
+            <div class="pedagogie-cta-box">
+                <p>Venez en apprendre un peu plus sur le monde délicieux de la communication</p>
+                <a href="{{ path('ressources_pratiques') }}#lexique" class="btn btn-primary btn-large">
+                    Consulter notre lexique anti-jargon
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider (next is vert) -->
+    <div class="pattern-divider-pourquoi"></div>
+
+    <!-- Expertise Section - Image de fond équipe -->
+    <section class="expertise-section">
+        <div class="expertise-container">
+            <div class="expertise-card">
+                <div class="card-magnet magnet-corner-left">
+                    <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" loading="lazy">
+                </div>
+                <div class="card-magnet magnet-corner-right">
+                    <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                </div>
+                <h2>Une agence à taille humaine, proche de ses clients</h2>
+                <p>
+                    Nous combinons l'expertise d'une agence de communication digitale avec la souplesse 
+                    et la disponibilité d'un freelance.
+                </p>
+                <p>
+                    Chaque client bénéficie d'un accompagnement personnalisé, basé sur l'écoute, 
+                    le bon sens et l'efficacité.
+                </p>
+                <div class="expertise-highlight">
+                    Votre communication évolue à votre rythme, avec une vraie relation humaine.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red (next is crème then jaune) -->
+    <div class="pattern-divider-pourquoi pattern-red"></div>
+
+    <!-- Local Section - Badges -->
+    <section class="local-pourquoi-section">
+        <div class="local-pourquoi-container">
+            <div class="local-text-content">
+                <h2>Une agence de communication locale en Île-de-France et dans les Alpes-Maritimes</h2>
+                <p>
+                    Implantée à Évry en Île-de-France et à Valbonne dans les Alpes-Maritimes, 
+                    La Buon'Com accompagne des entreprises locales avec une parfaite connaissance 
+                    de leurs contraintes.
+                </p>
+                <p>
+                    Nous maîtrisons les enjeux spécifiques des TPE, PME et professions libérales, 
+                    y compris réglementées, pour une communication efficace et conforme.
+                </p>
+            </div>
+
+            <div class="local-badges-visual">
+                <div class="location-card">
+                    <div class="card-magnet magnet-top-right">
+                        <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="location-icon">
+                        <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" style="width: 35px; height: auto;">
+                    </div>
+                    <div class="location-info">
+                        <strong>Évry-Courcouronnes</strong>
+                        <span>Île-de-France</span>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="card-magnet magnet-top-right">
+                        <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                    </div>
+                    <div class="location-icon">
+                        <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" style="width: 35px; height: auto;">
+                    </div>
+                    <div class="location-info">
+                        <strong>Valbonne – Sophia Antipolis</strong>
+                        <span>Alpes-Maritimes (06)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider (next is jaune) -->
+    <div class="pattern-divider-pourquoi pattern-red"></div>
+
+    <!-- Conclusion & CTA Final -->
+    <section class="conclusion-section">
+        <div class="conclusion-container">
+            <div class="conclusion-card">
+                <div class="card-magnet magnet-corner-left">
+                    <img src="{{ asset('assets/stickers/Sticker main rose.png') }}" alt="" loading="lazy">
+                </div>
+                <div class="card-magnet magnet-corner-right">
+                    <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                </div>
+                <h2>Construisons ensemble une communication qui vous ressemble</h2>
+                <p>
+                    Choisir La Buon'Com, c'est faire le choix d'une agence de communication claire, 
+                    humaine et flexible. Une communication pensée avec bon sens, adaptée à vos besoins 
+                    réels et au goût du jour.
+                </p>
+                <p>
+                    Découvrez maintenant notre méthode ou échangeons ensemble sur votre projet.
+                </p>
+
+                <div class="conclusion-ctas">
+                    <a href="{{ path('agence_methode') }}" class="btn btn-primary btn-large">
+                        Découvrir notre méthode
+                    </a>
+                    <a href="{{ path('contacter_chef') }}" class="btn btn-secondary btn-large">
+                        Contacter un chef
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/pourquoi.js') }}"></script>
+{% endblock %}

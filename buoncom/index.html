@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Buon'Com - La communication mijotée avec soin</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logos/Favicon La Buon'Com.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP avec tous les plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Fallback si les scripts ne chargent pas -->
+    <noscript>
+        <style>
+            .intro-loader { display: none !important; }
+            nav { transform: translateY(0) !important; }
+            .hero-subtitle, .hero h1, .hero-description, .cta-button { opacity: 1 !important; }
+            body { cursor: auto !important; }
+            .custom-cursor { display: none !important; }
+        </style>
+    </noscript>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --vert-persil: #225D2E;
+            --creme-fouettee: #FFF1DC;
+            --rouge-tomate: #DA4D1B;
+            --jaune-oeuf: #FFC857;
+            --noir-olive: #0B0B09;
+            --rose-bonbon: #EA94A6;
+        }
+        
+        body {
+            font-family: 'Libre Baskerville', serif;
+            color: var(--noir-olive);
+            background-color: var(--creme-fouettee);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Masquer le curseur par défaut sur tous les éléments */
+        *, *::before, *::after {
+            cursor: none !important;
+        }
+
+        a, button, input, textarea, select, [role="button"], .pack-card, .extra-item, .showcase-item, .cta-button, .nav-links a {
+            cursor: none !important;
+        }
+        
+        /* Curseur personnalisé - Fourchette SVG */
+        .custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            width: 42px;
+            height: 42px;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), filter 0.3s ease-out;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .custom-cursor svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .custom-cursor.clicking {
+            transform: translate(-50%, -50%) rotate(-30deg) scale(0.7);
+            transition: transform 0.15s ease-out;
+        }
+
+        .custom-cursor.hovering {
+            transform: translate(-50%, -50%) rotate(-150deg) scale(1.3);
+            filter: drop-shadow(3px 3px 8px rgba(218, 77, 27, 0.6));
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease-out;
+        }
+
+        /* Particules pour le trail */
+        .cursor-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: none;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        /* Loader spectaculaire - Nouveau design */
+        .intro-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--vert-persil);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Contenu central */
+        .intro-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        .intro-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .intro-logo img {
+            height: 120px;
+            width: auto;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .intro-tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--jaune-oeuf);
+            margin-top: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+
+        .intro-deco-1 {
+            top: 20%;
+            left: 10%;
+            width: 100px;
+            height: 1px;
+            background: rgba(255, 241, 220, 0.1);
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        .intro-deco-2 {
+            bottom: 30%;
+            right: 15%;
+            width: 80px;
+            height: 1px;
+            background: rgba(255, 241, 220, 0.1);
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .intro-deco-3 {
+            top: 40%;
+            right: 10%;
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 241, 220, 0.1);
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+
+        /* Overlay de fermeture */
+        .intro-overlay {
+         display: none;
+        }
+
+        /* Éléments décoratifs de l'intro - Simplifiés */
+        .intro-element {
+            position: absolute;
+            z-index: 4;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .intro-hand-left {
+            width: 70px;
+            top: 30%;
+            left: 20%;
+        }
+
+        .intro-hand-right {
+            width: 50px;
+            top: 35%;
+            right: 20%;
+        }
+
+        @media (max-width: 768px) {
+            .intro-element {
+                display: none;
+            }
+        }
+
+        /* Navigation - Header Transparent Adaptatif */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: transparent;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Mode clair (fond sombre - texte clair) */
+        nav.nav-light .nav-links > li > a,
+        nav.nav-light .menu-toggle span {
+            color: var(--creme-fouettee);
+        }
+
+        nav.nav-light .menu-toggle span {
+            background: var(--creme-fouettee);
+        }
+
+        nav.nav-light .nav-links > li > a::after {
+            background: var(--jaune-oeuf);
+        }
+
+        /* Mode sombre (fond clair - texte sombre) */
+        nav.nav-dark .nav-links > li > a {
+            color: var(--noir-olive);
+        }
+
+        nav.nav-dark .menu-toggle span {
+            background: var(--noir-olive);
+        }
+
+        /* Header avec fond quand on scroll */
+        nav.nav-scrolled {
+            background: rgba(255, 241, 220, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        nav.nav-scrolled .nav-links > li > a {
+            color: var(--noir-olive);
+        }
+
+        nav.nav-scrolled .menu-toggle span {
+            background: var(--noir-olive);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Logos pour le switch */
+        .logo .logo-dark {
+            display: block;
+        }
+
+        .logo .logo-light {
+            display: none;
+            position: absolute;
+        }
+
+        nav.nav-light .logo .logo-dark {
+            display: none;
+        }
+
+        nav.nav-light .logo .logo-light {
+            display: block;
+            position: static;
+        }
+
+        nav.nav-scrolled .logo .logo-dark {
+            display: block;
+        }
+
+        nav.nav-scrolled .logo .logo-light {
+            display: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links > li {
+            position: relative;
+        }
+
+        .nav-links > li > a {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            color: var(--noir-olive);
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links > li > a .dropdown-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links > li:hover > a .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-links > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rouge-tomate);
+            transition: width 0.3s;
+        }
+
+        .nav-links > li > a:hover::after,
+        .nav-links > li:hover > a::after {
+            width: 100%;
+        }
+
+        /* Sous-menus */
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 220px;
+            padding: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 15px;
+            list-style: none;
+        }
+
+        .submenu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .nav-links > li:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 10px;
+        }
+
+        .submenu li a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: var(--noir-olive);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        .submenu li a:hover {
+            background: var(--creme-fouettee);
+            color: var(--vert-persil);
+            padding-left: 2rem;
+        }
+
+        /* Menu hamburger mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--noir-olive);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 241, 220, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-20px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .submenu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                padding: 0.5rem 0 0.5rem 1rem;
+                margin-top: 0.5rem;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .submenu::before {
+                display: none;
+            }
+
+            .nav-links > li.open .submenu {
+                max-height: 500px;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .submenu li a:hover {
+                padding-left: 1.5rem;
+            }
+        }
+        
+        /* Hero avec Dégradé Background - Style Lumineux */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(
+                160deg,
+                var(--creme-fouettee) 0%,
+                #FFF5E6 40%,
+                var(--jaune-oeuf) 100%
+            );
+        }
+
+        /* Vidéo cachée */
+        .hero-video-container {
+            display: none;
+        }
+
+        .hero-video {
+            display: none;
+        }
+
+        /* Overlay léger pour lisibilité */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(255, 241, 220, 0.3) 0%,
+                rgba(255, 241, 220, 0) 70%
+            );
+            z-index: 2;
+        }
+
+        /* Grain texture overlay */
+        .hero-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 10;
+            position: relative;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            margin-bottom: 2rem;
+            opacity: 0;
+            color: var(--noir-olive);
+            font-size: 5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(90deg, var(--vert-persil) 0%, var(--rouge-tomate) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            opacity: 0;
+            color: var(--noir-olive);
+        }
+
+        /* Stickers flottants dans le hero */
+        .hero-sticker {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            transform-origin: top center;
+        }
+
+        .hero-sticker-1 {
+            width: 80px;
+            top: 15%;
+            left: 8%;
+            animation: pendulum 3s ease-in-out infinite;
+        }
+
+        .hero-sticker-2 {
+            width: 50px;
+            top: 20%;
+            right: 10%;
+            animation: pendulum 2.5s ease-in-out infinite reverse;
+        }
+
+        .hero-sticker-3 {
+            width: 60px;
+            bottom: 25%;
+            left: 12%;
+            animation: pendulum 3.5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pendulum {
+            0% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
+            100% { transform: rotate(-8deg); }
+        }
+
+        /* Hero responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            .hero-sticker {
+                display: none;
+            }
+        }
+
+        .cta-button {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            background: var(--vert-persil);
+            color: var(--creme-fouettee);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-block;
+            text-decoration: none;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(34, 93, 46, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(34, 93, 46, 0.4);
+            background: var(--rouge-tomate);
+        }
+
+        .cta-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .cta-button.addition-cta {
+            background: var(--jaune-oeuf);
+            color: var(--noir-olive);
+            box-shadow: 0 4px 15px rgba(255, 200, 87, 0.3);
+        }
+
+        .cta-button.addition-cta:hover {
+            background: var(--rouge-tomate);
+            color: var(--creme-fouettee);
+            box-shadow: 0 8px 25px rgba(218, 77, 27, 0.4);
+        }
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-mouse {
+            width: 26px;
+            height: 42px;
+            border: 2px solid rgba(11, 11, 9, 0.5);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .scroll-mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--noir-olive);
+            border-radius: 2px;
+            animation: scroll-wheel 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scroll-wheel {
+            0%, 100% { opacity: 1; top: 8px; }
+            50% { opacity: 0.3; top: 18px; }
+        }
+
+        .scroll-arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .scroll-arrows span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid rgba(255, 241, 220, 0.4);
+            border-bottom: 2px solid rgba(255, 241, 220, 0.4);
+            transform: rotate(45deg);
+            animation: scroll-arrow 1.5s ease-in-out infinite;
+        }
+
+        .scroll-arrows span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .scroll-arrows span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes scroll-arrow {
+            0%, 100% { opacity: 0.2; transform: rotate(45deg) translateY(0); }
+            50% { opacity: 1; transform: rotate(45deg) translateY(5px); }
+        }
+
+        /* Section Storytelling Parallaxe Horizontal avec vidéos */
+        .story-section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            will-change: transform; /* AJOUTÉ pour optimiser les performances */
+        }
+
+        .story-wrapper {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+        }
+
+        .story-container {
+            display: flex;
+            gap: 0;
+            will-change: transform;
+        }
+
+        .story-slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fonds colorés pour chaque slide */
+        .story-slide.slide-1 {
+            background: linear-gradient(135deg, var(--vert-persil) 0%, #1a4a24 100%);
+        }
+
+        .story-slide.slide-2 {
+            background: linear-gradient(135deg, var(--rouge-tomate) 0%, #b33a10 100%);
+        }
+
+        .story-slide.slide-3 {
+            background: linear-gradient(135deg, var(--jaune-oeuf) 0%, #e6a800 100%);
+        }
+
+        .story-slide.slide-3 h2,
+        .story-slide.slide-3 p,
+        .story-slide.slide-3 .story-number {
+            color: var(--noir-olive);
+            text-shadow: none;
+        }
+
+        .story-slide.slide-4 {
+            background: linear-gradient(135deg, var(--noir-olive) 0%, #1a1a18 100%);
+        }
+
+        /* Overlay subtil pour la profondeur */
+        .story-slide .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+
+        .story-slide .slide-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .story-slide h2 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .story-slide p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(50px);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        }
+
+        .story-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: scale(0);
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255,255,255,0.6);
+            text-shadow: 0 0 40px rgba(255,255,255,0.2);
+            letter-spacing: -5px;
+        }
+        
+        /* Section motif décoratif */
+        .pattern-section {
+            height: 200px;
+            background-image: url('assets/motifs/Carreaux verts.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .pattern-section.pattern-red {
+            background-image: url('assets/motifs/Carreaux rouges.png');
+        }
+
+        /* Éléments décoratifs - Mains */
+        .deco-hand {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .deco-hand img {
+            width: 100%;
+            height: auto;
+        }
+
+        .deco-hand-2 {
+            width: 100px;
+            top: 5%;
+            right: 3%;
+            transform: rotate(25deg);
+        }
+
+        .deco-sticker {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .deco-sticker img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+
+        .deco-sticker-etoiles {
+            width: 80px;
+            top: 15%;
+            left: 8%;
+            animation: float-deco 6s ease-in-out infinite;
+        }
+
+        .deco-sticker-o {
+            width: 60px;
+            bottom: 20%;
+            right: 10%;
+            animation: float-deco 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-deco {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @media (max-width: 968px) {
+            .deco-hand, .deco-sticker {
+                display: none;
+            }
+        }
+
+        /* Section showcase avec images */
+        .showcase-section {
+            padding: 8rem 5%;
+            background: var(--creme-fouettee);
+            position: relative;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            aspect-ratio: 16/10;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .showcase-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Gradient overlay pour le texte */
+        .showcase-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(11,11,9,0.8) 0%, rgba(11,11,9,0) 60%);
+            z-index: 2;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Masque de révélation coloré */
+        .showcase-item .showcase-reveal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--vert-persil);
+            z-index: 3;
+            transform: translateX(-101%);
+        }
+
+        .showcase-item:hover::before {
+            background: linear-gradient(to top, rgba(34,93,46,0.9) 0%, rgba(34,93,46,0.3) 60%);
+        }
+
+        .showcase-content {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            color: white;
+            z-index: 2;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .showcase-item:hover .showcase-content {
+            transform: translateY(0);
+        }
+
+        .showcase-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .showcase-content p {
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        .showcase-tag {
+            display: inline-block;
+            background: var(--rouge-tomate);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Section concept / philosophie */
+        .concept-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+
+        .concept-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(11,11,9,0.85) 0%, rgba(11,11,9,0.7) 100%);
+            z-index: 1;
+        }
+
+        .concept-container {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .concept-content h2 {
+            color: var(--creme-fouettee);
+            margin-bottom: 2rem;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .concept-content p {
+            font-size: 1.25rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            color: var(--creme-fouettee);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        }
+
+        .concept-content strong {
+            color: var(--jaune-oeuf);
+        }
+
+        .concept-quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--jaune-oeuf);
+            margin-top: 2rem;
+            padding: 2rem;
+            border-left: 4px solid var(--jaune-oeuf);
+            text-align: left;
+            background: rgba(255,255,255,0.08);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 5%;
+            background: var(--creme-fouettee);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-header h2 {
+            color: var(--vert-persil);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+        }
+
+        .packs-area {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .pack-card {
+            background: white;
+            padding: 1.2rem 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pack-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 200, 87, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .pack-card:hover::before {
+            left: 100%;
+        }
+
+        .pack-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(34, 93, 46, 0.15);
+        }
+
+        .pack-card.selected {
+            border-color: var(--vert-persil);
+            background: linear-gradient(135deg, rgba(34, 93, 46, 0.08) 0%, rgba(34, 93, 46, 0.15) 100%);
+            box-shadow: 0 10px 30px rgba(34, 93, 46, 0.2);
+        }
+
+        .pack-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .pack-name {
+            font-size: 1.4rem;
+            color: var(--vert-persil);
+        }
+
+        .pack-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--rouge-tomate);
+        }
+
+        .pack-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .pack-includes {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pack-includes li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .pack-includes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--vert-persil);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .extras-area h3 {
+            margin-bottom: 1.5rem;
+            color: var(--vert-persil);
+            font-size: 1.5rem;
+        }
+
+        .extras-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .extra-item {
+            background: white;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .extra-item:hover {
+            transform: translateX(5px);
+            border-color: var(--jaune-oeuf);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .extra-item.selected {
+            border-color: var(--vert-persil);
+            background: linear-gradient(135deg, rgba(34, 93, 46, 0.1) 0%, rgba(34, 93, 46, 0.2) 100%);
+            box-shadow: 0 4px 15px rgba(34, 93, 46, 0.15);
+        }
+
+        .extra-item.selected .extra-name {
+            color: var(--vert-persil);
+        }
+
+        .extra-item.selected .extra-price {
+            color: var(--vert-persil);
+        }
+
+
+        .extra-info {
+            flex: 1;
+        }
+
+        .extra-name {
+            font-weight: 700;
+            color: var(--noir-olive);
+            margin-bottom: 0.15rem;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .extra-desc {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .extra-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--rouge-tomate);
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        /* Addition - Style ticket de caisse réaliste */
+        .addition-wrapper {
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+
+        .addition {
+            background: #fefefe;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 28px,
+                    rgba(0,0,0,0.03) 28px,
+                    rgba(0,0,0,0.03) 29px
+                );
+            padding: 2rem 1.5rem;
+            border-radius: 0;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.1),
+                inset 0 0 30px rgba(0,0,0,0.02);
+            position: relative;
+            font-family: 'Courier New', monospace;
+            min-height: 300px;
+        }
+
+        /* Effet papier déchiré en haut */
+        .addition::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(135deg, #fefefe 25%, transparent 25%),
+                        linear-gradient(225deg, #fefefe 25%, transparent 25%),
+                        linear-gradient(45deg, #fefefe 25%, transparent 25%),
+                        linear-gradient(315deg, #fefefe 25%, transparent 25%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 0, 10px -10px, 0 10px;
+        }
+
+        /* Effet papier déchiré en bas */
+        .addition::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(135deg, transparent 75%, #fefefe 75%),
+                        linear-gradient(225deg, transparent 75%, #fefefe 75%),
+                        linear-gradient(45deg, transparent 75%, #fefefe 75%),
+                        linear-gradient(315deg, transparent 75%, #fefefe 75%);
+            background-size: 20px 20px;
+            background-position: 0 10px, 10px 10px, 10px 0, 0 0;
+        }
+
+        .addition-header {
+            text-align: center;
+            border-bottom: 2px dashed #333;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .addition-logo {
+            margin-bottom: 1rem;
+        }
+
+        .addition-logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .addition-title {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #333;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .addition-subtitle {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        .addition-date {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        .addition-empty {
+            text-align: center;
+            color: #999;
+            padding: 3rem 1rem;
+            font-style: italic;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        .addition-items {
+            margin-bottom: 1rem;
+        }
+
+        .addition-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px dotted #ccc;
+            font-size: 0.9rem;
+        }
+
+        .addition-item-name {
+            color: #333;
+            max-width: 180px;
+        }
+
+        .addition-item-price {
+            color: #333;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .addition-separator {
+            text-align: center;
+            padding: 0.5rem 0;
+            color: #999;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .addition-total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .addition-total-label {
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .addition-total-price {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--rouge-tomate);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .addition-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #ccc;
+        }
+
+        .addition-footer p {
+            font-size: 0.75rem;
+            color: #888;
+            margin: 0.3rem 0;
+        }
+
+        .addition .addition-cta {
+            display: block;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+            opacity: 1;
+            font-size: 0.75rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .addition-footer-section {
+            margin-top: 1rem;
+            animation: slideIn 0.4s ease;
+        }
+
+        .addition-email-field {
+            margin: 1rem 0;
+        }
+
+        .addition-email-field label {
+            display: block;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        .addition-email-field input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-family: 'Libre Baskerville', serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .addition-email-field input:focus {
+            outline: none;
+            border-color: var(--vert-persil);
+        }
+
+        /* Animation pour les items de l'addition */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Pack card effet menu dépliant */
+        .pack-card {
+            transform-origin: top center;
+        }
+
+        .pack-card .pack-includes {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .pack-card:hover .pack-includes,
+        .pack-card.selected .pack-includes {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .pack-card .pack-includes li {
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pack-card:hover .pack-includes li,
+        .pack-card.selected .pack-includes li {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .pack-card:hover .pack-includes li:nth-child(1),
+        .pack-card.selected .pack-includes li:nth-child(1) { transition-delay: 0.1s; }
+        .pack-card:hover .pack-includes li:nth-child(2),
+        .pack-card.selected .pack-includes li:nth-child(2) { transition-delay: 0.15s; }
+        .pack-card:hover .pack-includes li:nth-child(3),
+        .pack-card.selected .pack-includes li:nth-child(3) { transition-delay: 0.2s; }
+        .pack-card:hover .pack-includes li:nth-child(4),
+        .pack-card.selected .pack-includes li:nth-child(4) { transition-delay: 0.25s; }
+        .pack-card:hover .pack-includes li:nth-child(5),
+        .pack-card.selected .pack-includes li:nth-child(5) { transition-delay: 0.3s; }
+
+        @media (max-width: 968px) {
+            h1 { font-size: 2.5rem; }
+            .services-container { grid-template-columns: 1fr; }
+            .concept-container { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .story-slide h2 { font-size: 2rem; }
+            .story-slide p { font-size: 1.1rem; }
+            body { cursor: auto; }
+            .custom-cursor, .cursor-follower { display: none; }
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--noir-olive);
+            color: var(--creme-fouettee);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            padding-right: 2rem;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 241, 220, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-style: italic;
+            color: var(--jaune-oeuf);
+            font-size: 1rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--creme-fouettee);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 241, 220, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--jaune-oeuf);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 241, 220, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer-contact a {
+            color: rgba(255, 241, 220, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: var(--jaune-oeuf);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 241, 220, 0.1);
+            border-radius: 50%;
+            color: var(--creme-fouettee);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--vert-persil);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 241, 220, 0.1);
+            text-align: center;
+            color: rgba(255, 241, 220, 0.5);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Curseur personnalisé - Fourchette SVG avec manche allongé -->
+    <div class="custom-cursor">
+        <svg viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 3V12C5 13.1 5.9 14 7 14H8V29H10V14H11C12.1 14 13 13.1 13 12V3H11V10H10V3H8V10H7V3H5Z" fill="#808080"/>
+        </svg>
+    </div>
+    <!-- Container pour les particules du trail -->
+    <div id="particles-container"></div>
+
+    
+    <!-- Loader -->
+    <div class="intro-loader">
+        <!-- Lignes de révélation -->
+        <!-- Éléments décoratifs simples -->
+        <img src="assets/stickers/Sticker main jaune.png" alt="" class="intro-element intro-hand-left">
+        <img src="assets/stickers/Sticker_etoiles.png" alt="" class="intro-element intro-hand-right">
+
+        <!-- Contenu central -->
+        <div class="intro-content">
+            <div class="intro-logo">
+                <img src="assets/logos/Logo sticker.svg" alt="La Buon'Com">
+            </div>
+            <div class="intro-tagline">Fatto con amore</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#accueil" class="logo">
+            <img src="assets/logos/Logo sticker.svg" alt="La Buon'Com" class="logo-dark">
+            <img src="assets/logos/Logo sticker.svg" alt="La Buon'Com" class="logo-light">
+        </a>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li>
+                <a href="pages/agence.html">L'agence <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="pages/agence.html#qui-sommes-nous">Qui sommes-nous ?</a></li>
+                    <li><a href="pages/agence.html#concept">Notre concept</a></li>
+                    <li><a href="pages/agence.html#methode">Notre méthode</a></li>
+                    <li><a href="pages/agence.html#pourquoi">Pourquoi La Buon'Com ?</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="pages/services.html">Nos services <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="pages/services.html#carte">Services à la carte</a></li>
+                    <li><a href="pages/services.html#formules">Formules de communication</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Ressources <span class="dropdown-arrow">▼</span></a>
+                <ul class="submenu">
+                    <li><a href="pages/blog.html">Blog</a></li>
+                    <li><a href="pages/faq.html">FAQ</a></li>
+                </ul>
+            </li>
+            <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="accueil">
+        <!-- Overlay -->
+        <div class="hero-overlay"></div>
+        <div class="hero-grain"></div>
+
+        <!-- Stickers flottants -->
+        <img src="assets/stickers/Sticker main jaune.png" alt="" class="hero-sticker hero-sticker-1">
+        <img src="assets/stickers/Sticker_etoiles.png" alt="" class="hero-sticker hero-sticker-2">
+        <img src="assets/stickers/Sticker O.png" alt="" class="hero-sticker hero-sticker-3">
+
+        <div class="hero-content">
+            <h1>Votre communication<br><span>mijotée avec soin</span></h1>
+            <p class="hero-description">
+                Comme un chef qui ajuste ses assaisonnements, nous travaillons chaque détail
+                de votre stratégie avec précision et intuition.
+            </p>
+            <a href="#services" class="cta-button">Découvrir nos services</a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"></div>
+            <div class="scroll-arrows">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storytelling Parallaxe Horizontal -->
+    <section class="story-section" id="story">
+        <div class="story-wrapper">
+            <div class="story-container">
+                <div class="story-slide slide-1">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="story-number">01</div>
+                        <h2>L'Inspiration</h2>
+                        <p>Tout commence par une idée, comme une graine plantée dans un sol fertile. Nous écoutons votre vision et la faisons germer.</p>
+                    </div>
+                </div>
+
+                <div class="story-slide slide-2">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="story-number">02</div>
+                        <h2>La Préparation</h2>
+                        <p>Comme un chef qui sélectionne ses meilleurs ingrédients, nous choisissons les outils et stratégies parfaits pour votre projet.</p>
+                    </div>
+                </div>
+
+                <div class="story-slide slide-3">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="story-number">03</div>
+                        <h2>La Cuisson</h2>
+                        <p>Avec passion et savoir-faire, nous donnons vie à votre projet. Chaque détail est ajusté à la perfection.</p>
+                    </div>
+                </div>
+
+                <div class="story-slide slide-4">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="story-number">04</div>
+                        <h2>Le Service</h2>
+                        <p>Votre projet est prêt à être dévoilé au monde. Une expérience mémorable qui ravira votre audience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Motif Carreaux Verts -->
+    <section class="pattern-section"></section>
+
+    <!-- Showcase Portfolio -->
+    <section class="showcase-section" id="showcase">
+        <!-- Éléments décoratifs -->
+        <div class="deco-sticker deco-sticker-etoiles">
+            <img src="assets/autres/etoile.png" alt="">
+        </div>
+
+        <div class="section-header">
+            <h2>Nos Services
+            </h2>
+            <p>Des projets qui en mettent plein les yeux</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <div class="showcase-reveal"></div>
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Site web immersif">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Web Design</span>
+                    <p>Site vitrine immersif </p>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-reveal"></div>
+                <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Identité visuelle">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Branding</span>
+                    <p>Identité visuelle complète</p>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-reveal"></div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Campagne digitale">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Social Media</span>
+                    <p>Campagnes publicitaires</p>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-reveal"></div>
+                <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80" alt="Motion design">
+                <div class="showcase-content">
+                    <span class="showcase-tag">Motion Design</span>
+                    <p>Affiches et vidéos promotionnelles </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept / Philosophie -->
+    <section class="concept-section" id="concept">
+        <div class="concept-container">
+            <div class="concept-content">
+                <h2>Notre Philosophie</h2>
+                <p>
+                    Chez La Buon'Com, nous croyons que la communication est un art qui se savoure.
+                    Chaque projet est une recette unique, préparée avec passion et servie avec style.
+                </p>
+                <p>
+                    De l'entrée au dessert, nous composons votre identité visuelle comme un menu
+                    gastronomique, où chaque élément a son importance et sa place.
+                </p>
+                <div class="concept-quote">
+                    "La communication, c'est comme la cuisine : il faut les bons ingrédients,
+                    le bon timing, et une touche de créativité pour créer quelque chose de mémorable."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motif Carreaux Rouges -->
+    <section class="pattern-section pattern-red"></section>
+
+    <!-- Services -->
+    <section class="services-section" id="services">
+        <!-- Élément décoratif - Main -->
+        <div class="deco-hand deco-hand-2">
+            <img src="assets/mains/Main jaune.png" alt="">
+        </div>
+
+        <div class="section-header">
+            <h2>Nos Services à la Carte</h2>
+            <p>Composez votre menu communication sur mesure</p>
+        </div>
+
+        <div class="services-container">
+            <div class="packs-area">
+                <div class="pack-card" data-pack="antipasti">
+                    <div class="pack-header">
+                        <h3 class="pack-name">Antipasti</h3>
+                    </div>
+                    <p class="pack-description">L'essentiel pour démarrer</p>
+                    <ul class="pack-includes">
+                        <li>Logo & identité visuelle</li>
+                        <li>Carte de visite</li>
+                        <li>Page Facebook</li>
+                        <li>Conseil stratégique (2h)</li>
+                    </ul>
+                </div>
+
+                <div class="pack-card" data-pack="primo">
+                    <div class="pack-header">
+                        <h3 class="pack-name">Il Primo</h3>
+                    </div>
+                    <p class="pack-description">La solution complète</p>
+                    <ul class="pack-includes">
+                        <li>Tout le pack Antipasti</li>
+                        <li>Site web vitrine (5 pages)</li>
+                        <li>Community management (1 mois)</li>
+                        <li>Kit réseaux sociaux</li>
+                        <li>Stratégie de contenu</li>
+                    </ul>
+                </div>
+
+                <div class="pack-card" data-pack="dolce">
+                    <div class="pack-header">
+                        <h3 class="pack-name">La Dolce Vita</h3>
+                    </div>
+                    <p class="pack-description">L'expérience premium</p>
+                    <ul class="pack-includes">
+                        <li>Tout le pack Il Primo</li>
+                        <li>Site e-commerce</li>
+                        <li>Campagne publicitaire</li>
+                        <li>Shooting photo produit</li>
+                        <li>Support prioritaire 3 mois</li>
+                    </ul>
+                </div>
+
+                <div class="extras-area" style="margin-top: 2rem;">
+                    <h3>Les Extras</h3>
+                    <div class="extras-list">
+                        <div class="extra-item" data-extra="seo">
+                            <div class="extra-info">
+                                <div class="extra-name">Optimisation SEO</div>
+                                <div class="extra-desc">Référencement naturel</div>
+                            </div>
+                        </div>
+
+                        <div class="extra-item" data-extra="video">
+                            <div class="extra-info">
+                                <div class="extra-name">Vidéo promotionnelle</div>
+                                <div class="extra-desc">Clip professionnel</div>
+                            </div>
+                        </div>
+
+                        <div class="extra-item" data-extra="newsletter">
+                            <div class="extra-info">
+                                <div class="extra-name">Newsletter mensuelle</div>
+                                <div class="extra-desc">Création et envoi</div>
+                            </div>
+                        </div>
+
+                        <div class="extra-item" data-extra="branding">
+                            <div class="extra-info">
+                                <div class="extra-name">Charte graphique</div>
+                                <div class="extra-desc">Guide d'identité complète</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="addition-wrapper">
+                <div class="addition">
+                    <div class="addition-header">
+                        <div class="addition-logo"><img src="assets/logos/Logo sticker.svg" alt="La Buon'Com"></div>
+                        <h3 class="addition-title">Votre Addition</h3>
+                        <p class="addition-subtitle">N° Table: VIP</p>
+                        <p class="addition-date" id="addition-date"></p>
+                    </div>
+
+                    <div id="addition-content">
+                        <div class="addition-empty">
+                            Sélectionnez un pack pour commencer votre commande...
+                        </div>
+                    </div>
+
+                    <div class="addition-footer-section" id="addition-footer-section" style="display: none;">
+                        <div class="addition-total">
+                            <span class="addition-total-label">Total:</span>
+                            <span class="addition-total-price">???</span>
+                        </div>
+
+                        <div class="addition-email-field">
+                            <label for="addition-email">Votre email</label>
+                            <input type="email" id="addition-email" placeholder="votre@email.com" required>
+                        </div>
+
+                        <button type="button" class="cta-button addition-cta" id="addition-mail-btn">
+                            Recevoir mon addition par mail
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="assets/logos/Logo blanc.svg" alt="La Buon'Com" class="footer-logo">
+                <p>Agence de communication à Évry & Valbonne</p>
+                <p class="footer-tagline">Composez votre menu, on s'occupe du reste.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Services à la carte</a></li>
+                    <li><a href="#services">Formules de communication</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Politique de cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact">
+                <h4>Contact</h4>
+                <p>📍 Évry-Courcouronnes (Île-de-France)</p>
+                <p>📍 Valbonne – Sophia Antipolis</p>
+                <p>📞 <a href="tel:+33176217759">01 76 21 77 59</a></p>
+                <p>✉️ <a href="mailto:hello@labuoncom.fr">hello@labuoncom.fr</a></p>
+                <div class="footer-social">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 La Buon'Com - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== VARIABLES GLOBALES ==========
+        let selectedPack = null;
+        let selectedExtras = new Set();
+        const particleColors = ['#225D2E', '#DA4D1B', '#FFC857', '#EA94A6', '#1a4725'];
+        let mouseX = 0, mouseY = 0;
+        let lastX = 0, lastY = 0;
+
+        // ========== FALLBACK - Cacher le loader après 4 secondes si GSAP non chargé ==========
+        setTimeout(function() {
+            const loader = document.querySelector('.intro-loader');
+            if (loader && loader.style.display !== 'none' && typeof gsap === 'undefined') {
+                loader.style.transition = 'opacity 0.5s';
+                loader.style.opacity = '0';
+                setTimeout(function() {
+                    loader.style.display = 'none';
+                    document.querySelector('nav').style.transform = 'translateY(0)';
+                    document.querySelectorAll('.hero-subtitle, .hero h1, .hero-description, .cta-button').forEach(function(el) {
+                        el.style.opacity = '1';
+                    });
+                    // Afficher le contenu des slides
+                    document.querySelectorAll('.story-slide h2, .story-slide p, .story-number').forEach(function(el) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'none';
+                    });
+                }, 500);
+            }
+        }, 4000);
+
+        // ========== CURSEUR FOURCHETTE SVG ==========
+        const cursor = document.querySelector('.custom-cursor');
+        const particlesContainer = document.getElementById('particles-container');
+
+        if (cursor) {
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+
+                // Trail de particules si GSAP disponible
+                if (typeof gsap !== 'undefined') {
+                    const distance = Math.sqrt(Math.pow(mouseX - lastX, 2) + Math.pow(mouseY - lastY, 2));
+                    if (distance > 25) {
+                        createParticle(mouseX, mouseY);
+                        lastX = mouseX;
+                        lastY = mouseY;
+                    }
+                }
+            });
+
+            document.addEventListener('mousedown', function() { cursor.classList.add('clicking'); });
+            document.addEventListener('mouseup', function() { cursor.classList.remove('clicking'); });
+
+            document.querySelectorAll('a, button, .pack-card, .extra-item, .showcase-item').forEach(function(el) {
+                el.addEventListener('mouseenter', function() { cursor.classList.add('hovering'); });
+                el.addEventListener('mouseleave', function() { cursor.classList.remove('hovering'); });
+            });
+        }
+
+        function createParticle(x, y) {
+            if (typeof gsap === 'undefined' || !particlesContainer) return;
+            const particle = document.createElement('div');
+            particle.className = 'cursor-particle';
+            particle.style.backgroundColor = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particlesContainer.appendChild(particle);
+
+            gsap.fromTo(particle,
+                { opacity: 0.7, scale: 1, x: 0, y: 0 },
+                {
+                    opacity: 0, scale: 0,
+                    x: (Math.random() - 0.5) * 60,
+                    y: Math.random() * 40 + 10,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    onComplete: function() { particle.remove(); }
+                }
+            );
+        }
+
+        // ========== SYSTÈME DE SÉLECTION (Addition) ==========
+        function updateTicketDate() {
+            const dateEl = document.getElementById('addition-date');
+            if (dateEl) {
+                const now = new Date();
+                dateEl.textContent = now.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            }
+        }
+        updateTicketDate();
+        setInterval(updateTicketDate, 60000);
+
+        function updateAddition() {
+            const additionContent = document.getElementById('addition-content');
+            const footerSection = document.getElementById('addition-footer-section');
+            if (!additionContent) return;
+
+            if (!selectedPack) {
+                additionContent.innerHTML = '<div class="addition-empty">Sélectionnez un pack pour commencer votre commande...</div>';
+                if (footerSection) footerSection.style.display = 'none';
+                return;
+            }
+
+            // Afficher la section footer avec prix et bouton
+            if (footerSection) footerSection.style.display = 'block';
+
+            let itemsHtml = '<div class="addition-item" style="animation: slideIn 0.3s ease"><span class="addition-item-name">1x ' + selectedPack.name + '</span></div>';
+
+            let extrasCount = 0;
+            selectedExtras.forEach(function(extraId) {
+                const extraEl = document.querySelector('.extra-item[data-extra="' + extraId + '"]');
+                if (extraEl) {
+                    const name = extraEl.querySelector('.extra-name').textContent;
+                    extrasCount++;
+                    itemsHtml += '<div class="addition-item" style="animation: slideIn 0.3s ease ' + (extrasCount * 0.1) + 's"><span class="addition-item-name">+ ' + name + '</span></div>';
+                }
+            });
+
+            additionContent.innerHTML = '<div class="addition-items">' + itemsHtml + '</div>';
+        }
+
+        // Gestion du bouton d'envoi email
+        function initEmailButton() {
+            const mailBtn = document.getElementById('addition-mail-btn');
+            const emailInput = document.getElementById('addition-email');
+
+            if (mailBtn && emailInput) {
+                mailBtn.addEventListener('click', function() {
+                    const email = emailInput.value.trim();
+
+                    if (!email || !email.includes('@')) {
+                        emailInput.style.borderColor = 'var(--rouge-tomate)';
+                        emailInput.focus();
+                        return;
+                    }
+
+                    if (!selectedPack) {
+                        alert('Veuillez sélectionner un pack');
+                        return;
+                    }
+
+                    // Construire le contenu de l'email
+                    let emailBody = 'Pack sélectionné: ' + selectedPack.name;
+                    selectedExtras.forEach(function(extraId) {
+                        const extraEl = document.querySelector('.extra-item[data-extra="' + extraId + '"]');
+                        if (extraEl) {
+                            const name = extraEl.querySelector('.extra-name').textContent;
+                            emailBody += '%0A- ' + name;
+                        }
+                    });
+                    emailBody += '%0A%0AEmail client: ' + email;
+
+                    // Ouvrir le client email
+                    window.location.href = 'mailto:hello@labuoncom.fr?subject=Demande de devis - ' + selectedPack.name + '&body=' + emailBody;
+                });
+
+                emailInput.addEventListener('input', function() {
+                    this.style.borderColor = '#ddd';
+                });
+            }
+        }
+
+        function initSelectionSystem() {
+            const packCards = document.querySelectorAll('.pack-card');
+            const extraItems = document.querySelectorAll('.extra-item');
+
+            packCards.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    packCards.forEach(function(c) { c.classList.remove('selected'); });
+                    this.classList.add('selected');
+
+                    if (typeof gsap !== 'undefined') {
+                        gsap.fromTo(this, { scale: 1 }, { scale: 1.05, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.out' });
+                    }
+
+                    selectedPack = {
+                        name: this.querySelector('.pack-name').textContent
+                    };
+                    updateAddition();
+                });
+            });
+
+            extraItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const extraId = this.dataset.extra;
+
+                    if (selectedExtras.has(extraId)) {
+                        selectedExtras.delete(extraId);
+                        this.classList.remove('selected');
+                    } else {
+                        selectedExtras.add(extraId);
+                        this.classList.add('selected');
+                        if (typeof gsap !== 'undefined') {
+                            gsap.fromTo(this, { scale: 1 }, { scale: 1.05, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.out' });
+                        }
+                    }
+                    updateAddition();
+                });
+            });
+        }
+
+        // Initialiser le système de sélection et le bouton email
+        initSelectionSystem();
+        initEmailButton();
+
+        // ========== HEADER ADAPTATIF ==========
+        const nav = document.querySelector('nav');
+        const darkSections = document.querySelectorAll('.story-slide, .concept-section, .site-footer');
+
+        function updateNavStyle() {
+            if (!nav) return;
+
+            const scrollPos = window.scrollY;
+            const navHeight = nav.offsetHeight;
+
+            // Ajouter le fond quand on scroll
+            if (scrollPos > 50) {
+                nav.classList.add('nav-scrolled');
+                nav.classList.remove('nav-light', 'nav-dark');
+            } else {
+                nav.classList.remove('nav-scrolled');
+
+                // Détecter si on est sur une section sombre
+                let onDarkSection = false;
+                darkSections.forEach(function(section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= navHeight && rect.bottom >= navHeight) {
+                        onDarkSection = true;
+                    }
+                });
+
+                if (onDarkSection) {
+                    nav.classList.add('nav-light');
+                    nav.classList.remove('nav-dark');
+                } else {
+                    nav.classList.add('nav-dark');
+                    nav.classList.remove('nav-light');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updateNavStyle);
+        window.addEventListener('resize', updateNavStyle);
+        // Initialiser après le loader
+        setTimeout(updateNavStyle, 100);
+
+        // ========== MENU MOBILE ==========
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const menuItems = document.querySelectorAll('.nav-links > li');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Gestion des sous-menus en mobile
+            menuItems.forEach(function(item) {
+                const submenu = item.querySelector('.submenu');
+                if (submenu) {
+                    item.querySelector('a').addEventListener('click', function(e) {
+                        if (window.innerWidth <= 1024) {
+                            e.preventDefault();
+                            item.classList.toggle('open');
+                        }
+                    });
+                }
+            });
+        }
+
+        // ========== GSAP ANIMATIONS ==========
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+            // Animation intro - Nouvelle version spectaculaire
+            window.addEventListener('load', function() {
+                const introTl = gsap.timeline();
+                const counterEl = document.querySelector('.intro-counter-number');
+                let counter = { value: 0 };
+
+                // Animation du compteur
+                gsap.to(counter, {
+                    value: 100,
+                    duration: 2.5,
+                    ease: 'power2.inOut',
+                    onUpdate: function() {
+                        if (counterEl) counterEl.textContent = Math.round(counter.value);
+                    }
+                });
+
+                // Timeline principale
+                introTl
+                    // Barre de progression
+                    .to('.intro-progress', { width: '100%', duration: 2.5, ease: 'power2.inOut' }, 0)
+
+                    // Animation du logo
+                    .to('.intro-logo img', {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: 'back.out(1.5)'
+                    }, 0.2)
+
+                    // Apparition des éléments décoratifs
+                    .to('.intro-hand-left', {
+                        opacity: 1,
+                        scale: 1,
+                        rotation: -10,
+                        duration: 0.4,
+                        ease: 'back.out(1.5)'
+                    }, 0.5)
+                    .to('.intro-hand-right', {
+                        opacity: 1,
+                        scale: 1,
+                        rotation: 10,
+                        duration: 0.4,
+                        ease: 'back.out(1.5)'
+                    }, 0.6)
+
+                    // Tagline
+                    .to('.intro-tagline', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    }, 0.8)
+
+                    // Disparition du loader
+                    .to('.intro-loader', {
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: 'power2.inOut'
+                    }, '+=0.3')
+
+                    // Masquer le loader
+                    .set('.intro-loader', {
+                        display: 'none'
+                    })
+
+                    // Animations du contenu principal
+                    .to('nav', { y: 0, duration: 0.6, ease: 'power2.out' })
+                    .to('.hero h1', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+                    .to('.hero-description', { opacity: 1, duration: 0.5 }, '-=0.3')
+                    .to('.cta-button', { opacity: 1, duration: 0.4 }, '-=0.2');
+            });
+
+            // Animation du scroll indicator
+            gsap.to('.scroll-indicator', {
+                opacity: 1,
+                duration: 1,
+                delay: 3.5,
+                ease: 'power2.out'
+            });
+
+            // Fade out du contenu hero au scroll
+            gsap.to('.hero-content', {
+                y: -100,
+                opacity: 0,
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: '50% top', scrub: true }
+            });
+
+            gsap.to('.scroll-indicator', {
+                opacity: 0,
+                scrollTrigger: { trigger: '.hero', start: '10% top', end: '30% top', scrub: true }
+            });
+
+            // Storytelling horizontal scroll
+            const storyContainer = document.querySelector('.story-container');
+            const slides = document.querySelectorAll('.story-slide');
+
+        if (storyContainer && slides.length > 0) {
+            // Calculer la distance exacte
+            const getScrollAmount = () => {
+                return -(storyContainer.scrollWidth - window.innerWidth);
+            };
+            
+            const horizontalScroll = gsap.to(storyContainer, {
+                x: getScrollAmount,
+                ease: 'none',
+                force3D: true,
+                scrollTrigger: {
+                    trigger: '.story-section',
+                    start: 'top top',
+                    end: () => '+=' + storyContainer.scrollWidth,
+                    scrub: 1,
+                    pin: true,
+                    pinSpacing: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+                slides.forEach(function(slide) {
+                    const number = slide.querySelector('.story-number');
+                    const h2 = slide.querySelector('h2');
+                    const p = slide.querySelector('p');
+
+                    if (number) {
+                        gsap.fromTo(number,
+                            { scale: 0, opacity: 0 },
+                            { scale: 1, opacity: 1, ease: 'back.out(1.7)',
+                                scrollTrigger: { trigger: slide, containerAnimation: horizontalScroll, start: 'left 80%', end: 'left 30%', scrub: 1 }
+                            }
+                        );
+                    }
+                    if (h2) {
+                        gsap.fromTo(h2,
+                            { opacity: 0, y: 50 },
+                            { opacity: 1, y: 0,
+                                scrollTrigger: { trigger: slide, containerAnimation: horizontalScroll, start: 'left 70%', end: 'left 40%', scrub: 1 }
+                            }
+                        );
+                    }
+                    if (p) {
+                        gsap.fromTo(p,
+                            { opacity: 0, y: 50 },
+                            { opacity: 1, y: 0,
+                                scrollTrigger: { trigger: slide, containerAnimation: horizontalScroll, start: 'left 60%', end: 'left 30%', scrub: 1 }
+                            }
+                        );
+                    }
+                });
+            }
+
+            // Showcase animations - Effet masque reveal
+            gsap.utils.toArray('.showcase-item').forEach(function(item, i) {
+                const reveal = item.querySelector('.showcase-reveal');
+                const img = item.querySelector('img');
+                const content = item.querySelector('.showcase-content');
+
+                // Animation initiale - masque qui glisse pour révéler
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+
+                // Couleurs alternées pour les masques
+                const colors = ['#225D2E', '#DA4D1B', '#FFC857', '#225D2E'];
+                if (reveal) reveal.style.background = colors[i % 4];
+
+                tl.set(img, { scale: 1.3 })
+                  .set(content, { opacity: 0, y: 30 })
+                  .fromTo(reveal,
+                    { x: '-101%' },
+                    { x: '0%', duration: 0.4, ease: 'power3.inOut', delay: i * 0.08 }
+                  )
+                  .to(reveal,
+                    { x: '101%', duration: 0.4, ease: 'power3.inOut' }
+                  )
+                  .to(img,
+                    { scale: 1, duration: 0.5, ease: 'power2.out' },
+                    '-=0.4'
+                  )
+                  .to(content,
+                    { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
+                    '-=0.3'
+                  );
+
+                // Hover effects
+                item.addEventListener('mouseenter', function() {
+                    gsap.to(img, { scale: 1.1, duration: 0.6, ease: 'power2.out' });
+                    gsap.to(content, { y: -10, duration: 0.4, ease: 'power2.out' });
+                });
+                item.addEventListener('mouseleave', function() {
+                    gsap.to(img, { scale: 1, duration: 0.6, ease: 'power2.out' });
+                    gsap.to(content, { y: 0, duration: 0.4, ease: 'power2.out' });
+                });
+            });
+
+            // Concept animations
+            gsap.from('.concept-content', {
+                y: 50, opacity: 0,
+                scrollTrigger: { trigger: '.concept-section', start: 'top 60%', end: 'center center', scrub: 1 }
+            });
+
+            // Services animations
+            gsap.from('.section-header h2', {
+                scale: 0.5, opacity: 0,
+                scrollTrigger: { trigger: '.section-header', start: 'top 70%', end: 'top 50%', scrub: 1 }
+            });
+
+            gsap.utils.toArray('.pack-card').forEach(function(card, i) {
+                gsap.from(card, {
+                    scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
+                    opacity: 0, y: 50, duration: 0.6, delay: i * 0.15
+                });
+            });
+
+            gsap.utils.toArray('.extra-item').forEach(function(item, i) {
+                gsap.from(item, {
+                    scrollTrigger: { trigger: item, start: 'top 90%', toggleActions: 'play none none none' },
+                    x: -50, opacity: 0, duration: 0.5, delay: i * 0.1
+                });
+            });
+
+            gsap.from('.addition', {
+                scrollTrigger: { trigger: '.addition', start: 'top 90%', toggleActions: 'play none none none' },
+                y: 30, opacity: 0, duration: 0.6
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        gsap.to(window, { duration: 1, scrollTo: { y: target, offsetY: 100 }, ease: 'power3.inOut' });
+                    }
+                });
+            });
+        } else {
+            // Fallback sans GSAP - afficher le contenu basique
+            document.body.style.cursor = 'auto';
+            if (cursor) cursor.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

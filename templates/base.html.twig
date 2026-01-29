@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}La Buon'Com{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/logos/favicon.png') }}">
+
+    <!-- Preconnect pour performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
+    <!-- Preload ressources critiques -->
+    <link rel="preload" href="{{ asset('assets/logos/Logo principal.svg') }}" as="image">
+
+    <!-- Google Fonts avec display=swap -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="{{ asset('style/base.css') }}">
+    {% block stylesheets %}{% endblock %}
+
+    <!-- Critical CSS inline pour éviter FOUC -->
+    <style>
+        body { opacity: 1; }
+        .site-header { transform: translateY(-100%); transition: transform 0.4s ease; }
+    </style>
+</head>
+<body>
+    <!-- Curseur personnalisé -->
+    <div class="custom-cursor">
+        <svg viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 3V12C5 13.1 5.9 14 7 14H8V29H10V14H11C12.1 14 13 13.1 13 12V3H11V10H10V3H8V10H7V3H5Z" fill="#808080"/>
+        </svg>
+    </div>
+    
+    <!-- Container pour les particules du curseur -->
+    <div id="particles-container"></div>
+
+    {% block header %}
+    <!-- Header Global -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="{{ path('app_home') }}" class="header-logo">
+                <img src="{{ asset('assets/logos/Logo principal.svg') }}" alt="La Buon'Com" class="logo-dark">
+                <img src="{{ asset('assets/logos/Logo blanc.svg') }}" alt="La Buon'Com" class="logo-light">
+            </a>
+
+            <button class="mobile-menu-toggle" aria-label="Menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="header-nav" id="headerNav">
+                <ul class="main-nav">
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li>
+                        <a href="{{ path('agence') }}">L'agence <span class="nav-arrow">▼</span></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="{{ path('agence_qui_sommes_nous') }}#qui-sommes-nous">Qui sommes-nous ?</a></li>
+                            <li><a href="{{ path('agence_concept') }}#concept">Notre concept : la communication mijotée</a></li>
+                            <li><a href="{{ path('agence_methode') }}#methode">Notre méthode</a></li>
+                            <li><a href="{{ path('agence_pourquoi') }}#pourquoi">Pourquoi La Buon'Com ?</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Nos services <span class="nav-arrow">▼</span></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="{{ path('services_a_la_carte') }}">Services à la carte</a></li>
+                            <li><a href="{{ path('formules_communication') }}">Formules de communication</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Ressources <span class="nav-arrow">▼</span></a>
+                        <ul class="nav-dropdown">
+                            <li><a href="{{ path('blog') }}">Blog</a></li>
+                            <li><a href="{{ path('faq') }}">FAQ</a></li>
+                            <li><a href="{{ path('ressources_pratiques') }}">Ressources pratiques</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="header-ctas">
+                    <a href="{{ path('composer_menu') }}" class="btn btn-cta-header">Composer mon menu</a>
+                    <a href="{{ path('contacter_chef') }}" class="btn btn-secondary">Contacter un chef</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+
+    <main class="main-content">
+        {% block body %}{% endblock %}
+    </main>
+
+    {% block footer %}
+    <!-- Footer Global -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="{{ asset('assets/logos/Logo blanc.svg') }}" alt="La Buon'Com" class="footer-logo">
+                <p>Agence de communication à Évry & Valbonne</p>
+                <p class="footer-tagline">Composez votre menu, on s'occupe du reste.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ path('services_a_la_carte') }}">Services à la carte</a></li>
+                    <li><a href="{{ path('formules_communication') }}">Formules de communication</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ressources</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ path('blog') }}">Blog</a></li>
+                    <li><a href="{{ path('faq') }}">FAQ</a></li>
+                    <li><a href="{{ path('ressources_pratiques') }}">Ressources</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Légal</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ path('mentions_legales') }}">Mentions légales</a></li>
+                    <li><a href="{{ path('politique_confidentialite') }}">Politique de confidentialité</a></li>
+                    <li><a href="{{ path('politique_cookies') }}">Politique de cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <div class="footer-contact-info">
+                    <p>Évry-Courcouronnes (Île-de-France)</p>
+                    <p>Valbonne – Sophia Antipolis</p>
+                    <p><a href="tel:+33176217759">01 76 21 77 59</a></p>
+                    <p><a href="mailto:hello@labuoncom.fr">hello@labuoncom.fr</a></p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 La Buon'Com - Tous droits réservés</p>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('headerNav').classList.toggle('active');
+        }
+
+        // Exécuter après le DOM prêt
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Dropdown Toggle
+            if (window.innerWidth <= 1024) {
+                document.querySelectorAll('.main-nav > li').forEach(function(item) {
+                    var dropdown = item.querySelector('.nav-dropdown');
+                    if (dropdown) {
+                        item.querySelector('a').addEventListener('click', function(e) {
+                            e.preventDefault();
+                            item.classList.toggle('dropdown-open');
+                        });
+                    }
+                });
+            }
+
+            // Smooth scroll natif (performant)
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var href = this.getAttribute('href');
+                    if (href && href !== '#') {
+                        var target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+
+            // Header scroll effect (throttled)
+            var header = document.querySelector('.site-header');
+            var ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        header.style.boxShadow = window.scrollY > 50 ? '0 5px 20px rgba(0,0,0,0.1)' : 'none';
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // Animation d'apparition du header
+            setTimeout(function() {
+                header.style.transform = 'translateY(0)';
+            }, 50);
+        });
+    </script>
+    
+    <!-- GSAP Core + Plugins (avec defer pour ne pas bloquer le rendu) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+    <script>
+        // Attendre que GSAP soit chargé
+        window.addEventListener('load', function() {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+            }
+        });
+    </script>
+    <script src="{{ asset('js/cursor.js') }}" defer></script>
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

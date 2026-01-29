@@ -1,0 +1,323 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes-nous - La Buon'Com{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/agence.css') }}">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+{% endblock %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <section class="agence-hero" id="qui-sommes-nous">
+        <div class="hero-decoration">
+            <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" class="floating-sticker sticker-1" loading="eager">
+            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="floating-sticker sticker-2" loading="lazy">
+            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="floating-sticker sticker-3" loading="lazy">
+        </div>
+
+        <div class="hero-content-agence">
+            <h1 class="hero-title">
+                Une agence de communication<br>
+                <span class="highlight">pensée pour les entrepreneurs qui manquent de temps</span>
+            </h1>
+            <p class="hero-subtitle">
+                La Buon'Com est une agence de communication digitale qui accompagne les TPE, PME et professions libérales 
+                dans leur visibilité en ligne, sans jargon ni dépenses inutiles. Nous aidons les entrepreneurs à structurer 
+                leur communication (site internet, SEO, réseaux sociaux) de façon claire, efficace et adaptée à leur réalité.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <h2 class="section-title-center">Notre Objectif</h2>
+        <p class="section-intro">
+            Vous faire gagner du temps tout en payant le juste prix.
+        </p>
+        <p class="mission-goal">
+            Simple, efficace, transparent.
+        </p>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-agence"></div>
+
+    <!-- Why Section - Les 3 bases -->
+    <section class="why-section" id="concept">
+        <div class="why-container">
+            <div class="why-content">
+                <h2>Une communication bien pensée, comme une bonne recette</h2>
+                <p>
+                    Chez La Buon'Com, nous croyons qu'une bonne communication repose sur des bases simples :
+                </p>
+
+                <!-- 3 cartes bases animées -->
+                <div class="bases-grid">
+                    <div class="base-card" data-delay="0">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h3>Des objectifs clairs</h3>
+                        <p>Savoir où l'on va pour mieux y arriver</p>
+                    </div>
+                    <div class="base-card" data-delay="0.2">
+                        <div class="card-magnet magnet-top-left">
+                            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h3>Des outils adaptés</h3>
+                        <p>Les bonnes solutions pour votre contexte</p>
+                    </div>
+                    <div class="base-card" data-delay="0.4">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h3>Des choix cohérents</h3>
+                        <p>Une stratégie qui fait sens</p>
+                    </div>
+                </div>
+
+                <p class="why-metaphor">
+                    À l'image d'une cuisine efficace, inutile d'en faire trop : seuls les bons ingrédients comptent.
+                </p>
+
+                <p class="why-conclusion">
+                    Cette approche nous permet de concevoir des stratégies de communication sur mesure, 
+                    compréhensibles et réellement utiles.
+                </p>
+
+                <div class="cta-center">
+                    <a href="{{ path('contacter_chef') }}" class="btn btn-primary btn-large">Contacter un chef</a>
+                </div>
+            </div>
+
+            <div class="why-visual">
+                <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="" class="deco-main" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-agence pattern-red"></div>
+
+    <!-- Problem Section - Carte inclinée -->
+    <section class="problem-section" id="pourquoi">
+        <div class="problem-container">
+            <div class="problem-card">
+                <div class="card-magnet magnet-corner-left">
+                    <img src="{{ asset('assets/stickers/Sticker main rose.png') }}" alt="" loading="lazy">
+                </div>
+                <div class="card-magnet magnet-corner-right">
+                    <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                </div>
+                <span class="problem-badge">Le Problème</span>
+                <h2>Pourquoi nous avons créé La Buon'Com</h2>
+                <p>
+                    Beaucoup de TPE et de professions libérales savent qu'elles doivent communiquer, 
+                    mais manquent de temps et de visibilité sur les solutions existantes.
+                </p>
+                <p>
+                    Entre le jargon marketing et les prestations standardisées, les projets s'enlisent 
+                    et deviennent inefficaces.
+                </p>
+                <div class="solution-highlight">
+                    <p>
+                        <strong>La Buon'Com est née de l'idée de créer une agence de communication 
+                        simple et transparente.</strong>
+                    </p>
+                </div>
+                <a href="{{ path('agence') }}#pourquoi" class="link-inline">
+                    En savoir plus sur notre approche <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carte Section - 4 prestations -->
+    <section class="carte-section" id="methode">
+        <h2 class="section-title-center">Une agence qui s'adapte à vos besoins</h2>
+        <p class="section-intro-wide">
+            Nous fonctionnons comme une agence de communication flexible : vous sélectionnez uniquement 
+            les prestations dont vous avez besoin, au moment où vous en avez besoin.
+        </p>
+
+        <div class="prestations-grid">
+            <div class="presta-card">
+                <div class="card-magnet magnet-top-right">
+                    <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" loading="lazy">
+                </div>
+                <h3>Site internet</h3>
+                <p>Création de sites vitrines et e-commerce professionnels et optimisés</p>
+            </div>
+
+            <div class="presta-card">
+                <div class="card-magnet magnet-top-left">
+                    <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                </div>
+                <h3>Référencement naturel</h3>
+                <p>Optimisation SEO pour être visible sur Google et attirer vos clients</p>
+            </div>
+
+            <div class="presta-card">
+                <div class="card-magnet magnet-top-right">
+                    <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                </div>
+                <h3>Réseaux sociaux</h3>
+                <p>Stratégie et gestion de vos réseaux sociaux pour engager votre audience</p>
+            </div>
+
+            <div class="presta-card">
+                <div class="card-magnet magnet-top-left">
+                    <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                </div>
+                <h3>Accompagnement global</h3>
+                <p>Stratégie complète et suivi personnalisé de votre communication</p>
+            </div>
+        </div>
+
+        <p class="carte-conclusion">
+            Chaque projet est construit sur mesure. <strong>Résultat : une communication efficace, 
+            maîtrisée et sans engagement inutile.</strong>
+        </p>
+    </section>
+
+    <!-- Local Section -->
+    <section class="local-section">
+        <div class="local-container">
+            <div class="local-text">
+                <h2>Une agence de communication locale en Île-de-France et dans les Alpes-Maritimes</h2>
+                <p>
+                    Implantée à Évry en Île-de-France et à Valbonne dans les Alpes-Maritimes, 
+                    La Buon'Com privilégie la proximité et la relation de confiance.
+                </p>
+                <p>
+                    Nous accompagnons nos clients avec une approche humaine et pédagogique, 
+                    adaptée aux contraintes des TPE et professions libérales.
+                </p>
+                <p class="local-highlight">
+                    Ici, pas de discours opaque. Nous expliquons, conseillons et avançons ensemble.
+                </p>
+            </div>
+
+            <div class="local-visual">
+                <!-- Carte interactive Leaflet -->
+                <div id="france-map" class="leaflet-map-container"></div>
+
+                <!-- Badges de localisation -->
+                <div class="location-badges-wrapper">
+                    <div class="location-badge location-idf">
+                        <span class="location-pin">
+                            <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" style="width: 30px; height: auto;">
+                        </span>
+                        <div>
+                            <strong>Évry-Courcouronnes</strong>
+                            <span>Île-de-France</span>
+                        </div>
+                    </div>
+
+                    <div class="location-badge location-paca">
+                        <span class="location-pin">
+                            <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" style="width: 30px; height: auto;">
+                        </span>
+                        <div>
+                            <strong>Valbonne – Sophia Antipolis</strong>
+                            <span>Alpes-Maritimes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="{{ asset('assets/mains/Main verte.png') }}" alt="" class="local-deco" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="final-cta-card">
+            <div class="card-magnet magnet-corner-left">
+                <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" loading="lazy">
+            </div>
+            <div class="card-magnet magnet-corner-right">
+                <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+            </div>
+            <h2>Découvrez notre façon de travailler</h2>
+            <p>
+                Prêt à construire une communication qui vous ressemble ? 
+                Découvrez notre concept et nos formules à la carte.
+            </p>
+            <a href="{{ path('services_a_la_carte') }}" class="btn btn-primary btn-large">
+                Découvrir nos services
+            </a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Leaflet JS (chargé en defer pour ne pas bloquer) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="{{ asset('js/agence.js') }}" defer></script>
+    <script>
+        // Initialisation de la carte Leaflet (attendre le chargement complet)
+        window.addEventListener('load', function() {
+            // Vérifier que Leaflet est chargé
+            if (typeof L === 'undefined') {
+                console.warn('Leaflet non chargé');
+                return;
+            }
+            const mapContainer = document.getElementById('france-map');
+            if (!mapContainer) return;
+
+            // Coordonnées des agences
+            const locations = {
+                evry: { lat: 48.6249, lng: 2.4503, name: 'Évry-Courcouronnes', region: 'Île-de-France' },
+                valbonne: { lat: 43.6414, lng: 7.0081, name: 'Valbonne – Sophia Antipolis', region: 'Alpes-Maritimes' }
+            };
+
+            // Centre de la France
+            const franceCenter = [46.603354, 2.3522];
+
+            // Créer la carte
+            const map = L.map('france-map', {
+                center: franceCenter,
+                zoom: 6,
+                scrollWheelZoom: false,
+                zoomControl: true
+            });
+
+            // Ajouter les tuiles (style clair et élégant)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Icône personnalisée
+            const customIcon = L.divIcon({
+                className: 'custom-map-marker',
+                html: `<div class="marker-pin"><img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt=""></div>`,
+                iconSize: [40, 50],
+                iconAnchor: [20, 50],
+                popupAnchor: [0, -50]
+            });
+
+            // Ajouter les marqueurs
+            Object.values(locations).forEach(loc => {
+                const marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(map);
+                marker.bindPopup(`
+                    <div class="map-popup">
+                        <strong>${loc.name}</strong><br>
+                        <span>${loc.region}</span>
+                    </div>
+                `);
+            });
+
+            // Ajuster la vue pour montrer les deux marqueurs
+            const bounds = L.latLngBounds([
+                [locations.evry.lat, locations.evry.lng],
+                [locations.valbonne.lat, locations.valbonne.lng]
+            ]);
+            map.fitBounds(bounds, { padding: [50, 50] });
+        });
+    </script>
+{% endblock %}

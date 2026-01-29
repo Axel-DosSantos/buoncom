@@ -1,0 +1,626 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('style/services-carte.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- BLOC 1: Hero -->
+    <section class="services-hero">
+        <div class="hero-decoration">
+            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" class="floating-sticker sticker-1" loading="eager">
+            <img src="{{ asset('assets/mains/Main jaune.png') }}" alt="" class="floating-sticker sticker-2" loading="lazy">
+            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="floating-sticker sticker-3" loading="lazy">
+        </div>
+
+        <div class="hero-content-services">
+            <h1>Nos services de communication à la carte</h1>
+            <p class="hero-description">
+                Chez La Buon'Com, agence de communication en Île-de-France et dans les Alpes-Maritimes, nous savons que toutes les entreprises n'ont pas besoin d'un menu complet.
+            </p>
+            <p class="hero-description">
+                C'est pourquoi nous proposons des <strong>services de communication à la carte</strong> : vous choisissez uniquement les prestations utiles à votre activité, à votre rythme et à votre budget.
+            </p>
+        </div>
+    </section>
+
+    <!-- Navigation rapide des catégories -->
+    <section class="categories-nav">
+        <div class="categories-container">
+            <a href="#strategie" class="category-pill">Stratégie</a>
+            <a href="#redaction" class="category-pill">Rédaction</a>
+            <a href="#graphisme" class="category-pill">Graphisme</a>
+            <a href="#video" class="category-pill">Vidéo</a>
+            <a href="#reseaux" class="category-pill">Réseaux sociaux</a>
+            <a href="#publicite" class="category-pill">Publicité</a>
+            <a href="#seo" class="category-pill">SEO</a>
+            <a href="#sites" class="category-pill">Sites web</a>
+            <a href="#ateliers" class="category-pill">Ateliers</a>
+        </div>
+    </section>
+
+    <!-- BLOC 2: Intro flexibilité -->
+    <section class="intro-section">
+        <div class="intro-container">
+            <div class="intro-content">
+                <h2>Une agence de communication flexible et transparente</h2>
+                <p>
+                    Nos services à la carte s'adressent aux dirigeants de TPE / PME et aux professions libérales qui souhaitent avancer étape par étape, <strong>sans engagement inutile</strong>.
+                </p>
+                <p>
+                    Chaque prestation est <a href="{{ path('agence_pourquoi') }}">adaptée à votre activité</a> et est expliquée clairement, avec des mots simples. Pour que vous sachiez exactement ce que vous achetez et pourquoi.
+                </p>
+            </div>
+            <div class="intro-visual">
+                <img src="{{ asset('assets/mains/Main verte.png') }}" alt="" class="intro-hand" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-services"></div>
+
+    <!-- BLOC 3: Stratégie de communication -->
+    <section class="service-category" id="strategie">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">01</span>
+                <div class="category-titles">
+                    <h2>Stratégie de communication & conseil</h2>
+                    <h3>Poser une direction claire pour votre communication</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Ces services vous permettent de prendre du recul et de structurer votre communication avant de passer à l'action. Idéal pour éviter les actions dispersées et gagner du temps sur le long terme.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card" data-service="strategie-contenu">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                        </div>
+                        <div class="service-card-content">
+                            <h4>Stratégie de contenu digitale</h4>
+                            <p>Définir une ligne éditoriale cohérente et efficace</p>
+                        </div>
+                    </div>
+                    <div class="service-card" data-service="calendrier-editorial">
+                        <div class="service-card-content">
+                            <h4>Calendrier éditorial</h4>
+                            <p>Planifier vos publications sur plusieurs mois</p>
+                        </div>
+                    </div>
+                    <div class="service-card" data-service="benchmark">
+                        <div class="service-card-content">
+                            <h4>Étude de marché / Benchmark</h4>
+                            <p>Analyser votre environnement concurrentiel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">On pose la recette avant d'allumer les fourneaux.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-services pattern-red"></div>
+
+    <!-- BLOC 4: Rédaction & création de contenus -->
+    <section class="service-category category-alt" id="redaction">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">02</span>
+                <div class="category-titles">
+                    <h2>Rédaction & création de contenus</h2>
+                    <h3>Trouver les bons mots pour parler de votre activité</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Nous rédigeons des contenus clairs, pédagogiques et adaptés à votre cible, tout en respectant les bases du référencement naturel (SEO).
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-left">
+                            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Articles de blog</h4>
+                        <p>Texte + visuel optimisés SEO</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Posts LinkedIn</h4>
+                        <p>Texte + visuel engageants</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Posts Instagram</h4>
+                        <p>Texte + visuel créatifs</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Posts Facebook</h4>
+                        <p>Texte + visuel adaptés</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Communiqué de presse</h4>
+                        <p>Annonces professionnelles</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Livre blanc</h4>
+                        <p>Contenu expert et valorisant</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Newsletter</h4>
+                        <p>Communication régulière</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Des mots simples, bien choisis, font toute la différence.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 5: Création graphique -->
+    <section class="service-category" id="graphisme">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">03</span>
+                <div class="category-titles">
+                    <h2>Création graphique & supports de communication</h2>
+                    <h3>Une image professionnelle et cohérente</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Ces prestations vous permettent d'avoir des supports clairs, professionnels et alignés avec votre image de marque, en ligne comme hors ligne.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Création de logo</h4>
+                        <p>Identité visuelle unique</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Templates réseaux sociaux</h4>
+                        <p>LinkedIn ou Instagram à l'unité</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Pack de templates</h4>
+                        <p>Ensemble cohérent de visuels</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Bannière LinkedIn</h4>
+                        <p>Première impression soignée</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Fond d'écran Teams</h4>
+                        <p>Professionnalisme en visio</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Flyers</h4>
+                        <p>Communication imprimée efficace</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Cartes de visite</h4>
+                        <p>Premier contact marquant</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Kakémono / Roll-up</h4>
+                        <p>Visibilité événementielle</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Goodies</h4>
+                        <p>Objets publicitaires personnalisés</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Une présentation soignée, ça se remarque toujours.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-services"></div>
+
+    <!-- BLOC 6: Vidéo & formats dynamiques -->
+    <section class="service-category category-alt" id="video">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">04</span>
+                <div class="category-titles">
+                    <h2>Vidéo & formats dynamiques</h2>
+                    <h3>Donner du mouvement à votre communication</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                La vidéo est un excellent levier pour capter l'attention et valoriser votre activité sur les réseaux sociaux.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-left">
+                            <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Création de Reel</h4>
+                        <p>Vidéo courte et percutante</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Montage de Reel</h4>
+                        <p>Post-production professionnelle</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Un format court, efficace et percutant.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 7: Réseaux sociaux -->
+    <section class="service-category" id="reseaux">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">05</span>
+                <div class="category-titles">
+                    <h2>Réseaux sociaux : création, optimisation et visibilité</h2>
+                    <h3>Être présent sur les réseaux sociaux de façon professionnelle</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Ces services vous aident à créer, optimiser ou améliorer votre présence sur les réseaux sociaux, sans improvisation.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Optimisation profil Facebook</h4>
+                        <p>Profil clair et engageant</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Optimisation profil Instagram</h4>
+                        <p>Bio et feed cohérents</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Optimisation LinkedIn personnel</h4>
+                        <p>Profil professionnel optimisé</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Optimisation page LinkedIn</h4>
+                        <p>Page entreprise performante</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Création page LinkedIn</h4>
+                        <p>Présence entreprise complète</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Des profils clairs donnent envie d'en savoir plus.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-services pattern-red"></div>
+
+    <!-- BLOC 8: Publicité en ligne -->
+    <section class="service-category category-alt" id="publicite">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">06</span>
+                <div class="category-titles">
+                    <h2>Publicité en ligne & acquisition</h2>
+                    <h3>Générer de la visibilité rapidement</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Ces services sont adaptés si vous souhaitez obtenir des résultats rapides grâce à la publicité en ligne, tout en gardant une parfaite maîtrise de votre budget.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-left">
+                            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Campagnes Google Ads</h4>
+                        <p>Visibilité sur le moteur de recherche</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Campagnes Meta Ads</h4>
+                        <p>Facebook et Instagram sponsorisés</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Un coup de projecteur bien ciblé peut tout changer.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 9: SEO -->
+    <section class="service-category" id="seo">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">07</span>
+                <div class="category-titles">
+                    <h2>Référencement naturel (SEO)</h2>
+                    <h3>Être trouvé sur Google durablement</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Le référencement naturel permet à votre site internet d'être visible sur le long terme auprès de vos futurs clients.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card service-card-large">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_tete.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Optimisation SEO</h4>
+                        <p>Audit, recommandations et optimisation technique et éditoriale de votre site</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Être visible au bon endroit, au bon moment.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider -->
+    <div class="pattern-divider-services"></div>
+
+    <!-- BLOC 10: Sites internet -->
+    <section class="service-category category-alt" id="sites">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">08</span>
+                <div class="category-titles">
+                    <h2>Sites internet & outils digitaux</h2>
+                    <h3>Un site clair, utile et adapté à votre activité</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Nous concevons des sites internet pensés pour vos clients, faciles à comprendre et optimisés pour le référencement.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-left">
+                            <img src="{{ asset('assets/logos/Logo sticker.svg') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Site vitrine</h4>
+                        <p>Présentation professionnelle</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Site e-commerce</h4>
+                        <p>Vente en ligne optimisée</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Landing page</h4>
+                        <p>Page de conversion efficace</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Application web</h4>
+                        <p>Outil digital sur mesure</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Un bon site internet doit être aussi clair qu'efficace.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOC 11: Ateliers -->
+    <section class="service-category" id="ateliers">
+        <div class="category-container">
+            <div class="category-header">
+                <span class="category-number">09</span>
+                <div class="category-titles">
+                    <h2>Ateliers & accompagnement pédagogique</h2>
+                    <h3>Comprendre pour mieux décider</h3>
+                </div>
+            </div>
+
+            <p class="category-description">
+                Ces ateliers sont pensés pour vous aider à monter en compétence et à mieux comprendre les enjeux de la communication digitale.
+            </p>
+
+            <div class="services-slider">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-magnet magnet-top-right">
+                            <img src="{{ asset('assets/stickers/Sticker_etoiles.png') }}" alt="" loading="lazy">
+                        </div>
+                        <h4>Atelier ChatGPT</h4>
+                        <p>Utiliser l'IA pour votre communication</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Atelier personas & why</h4>
+                        <p>Définir votre cible et votre message</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="category-tagline">Mieux comprendre, c'est déjà mieux communiquer.</p>
+
+            <div class="category-cta">
+                <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Divider Red -->
+    <div class="pattern-divider-services pattern-red"></div>
+
+    <!-- BLOC 12: CTA Final -->
+    <section class="cta-services-section">
+        <div class="cta-services-container">
+            <img src="{{ asset('assets/stickers/Sticker main jaune.png') }}" alt="" class="cta-sticker cta-sticker-1" loading="lazy">
+            <img src="{{ asset('assets/stickers/Sticker O.png') }}" alt="" class="cta-sticker cta-sticker-2" loading="lazy">
+
+            <div class="cta-services-card">
+                <h2>Besoin d'un accompagnement plus global ?</h2>
+                <p>
+                    Si vous préférez une solution clé en main ou si vous manquez de temps pour coordonner plusieurs prestations, découvrez également nos <a href="{{ path('formules_communication') }}">menus de communication</a>.
+                </p>
+                <p class="cta-conclusion">
+                    Chez La Buon'Com, vous choisissez à la carte ou au menu, toujours avec la même promesse : <strong>une communication claire, utile et au juste prix</strong>.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="{{ path('composer_menu') }}" class="btn btn-primary btn-large">Composer mon menu</a>
+                    <a href="{{ path('formules_communication') }}" class="btn btn-secondary btn-large">Voir nos formules</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation des sections au scroll
+    const sections = document.querySelectorAll('.service-category, .intro-section, .cta-services-card');
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        sections.forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+    }
+
+    // Animation des cartes de service au scroll
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    if ('IntersectionObserver' in window) {
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 50);
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        serviceCards.forEach(el => {
+            el.classList.add('animate-card');
+            cardObserver.observe(el);
+        });
+    }
+
+    // Smooth scroll pour la navigation
+    document.querySelectorAll('.category-pill').forEach(pill => {
+        pill.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                const headerOffset = 100;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Slider horizontal drag
+    const sliders = document.querySelectorAll('.services-slider');
+    sliders.forEach(slider => {
+        const track = slider.querySelector('.services-track');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    });
+});
+</script>
+{% endblock %}
